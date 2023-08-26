@@ -1,0 +1,59 @@
+
+
+
+.Sectionprofil{
+    display: flex;
+    width: 100%;
+    height: 523px;
+    justify-content: flex-end;
+    flex-direction: column;
+   
+    border-radius: 7px;
+    margin: 5% -1%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(17px);
+    --webkit-backdrop-filter: blur(17px);
+    border-right: 1px solid rgba(255, 255, 255, 0.7);
+    border-left: 1px solid rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+}
+
+.sectionuser{
+    background: transparent;
+    height: 75px;
+    width: 100%;
+    border-radius: 7px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.photoprofil{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: gray;
+    background-size: contain;
+    color: white;
+}
+.photoprofil img{
+    cursor: pointer !important;
+}
+
+.profiltxt{
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    
+}
+
+.profilstatus{
+    background-color: aqua;
+    cursor: pointer;
+    width: 65px;
+    height: 45px;
+    position: relative;
+    top: 16%;
+}

@@ -1,0 +1,257 @@
+*{
+    
+    
+}
+
+
+body{
+    
+    background-color: var(--body-color);
+    overflow: hidden; /* ceci supprime la barre de scroll horizontal*/
+    
+}
+
+
+.container{
+    position: absolute;
+    left:50%;
+    top: 40%;
+    transform: translate(-50%,-50%);
+    width:100%;
+    height: 835px;
+    padding:50px;
+    background-color: transparent;
+    background-size: cover;
+
+}
+
+
+
+#slide{
+    width:max-content;
+    
+}
+
+/*image qui seront selectionner et qui joue le role de carrousel*/
+.item{
+    width:210px;
+    height:300px;
+    background-position: 50% 50%;
+    background-size: cover;
+    display: inline-block;
+    transition: 0.5s;
+    background-size: cover;
+  
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIClDFvZNOjwhv7gBII6RH09vomN2hbhTd_A&usqp=CAU');
+    position: absolute;
+    z-index: 1;
+    top: 83%;  /*position du caroussel sur la vertical*/
+    transform: translate(0, -50%);
+    border-radius: 20px;
+    box-shadow:  0 30px 50px #161616;
+    
+}
+.item:nth-child(1),
+.item:nth-child(2){
+    left:0;
+    top: 0;
+    transform: translate(0,0);
+    border-radius: 0;
+    width:100%;
+    height: 720px;
+    box-shadow: none;
+}
+.item:nth-child(3){
+    left:54%;
+    
+    
+}
+.item:nth-child(4){
+    left:calc(55% + 220px);
+  
+}
+.item:nth-child(5){
+    left:calc(56% + 440px);/*position de la derniere image des 3 sur l'axe x(50%)*/
+}
+.item:nth-child(n+6){
+    left:calc(70% + 660px);
+    opacity: 0;
+}
+.item .content{
+    position: absolute;
+    top:54%;
+    left:100px;
+    width:300px;
+    text-align: left;
+    padding:0;
+    color:#eee;
+    transform: translate(0,-50%);
+    display: none;
+    font-family: system-ui;
+}
+.item:nth-child(2) .content{
+    display: block;
+    z-index: 11111;
+}
+.item .name{
+    
+    font-size: 60px;
+    font-weight: bold;
+    opacity: 0;
+    animation:showcontent 1.5s ease-in-out 1 forwards
+}
+.item .des{
+    font-size: 0.9rem;
+    margin:10px 0;
+    opacity: 0;
+    animation:showcontent 1.5s ease-in-out 0.3s 1 forwards
+}
+.item button{
+    padding:10px 20px;
+    border:none;
+    opacity: 0;
+    animation:showcontent 1.5s ease-in-out 0.6s 1 forwards
+}
+@keyframes showcontent{
+    from{
+        opacity: 0;
+        transform: translate(0,100px);
+        filter:blur(33px);
+        transition: 0.5s;
+    }to{
+        opacity: 1;
+        transform: translate(0,0);
+        filter:blur(0);
+        transition: 0.5s;
+    }
+}
+.buttons{
+    position: absolute;
+    top: 112%;
+    bottom:30px;
+    z-index: 222222;
+    text-align: center;
+    width:100%;
+    margin-left: 17%;
+    cursor: pointer;
+}
+
+/* style pour les boutons du carousell*/
+button{
+    background-color: white;
+    width: 60%;
+    border-radius: 5px;
+    
+    cursor: pointer;
+    color: black;
+    font-size: 1.1rem;
+}
+
+button i{
+    color:white;
+    font-size: 0.9rem;
+}
+
+button i .direction{
+    margin-left: 15px;
+}
+.buttons i:hover{
+    color:grey;
+    
+}
+.buttons button{
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+    border:1px solid white;
+    transition: 0.5s;
+    margin-left: 0.8%;
+    background-color: transparent;
+    cursor: pointer;
+}.buttons button:hover{
+    background-color: transparent;
+    transition: 0.5s;
+}
+  
+.desi{
+    width: 38px;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+    margin-left: 1%;
+   
+    
+ 
+}
+
+
+
+/* ici c'est le slide des image qui seront afficher */
+#slide1{
+    background-image: url('https://images.pexels.com/photos/235925/pexels-photo-235925.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    
+}
+
+#slide2{
+    background-image: url('https://images.ctfassets.net/u9g6bbjec56r/52AQae6o3fkvXELALLmWhu/24df9152dd07fbb8a5aab42c1267597b/Electric_hero_carousel_compressed.jpg?w=2500&h=1668&q=50&fm=webp');
+}
+
+#slide3{
+    background-image: url('https://www.inq.inc/wp-content/uploads/2022/01/INQ-Digital-Solutions-SECURITY-1220486974.jpg');
+}
+
+#slide4{
+    background-image: url('https://www.ravenpack.com/static/img/hero/home-hero-images/homepage-earnings-intelligence-asia-desktop.jpg');
+}
+
+#slide5{
+    background-image: url('https://give-01.firebaseapp.com/static/media/9.e080e92f.jpg');
+}
+
+#slide6{
+    background-image: url('https://www.inq.inc/wp-content/uploads/2022/01/INQ-Digital-Solutions-APPS-1177116437.jpg');
+}
+
+.desi1{
+    width: 270px;
+    height: 2px;
+    background-color: white;
+    border-radius: 3px;
+    margin-left: -1%;
+    display: flex;
+    justify-content: right;
+ 
+}
+
+.localisation i{
+    color: orange;
+    margin-right: 5px;
+    margin-top: 4px;
+    
+}
+
+.localisation{
+    margin-top: 2%;
+    display: flex;
+}
+
+.bloc-infos{
+    display: flex;
+    cursor: pointer;
+}
+
+.details{
+    border-radius: 50%;
+    background-color: orange;
+    height: 40px;
+    width: 40px;
+    margin-right: 5%;
+}
+
+.details span{
+    display: flex;
+    justify-content: center;
+    padding-top: 27%;
+}
+
+

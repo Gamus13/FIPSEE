@@ -1,0 +1,85 @@
+
+
+
+.dashboard-content{
+    
+  position: absolute;
+  transition: 0.5s ease-out;
+  width: 94% !important;
+  margin-left: -15%;
+  justify-content: start;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  background: transparent;
+  top: -2%;
+  padding: 25px;
+  
+  z-index: 1;
+}
+
+.blocProfil{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  
+  
+}
+
+.profilusers{
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: gray;
+  background-size: contain;
+  color: white;
+}
+
+.notif{
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: gray;
+  background-size: contain;
+  color: white;
+}
+
+/* =====Topbar======= */
+.search {
+  width: 30%;
+  display: flex;
+  padding: 5px 10px;
+  background: transparent;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  
+  margin: 0% 11%;
+}
+
+.search input {
+  width: 90%;
+  height: 40px;
+  border: none;
+  outline: none;
+  align-items: flex-end;
+  border-radius: 20px;
+
+}
+
+
+.icon .bsicon{
+    margin: 5px 15%;
+    align-items: center;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+
+#titleheader{
+  color: white;
+  left: 0;
+  font-weight: normal;
+  text-decoration: 22px;
+  font-size: 1.3rem;
+}
