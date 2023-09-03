@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useEffect } from "react";
 import  Logo from '../../../images/Logo-fipsee.png';
-
+//import handleLogout from './components/ProtectedLayout';
 
 function DashbordProjet(){
 
@@ -17,27 +17,27 @@ function DashbordProjet(){
 				<Col sm="2" lg="1" className="sidebar">
 					<div className="logo">
 						<img src={Logo} alt="Logo" class='logo' />
-						<h2>FIPSEE</h2>
+						
 					</div>
 					<ul className="links">
 						<h4>Main Menu</h4>
 						<li>
 							<span className="material-symbols-outlined">dashboard</span>
-							<a href="#">Dashboard</a>
+							<a href="/dashbord">Dashboard</a>
 						</li>
 						<li>
 							<span className="material-symbols-outlined">show_chart</span>
-							<a href="#">Revenue</a>
+							<a href="/Revenue">Revenue</a>
 						</li>
 						<li>
 							<span className="material-symbols-outlined">flag</span>
-							<a href="#">Reports</a>
+							<a href="/projet">Reports</a>
 						</li>
 						<hr />
 						<h4>Advanced</h4>
 						<li>
 							<span className="material-symbols-outlined">person</span>
-							<a href="#">Designer</a>
+							<a href="/" /*onSubmit={handleLogout}*/>Designer</a>
 						</li>
 						<li>
 							<span className="material-symbols-outlined">group</span>

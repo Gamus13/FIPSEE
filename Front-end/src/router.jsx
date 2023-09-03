@@ -4,7 +4,7 @@ import About from './pages/About';
 import Profile from './pages/Profile';
 import LoginForm from './pages/Register';
 import ProtectedLayout from './components/ProtectedLayout';
-
+import NotFound from './components/NotFound';
 
 import Header from './components/Accueil/Header';
 import Navbar from './components/Accueil/Navbar';
@@ -21,6 +21,7 @@ import './Styles/Accueil/Navbar.css';
 
 
 
+
 const router = createBrowserRouter([
 	{
 		path: '/',
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
 		),
 	},
 
+	//route pour l'authentification de l'utilisateur
 	{
 		path: '/profile',
 		element: (
@@ -44,11 +46,50 @@ const router = createBrowserRouter([
 			</>
 		),
 	},
+	//route pour le dashbord de l'entrepreuneur
+	{
+		path: '/dashbord',
+		element: (
+			<>
+				<ProtectedLayout />
+				
+				
+			</>
+		),
+	},
+	{
+		path: '/Revenue',
+		element: (
+			<>
+				<ProtectedLayout />
+				
+				
+			</>
+		),
+	},
+	{
+		path: '/projet',
+		element: (
+			<>
+				<ProtectedLayout />
+				
+				
+			</>
+		),
+	},
 	
 	
-
-
-		
+	//Route pour la page Notfound
+	{
+		path: '*',
+		element: (
+			
+			<NotFound />
+				
+				
+			
+		),
+	},
 
    
 	
