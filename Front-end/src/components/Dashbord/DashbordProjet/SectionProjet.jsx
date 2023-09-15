@@ -1,25 +1,16 @@
-import React from 'react';
-import { useEffect } from "react";
+import * as React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 
-
-
-function SectionProjet(){
-    
-    
-
-    return(
-        <div className='SectionProjet'>
-            
-            
-            <div className="sectionstat">
-                
-            </div>
-       </div>
-        
-    )
-
-
-
+export default function FixedContainer() {
+  return (
+    <React.Fragment>
+      
+      <Container fixed>
+        <Box sx={{ bgcolor: '#cfe8fc',  width: '79%', height: 500, marginTop: -63,marginLeft: '-70px', }} />
+      </Container>
+    </React.Fragment>
+  );
 }
 
-export default SectionProjet

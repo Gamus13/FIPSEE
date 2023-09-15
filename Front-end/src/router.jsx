@@ -5,10 +5,21 @@ import Profile from './pages/Profile';
 import LoginForm from './pages/Register';
 import ProtectedLayout from './components/ProtectedLayout';
 import NotFound from './components/NotFound';
-
+import CreateProduct from './components/Product/CreateProjet';
 import Header from './components/Accueil/Header';
 import Navbar from './components/Accueil/Navbar';
 import Defilant from './components/Accueil/Defilant';
+import ImageGallery from './ImageGallary';
+import ModalPOPUP from './components/Dashbord/DashbordProjet/ModalBtn';
+import FixedContainer from './components/Dashbord/DashbordProjet/SectionProjet';
+// import {List } from './components/Product/ListProjet';
+import List  from './components/Product/ListProjet';
+// import { properties } from "./constants/data";
+ import Card from "./components/Dashbord/DashbordProjet/Card/Card";
+ import PrimarySearchAppBar from './components/Dashbord/DashbordProjet/SectionRight';
+ import SearchBar from './components/SearchBar';
+import AlignItemsList from './components/Dashbord/DashbordProjet/UserList';
+
 
 import './Styles/DashbordClient/ProtectedLayout.css';
 import './Styles/DashbordClient/ContainerProjet.css';
@@ -18,9 +29,10 @@ import './Styles/DashbordClient/UserStat.css';
 import './Styles/Accueil/Header.css';
 import './Styles/Accueil/Defilant.css';
 import './Styles/Accueil/Navbar.css';
-
-
-
+//import { Modal } from 'react-bootstrap';
+import "./Styles/DashbordClient/List.css";
+import "./Styles/DashbordClient/SearchBar.css";
+import "./Styles/DashbordClient/HorizontalNav.css";
 
 const router = createBrowserRouter([
 	{
@@ -40,9 +52,9 @@ const router = createBrowserRouter([
 		path: '/profile',
 		element: (
 			<>
+				<AlignItemsList/>
 				<ProtectedLayout />
-				
-				
+				<FixedContainer/>
 			</>
 		),
 	},
@@ -52,8 +64,15 @@ const router = createBrowserRouter([
 		element: (
 			<>
 				<ProtectedLayout />
-				
-				
+				<AlignItemsList/>
+				<FixedContainer/>
+				{/* <List /> */}
+				{/* <div className='List'>
+					{List.map((item) => (
+						<Card data={item} key={item.id} />
+					))}
+				</div> */}
+				{/* <SearchBar placeholder="Entrer votre recherche"/> */}
 			</>
 		),
 	},
@@ -62,7 +81,7 @@ const router = createBrowserRouter([
 		element: (
 			<>
 				<ProtectedLayout />
-				
+				<List />
 				
 			</>
 		),
@@ -72,8 +91,20 @@ const router = createBrowserRouter([
 		element: (
 			<>
 				<ProtectedLayout />
+				{/* <ImageGallary /> */}
+				{/* <CreateProduct/> */}
+				<ModalPOPUP />
+
+			</>
+		),
+	},
+	{
+		path: '/test',
+		element: (
+			<>
 				
-				
+			 <ImageGallery /> 
+			 {/* <CreateProduct/> */}
 			</>
 		),
 	},

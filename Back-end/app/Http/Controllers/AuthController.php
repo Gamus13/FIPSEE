@@ -10,6 +10,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller {
+    public function index()
+    {
+        $users = User::all(); //ici je cree une variable $users qui va contenir tous les data de la table User e le rendre en json
+
+        return response()->json([
+            "results" => $users
+        ],200); // ensuite on cree le composent search.jsx dans notre composant
+
+    }
     // enregistre une nouvelle méthode utilisateur
     public function register(RegisterRequest $request) {
 

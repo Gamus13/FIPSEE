@@ -15,9 +15,14 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
+            $table->string('titre');
+            $table->string('Secteur');
+            $table->string('Montant_de_levée');
+            $table->string('Monnaie');
+            $table->date('Duree_de_la_levée') -> nullable();
             $table->text('description');
-            $table->text('image');
+            $table->json('images') -> nullable(); // Modifier le type de la colonne en "json"
+
             $table->timestamps();
         });
     }

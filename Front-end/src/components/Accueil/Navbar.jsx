@@ -164,7 +164,7 @@ function Navbar(){
             </div>
 
             
-            <div class="modal" id="modal" role="dialog">
+            <div class="modale" id="modal" role="dialog">
               
               <div class="modal-content">
                 {/* <Link to="/components/GuestLayout.jsx">
@@ -181,7 +181,7 @@ function Navbar(){
                
             </div>
 
-            <div class="modal" id="modal2" role="dialog">
+            <div class="modale" id="modal2" role="dialog">
                 <div class="modal-content">
 
                   <Login />

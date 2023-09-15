@@ -30,8 +30,8 @@ function DashbordProjet(){
 							<a href="/Revenue">Revenue</a>
 						</li>
 						<li>
-							<span className="material-symbols-outlined">flag</span>
-							<a href="/projet">Reports</a>
+							<span className="material-symbols-outlined">work</span>
+							<a href="/projet">projet</a>
 						</li>
 						<hr />
 						<h4>Advanced</h4>

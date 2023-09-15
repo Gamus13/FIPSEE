@@ -41,7 +41,6 @@ body{
     display: inline-block;
     transition: 0.5s;
     background-size: cover;
-  
     background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIClDFvZNOjwhv7gBII6RH09vomN2hbhTd_A&usqp=CAU');
     position: absolute;
     z-index: 1;
@@ -254,4 +253,82 @@ button i .direction{
     padding-top: 27%;
 }
 
+/*Responsive du composant Header*/
+
+@media (max-width: 768px) {
+    /* Ajoutez ici les styles spécifiques pour les petits écrans */
+
+    .item{
+        width:180px;
+        height:300px;
+        background-position: 50% 50%;
+        background-size: cover;
+        display: inline-block;
+        transition: 0.5s;
+        background-size: cover;
+      
+        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIClDFvZNOjwhv7gBII6RH09vomN2hbhTd_A&usqp=CAU');
+        position: absolute;
+        z-index: 1;
+        top: 83%;  /*position du caroussel sur la vertical*/
+        transform: translate(0, -50%);
+        border-radius: 20px;
+        box-shadow:  0 30px 50px #161616;
+        
+    }
+
+    .item .content{
+        position: absolute;
+        top:34%;
+        left:20px;
+        width:300px;
+        text-align: left;
+        padding:0;
+        color:#eee;
+        transform: translate(0,-50%);
+        display: none;
+        font-family: system-ui;
+    }
+
+    .item .name{
+    
+        font-size: 30px;
+        font-weight: bold;
+        opacity: 0;
+        animation:showcontent 1.5s ease-in-out 1 forwards
+    }
+    .item .des{
+        font-size: 0.9rem;
+        margin:10px 0;
+        opacity: 0;
+        animation:showcontent 1.5s ease-in-out 0.3s 1 forwards
+    }
+
+        
+    .details{
+        display: none;
+    }
+
+    .details span{
+        display: flex;
+        justify-content: center;
+        padding-top: 7%;
+    }
+
+    #btn-pjt{
+        width: 108px;
+        font-size: 0.9rem;
+        text-align: center;
+        
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+        /* Ajoutez ici les styles spécifiques pour les écrans moyens */
+        
+        
+
+
+    }
+    
+
+}
 

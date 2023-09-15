@@ -4,13 +4,13 @@ import { NavLink } from 'react-router-dom';
 import axios from '../axios';
 import { useAuth } from '../contexts/AuthContext';
 import 'material-symbols';
-
 import DashbordProjet from './Dashbord/DashbordProjet/Navbar';
-import ContainerProjet from './Dashbord/DashbordProjet/ContainerProjet';
+import Search from '../components/SearchBar';// les lignes a importer
+import  {  useState } from "react";
+import Nav from '../components/HorizontalNav';
 
-import UserStat from './Dashbord/DashbordProjet/UserStat';
+// import UserStat from './Dashbord/DashbordProjet/UserList';
 import { useEffect } from "react";
-import  Logo from '../images/Logo-fipsee.png'
 export default function DefaultLayout() {
 	const { user, setUser } = useAuth();
 
@@ -48,6 +48,18 @@ export default function DefaultLayout() {
 			console.log(error);
 		}
 	};
+
+	//
+	const [allUsers, setAllcountry] = useState([]);
+
+    useEffect(() => {
+        const getusers = async () => {
+            const getres = await fetch("http://127.0.1:8000/api/users");
+            const setusers = await getres.json();
+            setAllcountry(await setusers.results);
+        };
+        getusers();
+    }, []);
 	return (
 		<>
 			{/*<nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900">
@@ -99,8 +111,8 @@ export default function DefaultLayout() {
 			<main >
 				
 				<DashbordProjet />
-				<ContainerProjet/>
-				
+				<Search placeholder="Entrer votre recherche"data={allUsers}/>
+				<Nav/>
 			</main>
 			
 			

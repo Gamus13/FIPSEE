@@ -358,7 +358,7 @@ input #search{
 
 /* ceci c'est pour le modal*/
 
-.modal{
+ .modale{
     background-color: rgba(10, 10, 10, 0.821);
     position: fixed;
     height: 100%;
@@ -373,10 +373,10 @@ input #search{
     transition: 0.2s;
 }
 
-.modal.show{
+.modale.show{
     visibility: visible;
     opacity: 1;
-}
+} 
 
 /* ici c'est le formulaire de connexion et inscription*/
 .container{
@@ -598,5 +598,10 @@ a.google span{
     .nav-links li a{
         display: block;
         margin-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+        /* Ajoutez ici les styles spécifiques pour les petits écrans */
+       
     }
 }

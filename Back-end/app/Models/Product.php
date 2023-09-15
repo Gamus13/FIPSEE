@@ -9,5 +9,18 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'image'];
+
+    protected $fillable = [
+        'titre',
+        'Secteur',
+        'Montant_de_levée',
+        'Monnaie',
+        'Duree_de_la_levée',
+        'description',
+        'images'
+    ];
+
+    // protected $casts = [
+    //     'images' => 'array'
+    // ];
 }

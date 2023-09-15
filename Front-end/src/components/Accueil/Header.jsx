@@ -51,7 +51,7 @@ function Home(){
                             <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
                             <div class="bloc-infos">
                                 <div class="details"><span class="fa fa-bookmark"></span></div>
-                                <button>decouvrir</button>
+                                <button id='btn-pjt'>decouvrir</button>
                             </div>
                         </div>
                     </div>
@@ -63,7 +63,7 @@ function Home(){
                             <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
                             <div class="bloc-infos">
                                 <div class="details"><span><FaPlay /></span></div>
-                                <button>decouvrir</button>
+                                <button id='btn-pjt'>decouvrir</button>
                             </div>
                         </div>
                     </div>
@@ -75,7 +75,7 @@ function Home(){
                             <div class="des">Premier réseau social Africain de financement participatif</div>
                             <div class="bloc-infos">
                                 <div class="details"><span class="fa fa-bookmark"></span></div>
-                                <button>decouvrir</button>
+                                <button id='btn-pjt'>decouvrir</button>
                             </div>
                         </div>
                     </div>
@@ -87,7 +87,7 @@ function Home(){
                             <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu Premier réseau social Africain de financement participatif</div>
                             <div class="bloc-infos">
                                 <div class="details"><span class="fa fa-play"></span></div>
-                                <button>decouvrir</button>
+                                <button id='btn-pjt'>decouvrir</button>
                             </div>
                         </div>
                     </div>
@@ -99,7 +99,7 @@ function Home(){
                             <div class="des">Premier réseau social Africain de financement participatif</div>
                             <div class="bloc-infos">
                                 <div class="details"><span class="fa fa-bookmark"></span></div>
-                                <button>decouvrir</button>
+                                <button id='btn-pjt'>decouvrir</button>
                             </div>
                         </div>
                     </div>
@@ -111,7 +111,7 @@ function Home(){
                             <div class="des">secteur: agricole,Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
                             <div class="bloc-infos">
                                 <div class="details"><span class="fa fa-play"></span></div>
-                                <button>decouvrir</button>
+                                <button id='btn-pjt'>decouvrir</button>
                             </div>
                             
                         </div>

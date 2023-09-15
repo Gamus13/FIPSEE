@@ -35,3 +35,17 @@
   font-size: x-large;
   
 }
+
+
+@media (max-width: 768px) {
+  .marquee-rtl {
+    position: absolute;
+   
+    max-width: 800em;                      /* largeur de la fenêtre */
+    margin: 1em auto 2em;
+    left: 72%;
+    color: white;
+    border: 10px solid transparent;
+    overflow: hidden;                     /* masque tout ce qui dépasse */
+}
+}
