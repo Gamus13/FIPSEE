@@ -9,7 +9,6 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
-
 class ProductController extends Controller
 {
     /**

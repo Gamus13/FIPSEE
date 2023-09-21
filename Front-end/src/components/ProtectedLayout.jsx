@@ -119,3 +119,5 @@ export default function DefaultLayout() {
 		</>
 	);
 }
+
+// export { handleLogout };

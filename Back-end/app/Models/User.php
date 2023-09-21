@@ -3,8 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Product;
+use Cache;
+use App\Models\Entrepreneurs;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -42,4 +46,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isOnline()
+    {
+        return Cache::has('user-is-online-' . $this->id);
+    }
+
+    public function Product(): HasMany
+    {
+        return $this->hasMany(Product::class);
+
+    }
+
+    public function Entrepreneurs(): HasMany
+    {
+        return $this->hasMany(Entrepreneurs::class);
+
+    }
 }

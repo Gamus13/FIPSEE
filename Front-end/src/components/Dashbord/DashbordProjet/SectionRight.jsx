@@ -136,7 +136,7 @@ export default function PrimarySearchAppBar() {
           <Badge badgeContent={17} color="error">
             <NotificationsIcon />
           </Badge>
-        </IconButton>
+        </IconButton>/
         <p>Notifications</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>

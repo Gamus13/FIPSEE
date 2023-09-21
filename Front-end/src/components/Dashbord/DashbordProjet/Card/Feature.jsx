@@ -2,7 +2,7 @@ import React from "react";
 import * as FontAwesome from "react-icons/fa";
 import "./Feature.css";
 
-const Feature = ({ iconName, iconLabel }) => {
+const Features = ({ iconName, iconLabel }) => {
   const Icon = FontAwesome[iconName];
   return (
     <div className="feature">
@@ -14,4 +14,4 @@ const Feature = ({ iconName, iconLabel }) => {
   );
 };
 
-export default Feature;
+export default Features;

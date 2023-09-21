@@ -66,8 +66,8 @@ const router = createBrowserRouter([
 				<ProtectedLayout />
 				<AlignItemsList/>
 				<FixedContainer/>
-				{/* <List /> */}
-				{/* <div className='List'>
+				{/* <List />  */}
+				 {/* <div className='List'>
 					{List.map((item) => (
 						<Card data={item} key={item.id} />
 					))}

@@ -116,3 +116,14 @@
   .bloc{ 
     margin: 2px 30%;
   }
+
+  .profile{
+    position: absolute;
+    top: 70%;
+    border-radius: 50%;
+    background-color: rgb(125, 215, 125);
+    width: 10px;
+    height: 10px;
+    right: 50px;
+    
+  }

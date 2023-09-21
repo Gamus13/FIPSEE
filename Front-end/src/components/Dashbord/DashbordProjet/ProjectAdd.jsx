@@ -5,20 +5,43 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from '../../../axios';
 function ProjetForm() {
 
+  // previsualisation de l'image selectionner
   const handleFileChange = (event) => {
     const files = event.target.files;
+    const imagePreviews = Array.from(files).map((file) => ({
+      file,
+      preview: URL.createObjectURL(file),
+    }));
     setState((prevState) => ({
       ...prevState,
       selectedImages: files,
+      imagePreviews: prevState.imagePreviews.concat(imagePreviews),
     }));
   };
+
   const handleDrop = (event) => {
     event.preventDefault();
     const files = event.dataTransfer.files;
+    const imagePreviews = Array.from(files).map((file) => ({
+      file,
+      preview: URL.createObjectURL(file),
+    }));
     setState((prevState) => ({
       ...prevState,
       selectedImages: files,
+      imagePreviews: prevState.imagePreviews.concat(imagePreviews),
     }));
+  };
+  // suppression de l'image previsualiser
+  const removeImagePreview = (index) => {
+    setState((prevState) => {
+      const updatedImagePreviews = [...prevState.imagePreviews];
+      updatedImagePreviews.splice(index, 1);
+      return {
+        ...prevState,
+        imagePreviews: updatedImagePreviews,
+      };
+    });
   };
   
   const formArray = [1, 2, 3];
@@ -30,7 +53,8 @@ function ProjetForm() {
     Monnaie: '',
     Duree_de_la_levée: '',
     description: '',
-    
+    selectedImages: [],
+    imagePreviews: [],
   })
   const inputHandle = (e) => {
     setState({
@@ -64,14 +88,7 @@ function ProjetForm() {
       formData.append('Duree_de_la_levée', state.Duree_de_la_levée);
       formData.append('description', state.description);
     
-      // Vérifier si selectedImages est défini
-    //   if (state.selectedImages) {
-    //     // Ajouter les images sélectionnées à l'objet FormData
-    //     formData.append('images[]', state.selectedImages);
-       
-    //   }
-    // console.log(state.selectedImages )
-
+    // ici je parcour les éléments de state.selectedImages et ajoute chaque élément au formulaire formData.
     for (let i=0; i<state.selectedImages.length; i++){
       formData.append('images[]', state.selectedImages[i]);
     }
@@ -110,7 +127,7 @@ function ProjetForm() {
               <input 
                 value={state.titre}
                 onChange={inputHandle}
-               className='p-2 border border-slate-400 mt-1 outline-0 focus:border-blue-500 rounded-md' type="text" name='titre' placeholder='name' id='titre'
+               className='p-2 border border-slate-400 mt-1 outline-0 focus:border-blue-500 rounded-md' type="text" name='titre' placeholder='nom du projet' id='titre'
               />
             </div>
             <div className='flex flex-col mb-2'>
@@ -135,7 +152,24 @@ function ProjetForm() {
           formNo === 2 && <div>
             <div className='flex flex-col mb-2'>
               <label className='text-slate-500' htmlFor="Monnaie">Monnaie</label>
-              <input value={state.Monnaie} onChange={inputHandle} className='p-2 border border-slate-400 mt-1 outline-0 text-slate-500 focus:border-blue-500 rounded-md' type="text" name='Monnaie' placeholder='varsity name' id='Monnaie' />
+              <select
+                value={state.Monnaie}
+                onChange={inputHandle}
+                className='p-2 border border-slate-400 mt-1 outline-0 text-slate-500 focus:border-blue-500 rounded-md'
+                name='Monnaie'
+                id='Monnaie'
+              >
+                <option value="€">euro</option>
+                <option value="fcfa">FCFA</option>
+                <option value="£">livre de Gibraltar</option>
+                <option value="CHF">Franc suisse</option>
+                <option value="KWD">Dinar koweïtien</option>
+                <option value="CI$">Dinar bahreïni</option>
+                <option value="₽">Rouble</option>
+                <option value="$">Dollar</option>
+                <option value="¥">yen</option>
+                {/* <option value="Le Franc suisse">Le Franc suisse</option> */}
+              </select>
             </div>
             <div className='flex flex-col mb-2'>
               <label className='text-slate-500' htmlFor="Duree_de_la_levée">Fin de la levée de fonds</label>
@@ -171,8 +205,22 @@ function ProjetForm() {
                     onChange={handleFileChange}
                     id='images'
                   />
-                  
-                </div>
+               </div>
+               {state.imagePreviews.length > 0 && (
+                    <div className='flex flex-wrap'>
+                      {state.imagePreviews.map((preview, index) => (
+                        <div key={index} className='flex flex-col items-center m-2'>
+                          <img
+                            src={preview.preview}
+                            alt='Prévisualisation des images'
+                            className='mb-2'
+                            style={{ maxWidth: '150px' }}
+                          />
+                          <button  className='bg-red-500 text-white px-2 py-2 rounded border border-red-700' style={{ width: '130px' }} onClick={() => removeImagePreview(index)}>Supprimer</button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
               </div>
   
     

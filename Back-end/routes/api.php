@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+// use App\Models\Fundraising;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ImageGallary;
-
+use App\Http\Controllers\Fundraising;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +37,10 @@ Route::middleware('auth:sanctum')->group(function () {
 //     return csrf_token();
 // });
 
+Route::prefix('api')->namespace('App\Http\Controllers')->group(function () {
+    Route::get('stripe', 'StripePaymentController@stripe');
+    Route::post('stripe', 'StripePaymentController@stripePost')->name('stripe.post');
+});
 
 
 

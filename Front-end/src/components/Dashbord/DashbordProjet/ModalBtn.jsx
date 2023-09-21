@@ -16,8 +16,8 @@ const ModalPOPUP = () => {
 
     }
     return ( 
-        <div style={{ textAlign:'center' }}>
-            <button onClick={functionopenpopup} color="primary" variant="contained">Open Modal</button>
+        <div style={{ textAlign:'center', justifyContent: 'flex-start' }}>
+            <button onClick={functionopenpopup} color="primary" variant="contained">Ajouter un projet</button>
             <Dialog open={open} onClose={closepopup} fullWidth maxWidth="sm" fullHeight maxHeight="100px">
                 <DialogContent><ProjetForm /></DialogContent>
                 

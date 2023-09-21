@@ -1,6 +1,7 @@
 import React from "react";
 import "./Modal.css";
 import Feature from "./Feature";
+
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
 
@@ -12,7 +13,7 @@ const Modal = ({ data, close }) => {
   const {
     titre,
     description,
-    image,
+    images,
     // numBedroom,
     // numWashrooms,
     // livingSpace,
@@ -50,7 +51,7 @@ const Modal = ({ data, close }) => {
       <motion.img
         className="modal__image"
         alt="real estate mansion"
-        src={`http://localhost:8000/storage/product/image/${image}`}
+        src={`http://localhost:8000/storage/${images[0]}`}
         variants={imageVariants}
       ></motion.img>
       <motion.div className="modal__info" variants={modalInfoVariants}>
