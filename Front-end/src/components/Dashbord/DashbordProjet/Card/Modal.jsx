@@ -12,11 +12,12 @@ const Modal = ({ data, close }) => {
 
   const {
     titre,
+    Secteur,
+    Montant_de_levée,
+    Duree_de_la_levée,
+    Monnaie,
     description,
     images,
-    // numBedroom,
-    // numWashrooms,
-    // livingSpace,
   } = data;
 
   const modalVariants = {
@@ -58,14 +59,18 @@ const Modal = ({ data, close }) => {
         <motion.div className="modal__row" variants={modalRowVariants}>
           <span className="modal__price">{titre}</span>
         </motion.div>
-        {/* <motion.div className="modal__row" variants={modalRowVariants}>
-          <span className="modal__address">{address}</span>
+        <motion.div className="modal__row" variants={modalRowVariants}>
+          <span className="modal__address">{Secteur}</span>
         </motion.div>
         <motion.div className="modal__row" variants={modalRowVariants}>
-          <Feature iconName={"FaBed"} iconLabel={numBedroom} />
-          <Feature iconName={"FaShower"} iconLabel={numWashrooms} />
-          <Feature iconName={"FaRuler"} iconLabel={livingSpace} />
-        </motion.div>  */}
+          {/* <Feature iconName={"FaBed"} iconLabel={Monnaie} />
+          <Feature iconName={"FaShower"} iconLabel={Duree_de_la_levée} />
+          <Feature iconName={"FaRuler"} iconLabel={Montant_de_levée} /> */}
+          <Feature iconName={"FaMoneyBill"} iconLabel={Montant_de_levée + ' ' + Monnaie} />  
+          <Feature iconName={"FaCalendarAlt"} iconLabel={Duree_de_la_levée} />
+          <Feature iconName={"FaInfoCircle"} iconLabel="active"
+           />
+        </motion.div> 
         <motion.div
           className="modal__description-wrapper"
           variants={modalRowVariants}

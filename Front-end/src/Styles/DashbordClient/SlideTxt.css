@@ -1,0 +1,58 @@
+*{
+	font-family: Helvetica;
+	color: white;
+}
+
+:root{
+	--headingSize: 55px;
+	--background-color: black;
+}
+
+body{
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background-color: var(--background-color);
+}
+
+h1{
+  margin: 0;
+  letter-spacing: -1px;
+  font-size: var(--headingSize);
+}
+
+.container{
+	width: 50%;
+}
+
+span{
+  display: inline-block;
+  overflow: hidden;
+  animation: .3s swift-up ease-in-out forwards;	
+}
+
+i{
+  font-style: normal;
+  position: relative;
+  top: var(--headingSize);
+  animation: .5s swift-up ease-in-out forwards;
+}
+
+@keyframes swift-up {
+  to {
+    top: 0;
+  }
+}
+
+@media screen and (max-width: 1000px){
+	.container{
+		width: auto;
+		margin: 0 10%;
+	}
+	
+	:root{
+		--headingSize: 35px;
+	}
+}

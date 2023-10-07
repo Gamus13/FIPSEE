@@ -4,10 +4,10 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 // use App\Models\Fundraising;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\StripePaymentController;
+use App\Http\Controllers\InfosUserController;
+use App\Http\Controllers\UserFollowController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Http\Request;
-use App\Http\Controllers\ImageGallary;
 use App\Http\Controllers\Fundraising;
 
 /*
@@ -32,24 +32,41 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [AuthController::class, 'user']);
 });
 
+// Route::get('/api/user', [UserController::class, 'getUser']);
+Route::get('/api/user', [AuthController::class, 'getCurrentUser'])->middleware('auth:sanctum');
 // cette route c'est pour recuerer le token de laravel qui cause le csrf mismatch
 // Route::get('/csrf-token', function () {
 //     return csrf_token();
 // });
 
-Route::prefix('api')->namespace('App\Http\Controllers')->group(function () {
-    Route::get('stripe', 'StripePaymentController@stripe');
-    Route::post('stripe', 'StripePaymentController@stripePost')->name('stripe.post');
-});
+// route pour les methodes post et get
+Route::resource('infosUser',InfosUserController::class);
+// route pour la methode update
+Route::post('infosUser/{infosUser}', [InfosUserController::class, 'update']);
+// route pour la methode delete
+Route::delete('infosUser/{infosUser}', [InfosUserController::class, 'destroy']);
+
+
+Route::post('infosUser/{infosUser}', [UserFollowController::class, 'follow']);
+Route::get('/api/users/{userId}', [UserFollowController::class, 'following']);
+Route::post('/api/users/{userId}', [UserFollowController::class, 'unfollow']);
+
 
 
 
 // route pour ajouter un projet a la BD
+
 Route::post('/products', [ProductController::class, 'store']);
+Route::put('/api/products/{productId}', [ProductController::class, 'put']);
 // route pour recuperer tous les projet de la BD
 Route::get('/products', [ProductController::class, 'index']);
 // route pour recuperer les informations de chaques id de la BD
+Route::get('/products/filter', [ProductController::class, 'filterByStatus']);
 Route::get('/products/{product}', [ProductController::class, 'show']);
+// Route::put('/products/{product}', [ProductController::class, 'update']);
+// Route::put('/products/{product}', 'ProductController@update');
+
+Route::delete('/products/{product}', [ProductController::class, 'destroy']);
 
 
 Route::get('users', [AuthController::class, 'index']); // tout d'abord je creer la route qui va sera appeller dans ma fonctionnalites

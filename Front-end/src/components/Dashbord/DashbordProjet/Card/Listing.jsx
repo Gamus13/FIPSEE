@@ -7,13 +7,12 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { green } from "@material-ui/core/colors";
-
-
-
+import OutlinedButtons from "./Buttoncard";
+import LinearDeterminate from "./ProgressBarre";
 
 
 const Listing = ({ data, open }) => {
-  const { titre, Secteur, description,Montant_de_levée,Duree_de_la_levée,Monnaie, images } = data;
+  const { titre, Secteur, Status, description,Montant_de_levée,Duree_de_la_levée,Monnaie, images } = data;
   const user = {
 		isOnline: true, // si l'utilisateur est bel et bien connecter on n'affiche user is online sinon rien
 	  };
@@ -53,19 +52,18 @@ const Listing = ({ data, open }) => {
             <span className="listing__address"></span>
             {/* {user.isOnline && <p>User is online!!</p>} */}
           </div>
+          <LinearDeterminate iconLabel='{Duree_de_la_levée}' />
+          <div className="listing_bar">
+            <div className="features-container" >
+              <Features iconName={"FaMoneyBill"} iconLabel={Montant_de_levée + ' ' + Monnaie} />  
+              <Features iconName={"FaCalendarAlt"} iconLabel={Duree_de_la_levée} />
+              <Features iconName={"FaInfoCircle"} iconLabel={Status} style={{ color: green, }} />
+            </div>
+            <div className="feature__buttons">
+              <OutlinedButtons/>
+            </div>
+          </div>
           
-          <div className="features-container" >
-            {/* {/* Ajoutez ici vos composantes d'icônes 
-            {/* Par exemple :  */}
-            <Features iconName={"FaMoneyBill"} iconLabel={Montant_de_levée} iconSpan={Monnaie} />
-            <Features iconName={"FaCalendarAlt"} iconLabel={Duree_de_la_levée} />
-           
-          </div>
-          <div className="feature__buttons">
-            <Features iconName={"FaInfoCircle"} iconLabel="active" style={{ color: green, }} />
-            {/* <button className="featurebutton2">Détail</button> */}
-            <button className="feature__button ">Investir</button>
-          </div>
           
         </div>
       </div>
@@ -74,4 +72,38 @@ const Listing = ({ data, open }) => {
 };
 
 
+
 export default Listing;
+
+// import * as React from 'react';
+// import Card from '@mui/material/Card';
+// import CardActions from '@mui/material/CardActions';
+// import CardContent from '@mui/material/CardContent';
+// import CardMedia from '@mui/material/CardMedia';
+// import Button from '@mui/material/Button';
+// import Typography from '@mui/material/Typography';
+
+// export default function MediaCard() {
+//   return (
+//     <Card sx={{ maxWidth: 345 }}>
+//       <CardMedia
+//         sx={{ height: 140 }}
+//         image="/static/images/cards/contemplative-reptile.jpg"
+//         title="green iguana"
+//       />
+//       <CardContent>
+//         <Typography gutterBottom variant="h5" component="div">
+//           Lizard
+//         </Typography>
+//         <Typography variant="body2" color="text.secondary">
+//           Lizards are a widespread group of squamate reptiles, with over 6,000
+//           species, ranging across all continents except Antarctica
+//         </Typography>
+//       </CardContent>
+//       <CardActions>
+//         <Button size="small">Share</Button>
+//         <Button size="small">Learn More</Button>
+//       </CardActions>
+//     </Card>
+//   );
+// }

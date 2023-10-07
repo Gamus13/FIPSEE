@@ -9,12 +9,14 @@ use App\Models\Entrepreneurs;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
 
     /**
      * The attributes that are mass assignable.
@@ -47,20 +49,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function isOnline()
-    {
-        return Cache::has('user-is-online-' . $this->id);
-    }
 
-    public function Product(): HasMany
+
+    public function products(): HasMany
     {
         return $this->hasMany(Product::class);
-
     }
 
-    public function Entrepreneurs(): HasMany
+    public function entrepreneurs(): HasMany
     {
         return $this->hasMany(Entrepreneurs::class);
-
     }
 }

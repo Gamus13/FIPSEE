@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+// * {
+//   box-sizing: border-box;
+// }
+
+// // html {
+// //    font-size: calc(10vw / 1600 * 100);
+// //   @media (max-width: 768px) {
+// //     font-size: calc(100vw / 768 * 100);
+// //   }
+// // }
+
+.wrapper {
+  width: 30%;
+  height: 4rem;
+  display: flex;
+  font-size: calc(100vw / 768 * 100);
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
+.slider-wrapper {
+  flex: 1;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.slide-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  // init status
+  opacity: 0;
+  transform: translateY(20%);
+  transition: all 0.6s cubic-bezier(0, 0, 0.2, 0.8);
+  // fade in
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  // fade out
+  &.leave {
+    opacity: 0;
+    transform: translateY(20%);
+    transition: all 0.4s cubic-bezier(0, 0, 0.7, -0.1);
+  }
+  // character img
+  img {
+    display: block;
+    width: 100%;
+    border-radius: 0 0.5rem 0 0.5rem;
+    box-shadow: -0.6rem 0.4rem 0 #5a5b3f, 0.2rem -0.2rem 0 #b6b1a0;
+  }
+  // character name
+  .name {
+    position: absolute;
+    bottom: -0.1rem;
+    left: -0.3rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #fff;
+    mix-blend-mode: overlay;
+  }
+}
+.dot-box {
+  margin-left: -4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  @media (max-width: 768px) {
+    flex-direction: row;
+    margin: 0;
+    margin-top: 0.5rem;
+  }
+  .dot {
+    position: relative;
+    top: -120%;
+    cursor: pointer;
+    transition: all 0.2s;
+    &:hover {
+      transform: scale(1.1);
+    }
+    // dot deco
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0.03rem;
+      left: -0.03rem;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 1px solid #b6b1a0;
+      box-shadow: 0.03rem -0.03rem 0 #5a5b3f;
+    }
+    // dot img
+    img {
+      display: block;
+      width: 33px;
+      height: 35px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+}

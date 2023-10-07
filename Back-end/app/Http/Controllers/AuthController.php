@@ -61,6 +61,15 @@ class AuthController extends Controller {
         ])->withCookie($cookie);
     }
 
+    public function getCurrentUser()
+    {
+        $user = auth()->user();
+
+        return response()->json([
+            'user' => $user,
+        ]);
+    }
+
     // déconnecte une méthode utilisateur
     public function logout(Request $request) {
         $request->user()->currentAccessToken()->delete();

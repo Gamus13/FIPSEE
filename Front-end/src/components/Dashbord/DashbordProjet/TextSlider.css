@@ -1,0 +1,108 @@
+/* .content{
+	background-color: white;
+	padding: 20px;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+
+.content h2{
+	padding: 0px 0 5px 0px; 
+}
+
+.content hr{
+	width: 100px;
+	height: 2px;
+	background: #222;
+	margin-bottom: 5px;
+}
+
+.content p {
+	width: 100%;
+	height: 100%;
+}
+
+.active-content{
+	display: block;
+} */
+
+.tech-button{
+	text-align: center;
+}
+
+.rare{
+	position: relative;
+	right: -77%;
+}
+
+/* *{
+	font-family: Helvetica;
+	color: white;
+} */
+
+:root{
+	--headingSize: 15px;
+	--background-color: black;
+}
+
+/* body{
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background-color: var(--background-color);
+} */
+
+/* h1{
+  margin: 0;
+  letter-spacing: -1px;
+  font-size: var(--headingSize);
+  text-align: right;
+  
+} */
+
+.container{
+	width: 70%;
+}
+
+.swift-up-text{
+	position: absolute;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: right;
+	width: 100%;
+	margin-right: -5%;
+}
+
+span{
+  display: inline-block;
+  overflow: hidden;
+  animation: .3s swift-up ease-in-out forwards;	
+}
+
+i{
+  font-style: normal;
+  position: relative;
+  top: var(--headingSize);
+  animation: .5s swift-up ease-in-out forwards;
+}
+
+@keyframes swift-up {
+  to {
+    top: 0;
+  }
+}
+
+@media screen and (max-width: 1000px){
+	.container{
+		width: auto;
+		margin: 0 10%;
+	}
+	
+	:root{
+		--headingSize: 35px;
+	}
+}

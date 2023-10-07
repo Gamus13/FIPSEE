@@ -1,8 +1,8 @@
 /* le block conteneur */
 .marquee-rtl {
     position: absolute;
-    top: 88.5%;
-    max-width: 600em;                      /* largeur de la fenêtre */
+    top: 90%;
+    max-width: 660em;                      /* largeur de la fenêtre */
     margin: 1em auto 2em;
     left: 64%;
     color: white;
@@ -31,7 +31,7 @@
   position: absolute;
   top: 39%;
   color: white;
-  padding-left: 54%;  
+  padding-left: 4%;  
   font-size: x-large;
   
 }
@@ -40,12 +40,21 @@
 @media (max-width: 768px) {
   .marquee-rtl {
     position: absolute;
-   
+    top: 88%;
     max-width: 800em;                      /* largeur de la fenêtre */
     margin: 1em auto 2em;
     left: 72%;
     color: white;
     border: 10px solid transparent;
     overflow: hidden;                     /* masque tout ce qui dépasse */
+}
+
+.txte{
+  position: absolute;
+  top: 70%;
+  color: white;
+  padding-left: 8%;  
+  font-size: x-large;
+  
 }
 }

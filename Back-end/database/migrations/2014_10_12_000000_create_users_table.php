@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('user_type', ['user', 'admin']);
-            //active_status 0:pending, 1:active, 2:block;
+            // $active_status 0:pending, 1:active, 2:block;
             $table->tinyInteger('active_status')->nullable();
 
             $table->rememberToken();

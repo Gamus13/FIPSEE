@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useEffect } from "react";
 import  Logo from '../../../images/Logo-fipsee.png';
-//import handleLogout from './components/ProtectedLayout';
+// import handleLogout from './components/ProtectedLayout';
 
 function DashbordProjet(){
 
@@ -16,7 +16,7 @@ function DashbordProjet(){
         <Row>
 				<Col sm="2" lg="1" className="sidebar">
 					<div className="logo">
-						<img src={Logo} alt="Logo" class='logo' />
+						<img src={Logo} alt="Logo" class='logo' /><a href='/'></a>
 						
 					</div>
 					<ul className="links">
@@ -37,11 +37,11 @@ function DashbordProjet(){
 						<h4>Advanced</h4>
 						<li>
 							<span className="material-symbols-outlined">person</span>
-							<a href="/" /*onSubmit={handleLogout}*/>Designer</a>
+							<a href="/a propos">Investissements</a>
 						</li>
 						<li>
 							<span className="material-symbols-outlined">group</span>
-							<a href="#">Developer </a>
+							<a href="/"  /*onClick={handleLogout}*/>Forums </a>
 						</li>
 						<li>
 							<span className="material-symbols-outlined">ambient_screen</span>
@@ -49,11 +49,11 @@ function DashbordProjet(){
 						</li>
 						<li>
 							<span className="material-symbols-outlined">group</span>
-							<a href="#">Theme Maker</a>
+							<a href="#">Forums</a>
 						</li>
 						<li>
 							<span className="material-symbols-outlined">monitoring</span>
-							<a href="#">Analytic</a>
+							<a href="#">Statistiques</a>
 						</li>
 						<hr/>
 						<h4>Account</h4>
@@ -71,7 +71,7 @@ function DashbordProjet(){
 						</li>
 						<li className="logout-link">
 							<span className="material-symbols-outlined">logout</span>
-							<a href="#"  >Logout</a>
+							<a href="#">Logout</a>
 						</li>
 					</ul>
 				</Col>

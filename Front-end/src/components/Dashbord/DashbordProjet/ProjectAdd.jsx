@@ -49,6 +49,7 @@ function ProjetForm() {
   const [state, setState] = useState({
     titre: '',
     Secteur: '',
+    Status: '',
     Montant_de_levée: '',
     Monnaie: '',
     Duree_de_la_levée: '',
@@ -63,7 +64,7 @@ function ProjetForm() {
     })
   }
   const next = () => {
-    if (formNo === 1 && state.titre && state.Secteur && state.Montant_de_levée) {
+    if (formNo === 1 && state.titre && state.Secteur && state.Status && state.Montant_de_levée) {
       setFormNo(formNo + 1)
     }
     else if (formNo === 2 && state.Monnaie && state.Duree_de_la_levée && state.description) {
@@ -83,6 +84,7 @@ function ProjetForm() {
       // Ajouter les valeurs du formulaire dans l'objet FormData
       formData.append('titre', state.titre);
       formData.append('Secteur', state.Secteur);
+      formData.append('Status', state.Status);
       formData.append('Montant_de_levée', state.Montant_de_levée);
       formData.append('Monnaie', state.Monnaie);
       formData.append('Duree_de_la_levée', state.Duree_de_la_levée);
@@ -138,6 +140,22 @@ function ProjetForm() {
                 className='p-2 border border-slate-400 mt-1 outline-0 focus:border-blue-500 rounded-md' type="text" name='Secteur' placeholder='dept name' id='Secteur' />
             </div>
             <div className='flex flex-col mb-2'>
+              <label className='text-slate-700' htmlFor="Status">Status du projet</label>
+              <select
+                value={state.Status}
+                onChange={inputHandle}
+                className='p-2 border border-slate-400 mt-1 outline-0 text-slate-500 focus:border-blue-500 rounded-md'
+                name='Status'
+                id='Status'
+              >
+                <option value="">selectioner</option>
+                <option value="A venir">projet pour plutard</option>
+                <option value="Actif">En cours</option>
+                
+                {/* <option value="Le Franc suisse">Le Franc suisse</option> */}
+              </select>
+            </div>
+            <div className='flex flex-col mb-2'>
               <label htmlFor="Montant_de_levée">Montant de la levée de fonds</label>
               <input value={state.Montant_de_levée}
                 onChange={inputHandle} className='p-2 border border-slate-400 mt-1 outline-0 focus:border-blue-500 rounded-md' type="number" name='Montant_de_levée' placeholder='batch' />
@@ -145,6 +163,7 @@ function ProjetForm() {
             <div className='mt-4 flex justify-center items-center'>
               <button onClick={next} className='px-3 py-2 text-lg rounded-md w-full text-white bg-blue-500'>Suivant</button>
             </div>
+            
           </div>
         }
 
