@@ -13,6 +13,8 @@ import LinearDeterminate from "./ProgressBarre";
 
 const Listing = ({ data, open }) => {
   const { titre, Secteur, Status, description,Montant_de_levée,Duree_de_la_levée,Monnaie, images } = data;
+  const imagesTable = JSON.parse(images);
+  // console.log("status :", imagesTable.length )
   const user = {
 		isOnline: true, // si l'utilisateur est bel et bien connecter on n'affiche user is online sinon rien
 	  };
@@ -21,9 +23,9 @@ const Listing = ({ data, open }) => {
   return (
     <motion.div className="listing"  onClick={open} whileHover={{ scale: 1.1 }} >
       <div className="listing__content">
-        {images.length > 1 ? (
+        {imagesTable.length > 1 ? (
           <Slider  autoplay={true} autoplaySpeed={3000} >
-            {images.map((image, index) => (
+            {imagesTable.map((image, index) => (
               <div key={index}>
                 <img
                   className="listing__image"
@@ -38,7 +40,7 @@ const Listing = ({ data, open }) => {
             <img
               className="listing__images2"
               alt="real estate mansion"
-              src={`http://localhost:8000/storage/${images[0]}`}
+              src={`http://localhost:8000/storage/${imagesTable[0]}`}
             />
           </div>
         )}
@@ -67,6 +69,8 @@ const Listing = ({ data, open }) => {
           
         </div>
       </div>
+      
+      
     </motion.div>
   );
 };
@@ -75,35 +79,4 @@ const Listing = ({ data, open }) => {
 
 export default Listing;
 
-// import * as React from 'react';
-// import Card from '@mui/material/Card';
-// import CardActions from '@mui/material/CardActions';
-// import CardContent from '@mui/material/CardContent';
-// import CardMedia from '@mui/material/CardMedia';
-// import Button from '@mui/material/Button';
-// import Typography from '@mui/material/Typography';
 
-// export default function MediaCard() {
-//   return (
-//     <Card sx={{ maxWidth: 345 }}>
-//       <CardMedia
-//         sx={{ height: 140 }}
-//         image="/static/images/cards/contemplative-reptile.jpg"
-//         title="green iguana"
-//       />
-//       <CardContent>
-//         <Typography gutterBottom variant="h5" component="div">
-//           Lizard
-//         </Typography>
-//         <Typography variant="body2" color="text.secondary">
-//           Lizards are a widespread group of squamate reptiles, with over 6,000
-//           species, ranging across all continents except Antarctica
-//         </Typography>
-//       </CardContent>
-//       <CardActions>
-//         <Button size="small">Share</Button>
-//         <Button size="small">Learn More</Button>
-//       </CardActions>
-//     </Card>
-//   );
-// }

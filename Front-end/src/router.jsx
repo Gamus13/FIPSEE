@@ -25,6 +25,7 @@ import ProfilInformation from './components/Dashbord/DashbordProjet/PersonnelInf
  import PrimarySearchAppBar from './components/Dashbord/DashbordProjet/SectionRight';
  import SearchBar from './components/SearchBar';
 import AlignItemsList from './components/Dashbord/DashbordProjet/UserList';
+import MyComponent from './components/Dashbord/DashbordProjet/ContainerDiv';
 
 
 
@@ -56,7 +57,7 @@ const router = createBrowserRouter([
 				<Header />
 				<Navbar />
 				<Defilant />
-				
+				{/* <MyComponent /> */}
 			</>
 		),
 	},
@@ -140,12 +141,10 @@ const router = createBrowserRouter([
 				<ProtectedLayout />
 				{/* <ImageGallary /> */}
 				{/* <CreateProduct/> */}
-				<ModalPOPUP />
-				{/* <ChakraProvider>
-					<List />
-				</ChakraProvider> */}
-				<List />
+				{/* <ModalPOPUP /> */}
 				
+				{/* <List /> */}
+				<MyComponent />
 
 			</>
 		),
@@ -155,9 +154,7 @@ const router = createBrowserRouter([
 		element: (
 			<>
 			 <ProtectedLayout />
-			 {/* <ChakraProvider>
-			  <ProfilInformation />
-			 </ChakraProvider> */}
+			 
 			 
 			 {/* <ProfilButtons /> */}
 			 {/* <ImageGallery />  */}

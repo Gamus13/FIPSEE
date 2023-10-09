@@ -20,6 +20,8 @@ const Modal = ({ data, close }) => {
     images,
   } = data;
 
+  const imagesTable = JSON.parse(images);
+
   const modalVariants = {
     open: {
       opacity: 1,
@@ -52,9 +54,10 @@ const Modal = ({ data, close }) => {
       <motion.img
         className="modal__image"
         alt="real estate mansion"
-        src={`http://localhost:8000/storage/${images[0]}`}
-        variants={imageVariants}
+        src={`http://localhost:8000/storage/${imagesTable[0]}`}
+        
       ></motion.img>
+      
       <motion.div className="modal__info" variants={modalInfoVariants}>
         <motion.div className="modal__row" variants={modalRowVariants}>
           <span className="modal__price">{titre}</span>
