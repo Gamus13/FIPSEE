@@ -5,8 +5,8 @@ import Container from '@mui/material/Container';
 import SliderComponent from './CarousselAccueil';
 import TextSlider from './TextAccueil';
 import "./TextSlider.css";
-import StatisticSection from './StatData';
-import "./StartData.css";
+// import StatisticSection from './StatData';
+// import "./StartData.css";
 // import LearnMoreButton from './ProgressBtn';
 
 export default function FixedContainer() {
@@ -18,7 +18,7 @@ export default function FixedContainer() {
           <TextSlider />
           <SliderComponent />
           {/* <LearnMoreButton /> */}
-          <StatisticSection/>
+          {/* <StatisticSection/> */}
         </Box>
         
       </Container>

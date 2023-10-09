@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\InfosUserController;
 use App\Http\Controllers\UserFollowController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Fundraising;
@@ -51,8 +53,15 @@ Route::post('infosUser/{infosUser}', [UserFollowController::class, 'follow']);
 Route::get('/api/users/{userId}', [UserFollowController::class, 'following']);
 Route::post('/api/users/{userId}', [UserFollowController::class, 'unfollow']);
 
+// Route pour effectuer des payements
+
+Route::get('payment', [PaymentController::class, 'index']);
+Route::post('charge', [PaymentController::class, 'charge']);
 
 
+Route::get('change-password', 'ChangePasswordController@index')->name('change-password.index');
+
+Route::post('change-password', 'ChangePasswordController@store')->name('change-password.store');
 
 // route pour ajouter un projet a la BD
 

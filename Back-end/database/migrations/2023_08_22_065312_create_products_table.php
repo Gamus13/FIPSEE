@@ -24,7 +24,7 @@ class CreateProductsTable extends Migration
             $table->date('Duree_de_la_levée') -> nullable();
             $table->text('description');
             $table->json('images') -> nullable(); // Modifier le type de la colonne en "json"
-
+            $table -> integer('user_id') -> nullable();
             $table->timestamps();
         });
     }
