@@ -4,7 +4,7 @@ import Feature from "./Feature";
 
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
-
+import OutlinedBtn from "./DetailBtnCard";
 const Modal = ({ data, close }) => {
   console.log("Do i've been opened ?")
   console.log("data :", data);
@@ -80,6 +80,7 @@ const Modal = ({ data, close }) => {
         >
           <p className="modal__description">{description}</p>
         </motion.div>
+        
         <motion.button
           className="modal__close-wrapper"
           whileHover={{ scale: 1.2 }}
@@ -87,6 +88,7 @@ const Modal = ({ data, close }) => {
         >
           <IoCloseCircleOutline className="modal__close-icon" />
         </motion.button>
+        <OutlinedBtn />
       </motion.div>
     </motion.div>
   );

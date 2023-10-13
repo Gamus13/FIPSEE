@@ -31,14 +31,14 @@
     margin: 150px auto;
     position: absolute;
   }
-  .wrapper .search-input{
+  /* .wrapper .search-input{
     border-radius: 25px;
     background: #fff;
     width: 100%;
-    /* border-radius: 5px; */
+    /* border-radius: 5px; 
     position: relative;
     box-shadow: 0px 1px 5px 3px rgba(0,0,0,0.12);
-  }
+  } */
   .search-input input{
     height: 55px;
     width: 100%;
@@ -92,8 +92,110 @@
     font-size: 1.7rem;
     color: #5a95ab;
     cursor: pointer;
-    z-index: 1002;
+    z-index: 12;
   }
+
+  .result-th{
+    width: 200px;
+    height: 35px;
+    background-color: white;
+  }
+
+  /* .result-th{
+    width: 200px;
+    height: 35px;
+    z-index: 33;
+  } */
 
 /*responsive*/
 
+@media (max-width: 767px) {
+  #search-box{
+    height: 50px;
+    width: 230px;
+    position: fixed;
+    top: 2%;
+    z-index: 10;
+    right: 22%;
+    border-radius: 23px;
+  }
+  
+  .search-input .icon{
+    position: fixed;
+    top: 4.4%;
+    right: 19%;
+    height: 35px;
+    width: 55px;
+    text-align: center;
+    line-height: 55px;
+    font-size: 1.2rem;
+    color: #5a95ab;
+    cursor: pointer;
+    z-index: 12;
+  }
+
+  .autocom{
+    background-color: white;
+    position: fixed;
+    top: 13%;
+    right: 26%;
+    border-radius: 25px;
+    width: 200px;
+    height: 34px;
+    text-align: center;
+    color: black;
+    font-size: 0.9rem;
+    border-radius: 11%;
+    z-index: 12;
+  }
+
+  .autocom .resulttxt{
+    position: relative;
+    top: 3px;
+  }
+
+  .autocom:hover{
+    background-color: black;
+    
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  #search-box{
+    height: 60px;
+    width: 430px;
+    position: fixed;
+    top: 2%;
+    z-index: 1;
+    right: 22%;
+    border-radius: 23px;
+  }
+
+  .search-input .icon{
+    position: fixed;
+    top: 3.7%;
+    right: 22%;
+    height: 35px;
+    width: 55px;
+    text-align: center;
+    line-height: 55px;
+    font-size: 1.7rem;
+    color: #5a95ab;
+    cursor: pointer;
+    z-index: 12;
+  }
+
+  
+}
+
+@media (min-width: 1025px) {
+  #search-box{
+    height: 53px;
+    width: 530px;
+    position: fixed;
+    top: 2%;
+    z-index: 1;
+    right: 30%;
+    border-radius: 23px;
+  }
+}

@@ -337,7 +337,7 @@ button i .direction{
     }
 
 
-    @media (min-width: 769px) and (max-width: 928px) {
+    @media (min-width: 768px) and (max-width: 928px) {
         /* Ajoutez ici les styles spécifiques pour la plage de largeur d'écran de 768px à 928px */
 
         .item{
@@ -351,7 +351,7 @@ button i .direction{
             background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIClDFvZNOjwhv7gBII6RH09vomN2hbhTd_A&usqp=CAU');
             position: absolute;
             z-index: 1;
-            top: 88%;  /*position du caroussel sur la vertical*/
+            top: 8%;  /*position du caroussel sur la vertical*/
             transform: translate(0, -50%);
             border-radius: 20px;
             box-shadow:  0 30px 50px #161616;
@@ -361,13 +361,7 @@ button i .direction{
     }
     
     
-    @media (min-width: 769px) and (max-width: 1024px) {
-        /* Ajoutez ici les styles spécifiques pour les écrans moyens */
-        
-        
-
-
-    }
+    
     
 
 }

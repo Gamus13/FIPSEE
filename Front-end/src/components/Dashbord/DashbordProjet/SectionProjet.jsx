@@ -14,7 +14,16 @@ export default function FixedContainer() {
     <React.Fragment>
       
       <Container fixed>
-        <Box sx={{ bgcolor: 'hsl(210, 20%, 20%)',display: 'flex',  width: '79%', height: 500, marginTop: -63,marginLeft: '-70px', }}>
+        <Box 
+         sx={{ 
+          bgcolor: 'hsl(210, 20%, 20%)',
+          display: 'flex',
+          width: '79%', 
+          height: 500, 
+          marginTop: -63,
+          marginLeft: '-70px',
+          }}
+        >
           <TextSlider />
           <SliderComponent />
           {/* <LearnMoreButton /> */}

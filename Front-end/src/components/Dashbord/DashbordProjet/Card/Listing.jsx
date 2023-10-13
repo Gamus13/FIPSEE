@@ -62,6 +62,7 @@ const Listing = ({ data, open }) => {
               <Features iconName={"FaInfoCircle"} iconLabel={Status} style={{ color: green, }} />
             </div>
             <div className="feature__buttons">
+              
               <OutlinedButtons/>
             </div>
           </div>

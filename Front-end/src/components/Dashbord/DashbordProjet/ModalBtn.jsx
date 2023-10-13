@@ -98,7 +98,7 @@ const ModalPOPUP = ({ setData }) => {
   
     return (
       <>
-        <div className="texter" style={{textAlign: 'left', position: "absolute", top: '13%', marginLeft: '12%', zIndex: 1}}>
+        <div className="texter" style={{textAlign: 'left', position: "absolute", top: '15%',  marginLeft: '12%', zIndex: 1}}>
           <h1 style={{textAlign:'left', justifyContent: 'flex-end', color: 'white', fontSize: '1.5rem', fontWeight: 400}}>Projets en cours</h1>
           <div style={{display: 'flex', justifyContent: 'flex-end', marginTop: '9px'}}>
           <div
@@ -132,6 +132,7 @@ const ModalPOPUP = ({ setData }) => {
               fontSize: '1rem',
               borderBottom: '2px solid transparent',
               transition: 'border-color 0.3s, color 0.3s',
+              
             }}
             onClick={() => filterByStatus('A venir')}
             onMouseEnter={(e) => {

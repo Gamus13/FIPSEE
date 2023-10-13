@@ -11,7 +11,7 @@ import Nav from '../components/HorizontalNav';
 
 // import UserStat from './Dashbord/DashbordProjet/UserList';
 import { useEffect } from "react";
-export default function DefaultLayout() {
+export default function Layout() {
 	const { user, setUser } = useAuth();
 
 	// vérifie si l'utilisateur est connecté ou non depuis le serveur
@@ -66,8 +66,8 @@ export default function DefaultLayout() {
 			<main >
 				
 				<DashbordProjet />
-				<Search placeholder="Entrer votre recherche"data={allUsers}/>
-				<Nav/>
+				{/* <Search placeholder="Entrer votre recherche"data={allUsers}/>
+				<Nav/> */}
 			</main>
 			
 			

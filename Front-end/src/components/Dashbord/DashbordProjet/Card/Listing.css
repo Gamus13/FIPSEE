@@ -140,6 +140,37 @@
   box-shadow: 0 0 5px blue;
  */
 
- @media screen and (max-width: 1500px) {
-  
+ @media (max-width: 768px) {
+    .listing {
+      height: 390px;
+      width: 20%;
+      min-width: 300px;
+      max-width: 400px;
+      position: relative;
+      top: 121px;
+      margin: 2px 2px;
+      cursor: pointer;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+ }
+
+ @media (min-width: 768px) and (max-width: 1024px) {
+  .listing {
+    height: 390px;
+    width: 20%;
+    min-width: 300px;
+    max-width: 400px;
+    position: relative;
+    top: 91px;
+    margin: 2px 2px;
+    cursor: pointer;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+  }
  }

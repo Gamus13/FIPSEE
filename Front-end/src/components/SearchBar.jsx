@@ -24,20 +24,6 @@ function Search({ placeholder, data }) {
 
     return (
         <div className="wrapper ">
-            {/* <div className="wrapper">
-                <div className="form">
-                <i className="fa fa-search"></i>
-                <input 
-                    placeholder={placeholder} 
-                    type="text"
-                    value={wordEntered}
-                    onChange={handleFilter}
-                    
-                />
-                <span className="left-pan"><i className="fa fa-microphone"></i></span>
-                </div>
-            </div> */}
-
             <div class="search-input">
                 <a href="" target="_blank" hidden></a>
                 <input 
@@ -49,18 +35,16 @@ function Search({ placeholder, data }) {
                 />
                 
                 
-                <div class="icon"><i class="fas fa-search"><BsSearch/></i></div>
+                <div class="icon"><BsSearch/></div>
             </div>
 
-           
-
             {filteredData.length !== 0 && (
-                <div class="autocom-box">
+                <div class="autocom">
                     {filteredData.slice(0, 7).map((value, index) => {
                         return (
-                            <div className="list border-bottom " key={index}>
-                                <div className="d-flex flex-column ml-3">
-                                    <a href='/den' alt=''><span>{value.name}</span></a> 
+                            <div className="listeur " key={index}>
+                                <div className="result-th">
+                                    <a href='/den' alt=''><span className="resulttxt">{value.name}</span></a> 
                                     {/* la balise a est utiliser pour rediriger vers /den */}
                                 </div>
                             </div>

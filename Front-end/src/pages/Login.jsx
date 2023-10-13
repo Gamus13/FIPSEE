@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import axios from '../axios';
 import { useAuth } from '../contexts/AuthContext';
-
+import { toast } from "react-toastify";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -14,10 +14,43 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
-
+import { useState } from "react";
 
 
 export default function Login() {
+
+	const [id, idchange] = useState("");
+    const [email, emailchange] = useState("");
+    const [password, passwordchange] = useState("");
+    
+   
+
+	const IsValidate = () => {
+        let isproceed = true;
+        let errormessage = 'Please enter the value in ';
+       
+        if (password === null || password === '') {
+            isproceed = false;
+            errormessage += ' Password';
+        }
+        if (email === null || email === '') {
+            isproceed = false;
+            errormessage += ' Email';
+        }
+
+        if(!isproceed){
+            toast.warning(errormessage)
+        }else{
+            if(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email)){
+
+            }else{
+                isproceed = false;
+                toast.warning('Please enter the valid email')
+            }
+        }
+        return isproceed;
+    }
+ 
 	const { setUser, csrfToken } = useAuth();
 	const [error, setError] = React.useState(null);
 
@@ -110,6 +143,7 @@ export default function Login() {
 							autoComplete="email"
 							autoFocus
 							/>
+                               
 							<TextField
 							margin="normal"
 							required
@@ -141,7 +175,7 @@ export default function Login() {
 							
 							<Grid item>
 								<Link href="#" variant="body2">
-								{"Don't have an account? Sign Up"}
+								{" Sign Up"}
 								</Link>
 							</Grid>
 							</Grid>

@@ -1,0 +1,85 @@
+
+.containertt{
+    max-width: 700px;
+    width: 100%;
+    padding: 25px 30px;
+    background-color: #fff;
+    height: 530px;
+    margin-left: 232px;
+    border-radius: 5px;
+}
+.containertt .title{
+    font-size: 25px;
+    font-weight: 500;
+}
+.containertt form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 10px 0 12px 0;
+}
+form .form-group{
+    margin-bottom: 15px;
+    width: calc(100% / 2 - 20px);
+}
+form span{
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.form-group input{
+    height: 40px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 15px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+.form-group input:focus,
+.form-group input:valid{
+    border-color: linear-gradient(130deg, blue, aqua);
+}
+form .button{
+    height: 40px;
+    width: 100%;
+    margin: 40px 0;
+}
+form .button input{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: -41px;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(130deg, blue, aqua);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+}
+form .button input:hover{
+    background: linear-gradient(130deg, rgb(66, 66, 168), aqua);
+}
+@media(max-width: 584px){
+    .containertt{
+        max-width: 100%;
+    }
+    form .form-group{
+        margin-bottom: 15px;
+        width: 100%;
+    }
+    .containertt form{
+        max-height: 400px;
+        overflow-y: scroll;
+    }
+    .containertt form::-webkit-scrollbar{
+        width: 0;
+    }
+    form .button{
+        margin: 20px 0;
+    }
+}

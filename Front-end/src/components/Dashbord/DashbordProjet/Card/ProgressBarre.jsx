@@ -1,29 +1,35 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
+import axios from 'axios';
 
 export default function LinearDeterminate() {
-  const [progress, setProgress] = React.useState(0);
+  const [progress, setProgress] = useState(0);
 
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((oldProgress) => {
-        if (oldProgress === 100) {
-          return 0;
-        }
-        const diff = Math.random() * 10;
-        return Math.min(oldProgress + diff, 100);
-      });
-    }, 500);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/api/projects/{projectId}/current-amount');
+        const currentAmount = response.data.current_amount;
 
-    return () => {
-      clearInterval(timer);
+        // Remplacez cette valeur par le montant fixe de départ
+        const expectedAmount = 1000;
+
+        // Calculer le pourcentage de progression
+        const progressPercentage = (currentAmount / expectedAmount) * 100;
+
+        setProgress(progressPercentage);
+      } catch (error) {
+        console.error(error);
+      }
     };
+
+    fetchData();
   }, []);
 
   return (
     <Box sx={{ width: '100%', marginTop: '11%' }}>
-      <LinearProgress variant="determinate" value={progress}  sx={{ height: 20, borderRadius: 22, }} />
+      <LinearProgress variant="determinate" value={progress} sx={{ height: 20, borderRadius: 22 }} />
     </Box>
   );
 }

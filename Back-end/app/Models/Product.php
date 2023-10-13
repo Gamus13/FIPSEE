@@ -21,6 +21,11 @@ class Product extends Model
         'images'
     ];
 
+    public function progressBar(): BelongsTo
+    {
+        return $this->belongsTo(ProgressBar::class);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');

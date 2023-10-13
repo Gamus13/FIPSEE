@@ -85,6 +85,41 @@ class AuthController extends Controller {
     public function user(Request $request) {
         return new UserResource($request->user());
     }
+
+    public function changePassword()
+    {
+        $data = [
+            'oldPassword' => 'valeur de l\'ancien mot de passe',
+            'newPassword' => 'valeur du nouveau mot de passe',
+        ];
+
+        return response()->json($data);
+    }
+
+    public function updatePassword(Request $request)
+    {
+        # Validation
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed',
+        ]);
+
+        #Match The Old Password
+        if (!Hash::check($request->old_password, auth()->user()->password)) {
+            return response()->json([
+                'error' => "Old Password Doesn't match!"
+            ], 400);
+        }
+
+        #Update the new Password
+        $user = auth()->user();
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return response()->json([
+            'status' => "Password changed successfully!"
+        ]);
+    }
 }
 
 

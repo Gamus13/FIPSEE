@@ -7,7 +7,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\InfosUserController;
 use App\Http\Controllers\UserFollowController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\ProgressBarController;
+// use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Fundraising;
@@ -58,10 +59,16 @@ Route::post('/api/users/{userId}', [UserFollowController::class, 'unfollow']);
 Route::get('payment', [PaymentController::class, 'index']);
 Route::post('charge', [PaymentController::class, 'charge']);
 
+// Route pour afficher le montant collecter par projet
 
-Route::get('change-password', 'ChangePasswordController@index')->name('change-password.index');
+Route::get('/projects/{projectId}/current-amount', [ProgressBarController::class, 'getCurrentAmount']);
 
-Route::post('change-password', 'ChangePasswordController@store')->name('change-password.store');
+// Route::get('/changePassword','HomeController@showChangePasswordForm');
+Route::get('/change-password', [App\Http\Controllers\AuthController::class, 'changePassword'])->name('change-password');
+Route::post('/change-password', [App\Http\Controllers\AuthController::class, 'updatePassword'])->name('update-password');
+// Route::get('change-password', 'ChangePasswordController@index')->name('change-password.index');
+
+// Route::post('change-password', 'ChangePasswordController@store')->name('change-password.store');
 
 // route pour ajouter un projet a la BD
 

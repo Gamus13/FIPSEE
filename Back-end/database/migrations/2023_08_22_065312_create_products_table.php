@@ -16,6 +16,8 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('titre');
             $table->string('Secteur');
             $table->string('Status') -> nullable();
@@ -24,7 +26,6 @@ class CreateProductsTable extends Migration
             $table->date('Duree_de_la_levée') -> nullable();
             $table->text('description');
             $table->json('images') -> nullable(); // Modifier le type de la colonne en "json"
-            $table -> integer('user_id') -> nullable();
             $table->timestamps();
         });
     }
