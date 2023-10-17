@@ -2,8 +2,16 @@ import React, { useState } from 'react';
 import { ToastContainer} from 'react-toastify';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+// import 'react-toastify/dist/ReactToastify.css';
 import axios from '../../../axios';
 function ProjetForm() {
+
+  const Notify = () => {
+    toast.success("projet creer avec success, vous pouvez quitter le formulaire" , {
+      position: toast.POSITION.TOP_RIGHT
+    })
+    
+  }
 
   // previsualisation de l'image selectionner
   const handleFileChange = (event) => {
@@ -76,6 +84,8 @@ function ProjetForm() {
   const pre = () => {
     setFormNo(formNo - 1)
   }
+
+  
 
   const sendDataToApi = async () => {
     try {
@@ -254,10 +264,12 @@ function ProjetForm() {
                 <button
                  // onClick={finalSubmit}
                  onClick={sendDataToApi}
+                 
                  type="submit"
                   className='px-3 py-2 text-lg rounded-md w-full text-white bg-blue-500'
-                >
+                ><a onClick={ e => Notify()}>
                   Envoyer
+                  </a>
                 </button>
               </div>
             </div>

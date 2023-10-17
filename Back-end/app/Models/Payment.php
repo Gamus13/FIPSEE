@@ -7,8 +7,8 @@ class Payment extends Model
 {
     use HasFactory;
 
-    public function progressBar()
+    <!-- public function progressBar()
     {
         return $this->hasOne(ProgressBar::class);
-    }
+    } -->
 }

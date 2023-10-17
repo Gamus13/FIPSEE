@@ -58,6 +58,7 @@ function App() {
           <ul>
             <div className='bloc'>
               <a href='/test'><DropdownItem img = {google} text = {"profil"}/></a>
+              <a href='/mon_compte'><DropdownItem img = {google} text = {"Compte"}/></a>
               <a  onClick={handleLogout}><DropdownItem img = {google} text = {"Déconnexion"}/></a>
               {/* <DropdownItem img = {google} onClick={handleLogout} text = {"Logout"}/> */}
               

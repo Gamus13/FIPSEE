@@ -30,7 +30,7 @@ import AlignItemsList from './components/Dashbord/DashbordProjet/UserList';
 import MyComponent from './components/Dashbord/DashbordProjet/ContainerDiv';
 import UserRegister from './components/InformationPersonnel/UserRegistration';
 import FormComponent2 from './components/InformationPersonnel/Formulaire3'
-import ProductCard from './components/Dashbord/DashbordProjet/DetailProjet'
+// import ProductCard from './components/Dashbord/DashbordProjet/DetailProjet'
 
 import './Styles/DashbordClient/ProtectedLayout.css';
 import './Styles/DashbordClient/ContainerProjet.css';
@@ -45,7 +45,9 @@ import './Styles/Accueil/Navbar.css';
 //import { Modal } from 'react-bootstrap';
 import "./Styles/DashbordClient/List.css";
 import "./Styles/DashbordClient/SearchBar.css";
-import "./Styles/DashbordClient/DetailProjet.css";
+import "./Styles/DashbordClient/TabsComponent.css";
+// import "./Styles/DashbordClient/DetailProjet.css";
+import "./Styles/DashbordClient/SectionProjet.scss";
 import "./Styles/Accueil/Contact.css";
 
 
@@ -61,43 +63,11 @@ const router = createBrowserRouter([
 		element: (
 			// au chargement du site ce composant est charger et contient le header, navbar et section1 du site web
 			<>
-				<SimpleComponent/>	
+				<SimpleComponent/>
+				
 			</>
 		),
 	},
-	// {
-	// 	path: '/Explorer_projet',
-	// 	element: (
-	// 		<>
-	// 			<Navbar />
-				
-				
-			 
-	// 		</>
-	// 	),
-	// },
-	// {
-	// 	path: '/Contact',
-	// 	element: (
-	// 		<>
-	// 			<Navbar />
-	// 			<Contacts />
-	// 			<Footer />
-			 
-	// 		</>
-	// 	),
-	// },
-	// {
-	// 	path: '/Services',
-	// 	element: (
-	// 		<>
-	// 			<Navbar />
-				
-				
-			 
-	// 		</>
-	// 	),
-	// },
 
 	//route pour l'authentification de l'utilisateur
 	{
@@ -106,7 +76,7 @@ const router = createBrowserRouter([
 			<>
 				<AlignItemsList/>
 				<ProtectedLayout />
-				<FixedContainer/>
+				<FixedContainer/>	
 			</>
 		),
 	},
@@ -157,7 +127,7 @@ const router = createBrowserRouter([
 		path: '/test',
 		element: (
 			<>
-			 <ProtectedLayout />
+			 <Layout />
 			 <MenuTab />
 			 
 			 {/* <ProfilButtons /> */}
@@ -184,7 +154,7 @@ const router = createBrowserRouter([
 		element: (
 			<>
 			 <Layout />
-			 <ProductCard/>
+			 {/* <ProductCard/> */}
 			 
 			</>
 		),

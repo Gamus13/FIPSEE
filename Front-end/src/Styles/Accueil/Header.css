@@ -1,12 +1,12 @@
 
-
-
+ 
 body{
     
     background-color: var(--body-color);
-    overflow: hidden; /* ceci supprime la barre de scroll horizontal*/
     
-}
+     
+    
+} 
 
 
 .container{
@@ -341,8 +341,8 @@ button i .direction{
         /* Ajoutez ici les styles spécifiques pour la plage de largeur d'écran de 768px à 928px */
 
         .item{
-            width:210px;
-            height:300px;
+            width:100vw;
+            height:100vh;
             background-position: 50% 50%;
             background-size: cover;
             display: inline-block;

@@ -18,6 +18,7 @@
   font-size: calc(100vw / 768 * 100);
   @media (max-width: 768px) {
     display: block;
+    // margin-left: -4rem;
   }
 }
 .slider-wrapper {
@@ -81,7 +82,7 @@
   }
   .dot {
     position: relative;
-    top: -120%;
+    top: -170%;
     cursor: pointer;
     transition: all 0.2s;
     &:hover {

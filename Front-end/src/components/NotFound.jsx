@@ -24,7 +24,7 @@ export default function NotFound() {
       <Typography variant="h6" style={{ color: 'white' }}>
         ouppss.. cette page n'existe pas.
       </Typography>
-      <Button  path='/' variant="container" style={{ backgroundColor: 'yellow',  width: '10%'}} ><Link href=""></Link>
+      <Button  path='/' variant="container" style={{ backgroundColor: 'yellow',  width: '10%'}} ><Link href="/"></Link>
         Back Home
         </Button>
     </Box>

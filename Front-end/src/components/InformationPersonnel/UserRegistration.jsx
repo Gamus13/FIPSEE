@@ -1,153 +1,210 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import {
+  Card,
+  Input,
+  Typography,
+  Select,
+  Option,
+  Button,
+} from "@material-tailwind/react";
+import { useEffect } from "react";
+import { useForm, Controller } from "react-hook-form";
 
 const UserRegister = () => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+    watch,
+    unregister,
+    reset,
+  } = useForm({
+    mode: "onTouched",
+  });
 
-    const [id, idchange] = useState("");
-    const [name, namechange] = useState("");
-    const [password, passwordchange] = useState("");
-    const [email, emailchange] = useState("");
-    const [phone, phonechange] = useState("");
-    const [country, countrychange] = useState("india");
-    const [address, addresschange] = useState("");
-    const [gender, genderchange] = useState("female");
+  const domain = watch("domain");
 
-    const navigate = useNavigate();
-
-    const IsValidate = () => {
-        let isproceed = true;
-        let errormessage = 'Please enter the value in ';
-        if (id === null || id === '') {
-            isproceed = false;
-            errormessage += ' Username';
-        }
-        if (name === null || name === '') {
-            isproceed = false;
-            errormessage += ' Fullname';
-        }
-        if (password === null || password === '') {
-            isproceed = false;
-            errormessage += ' Password';
-        }
-        if (email === null || email === '') {
-            isproceed = false;
-            errormessage += ' Email';
-        }
-
-        if(!isproceed){
-            toast.warning(errormessage)
-        }else{
-            if(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email)){
-
-            }else{
-                isproceed = false;
-                toast.warning('Please enter the valid email')
-            }
-        }
-        return isproceed;
+  // * Remove from FORM
+  useEffect(() => {
+    if (domain !== "others") {
+      unregister("otherdomainname");
     }
+  }, [domain, unregister]);
 
+  const onSubmit = (data) => console.log(data);
 
-    const handlesubmit = (e) => {
-            e.preventDefault();
-            let regobj = { id, name, password, email, phone, country, address, gender };
-            if (IsValidate()) {
-            console.log(regobj);
-            fetch("http://localhost:8000/user", {
-                method: "POST",
-                headers: { 'content-type': 'application/json' },
-                body: JSON.stringify(regobj)
-            }).then((res) => {
-                toast.success('Registered successfully.')
-                navigate('/login');
-            }).catch((err) => {
-                toast.error('Failed :' + err.message);
-            });
-        }
-    }
-    return (
-        <div>
-            <div className="offset-lg-3 col-lg-6">
-                <form className="container" onSubmit={handlesubmit}>
-                    <div className="card">
-                        <div className="card-header">
-                            <h1>User Registeration</h1>
-                        </div>
-                        <div className="card-body">
-
-                            <div className="row">
-                                <div className="col-lg-6">
-                                    <div className="form-group">
-                                        <label>User Name <span className="errmsg">*</span></label>
-                                        <input value={id} onChange={e => idchange(e.target.value)} className="form-control"></input>
-                                    </div>
-                                </div>
-                                <div className="col-lg-6">
-                                    <div className="form-group">
-                                        <label>Password <span className="errmsg">*</span></label>
-                                        <input value={password} onChange={e => passwordchange(e.target.value)} type="password" className="form-control"></input>
-                                    </div>
-                                </div>
-                                <div className="col-lg-6">
-                                    <div className="form-group">
-                                        <label>Full Name <span className="errmsg">*</span></label>
-                                        <input value={name} onChange={e => namechange(e.target.value)} className="form-control"></input>
-                                    </div>
-                                </div>
-                                <div className="col-lg-6">
-                                    <div className="form-group">
-                                        <label>Email <span className="errmsg">*</span></label>
-                                        <input value={email} onChange={e => emailchange(e.target.value)} className="form-control"></input>
-                                    </div>
-                                </div>
-                                <div className="col-lg-6">
-                                    <div className="form-group">
-                                        <label>Phone <span className="errmsg"></span></label>
-                                        <input value={phone} onChange={e => phonechange(e.target.value)} className="form-control"></input>
-                                    </div>
-                                </div>
-                                <div className="col-lg-6">
-                                    <div className="form-group">
-                                        <label>Country <span className="errmsg">*</span></label>
-                                        <select value={country} onChange={e => countrychange(e.target.value)} className="form-control">
-                                            <option value="india">India</option>
-                                            <option value="usa">USA</option>
-                                            <option value="singapore">Singapore</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="col-lg-12">
-                                    <div className="form-group">
-                                        <label>Address</label>
-                                        <textarea value={address} onChange={e => addresschange(e.target.value)} className="form-control"></textarea>
-                                    </div>
-                                </div>
-                                <div className="col-lg-6">
-                                    <div className="form-group">
-                                        <label>Gender</label>
-                                        <br></br>
-                                        <input type="radio" checked={gender === 'male'} onChange={e => genderchange(e.target.value)} name="gender" value="male" className="app-check"></input>
-                                        <label>Male</label>
-                                        <input type="radio" checked={gender === 'female'} onChange={e => genderchange(e.target.value)} name="gender" value="female" className="app-check"></input>
-                                        <label>Female</label>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <div className="card-footer">
-                            <button type="submit" className="btn btn-primary">Register</button> |
-                            <Link to={'/login'} className="btn btn-danger">Close</Link>
-                        </div>
-                    </div>
-                </form>
+  return (
+    <div className="h-screen grid place-items-center ">
+      <Card color="transparent" shadow={true} className="p-7 bg-white">
+        <Typography variant="h4" color="blue-gray">
+          Sign Up
+        </Typography>
+        <Typography color="gray" className="mt-1 font-normal">
+          Enter your details to register.
+        </Typography>
+        <br />
+        <form
+          className="mb-4 w-[500px] grid grid-cols-2 gap-6"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div>
+            <Controller
+              name="Username"
+              rules={{
+                required: "Username is Required",
+                minLength: {
+                  value: 3,
+                  message: "Minimum 3 characters required",
+                },
+              }}
+              control={control}
+              render={({ field }) => (
+                <Input
+                  size="lg"
+                  {...field}
+                  label="Username"
+                  error={Boolean(errors?.Username?.message)}
+                />
+              )}
+            />
+            {errors?.Username?.message && (
+              <span className="error-text">{errors?.Username?.message}</span>
+            )}
+          </div>
+          <div>
+            <Controller
+              name="email"
+              control={control}
+              rules={{
+                required: "Email ID is Required",
+                pattern: {
+                  value: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/,
+                  message: "Email ID is invaild",
+                },
+              }}
+              render={({ field }) => (
+                <Input
+                  type="email"
+                  size="lg"
+                  {...field}
+                  label="Email ID"
+                  error={Boolean(errors?.email?.message)}
+                />
+              )}
+            />
+            {errors?.email?.message && (
+              <span className="error-text">{errors?.email?.message}</span>
+            )}
+          </div>
+          <div>
+            <Controller
+              name="domain"
+              control={control}
+              rules={{
+                required: "Domain is Required",
+              }}
+              render={({ field }) => (
+                <Select
+                  label="Select Domain"
+                  {...field}
+                  error={Boolean(errors?.domain?.message)}
+                >
+                  <Option value="designer">Designer</Option>
+                  <Option value="dev">Developer</Option>
+                  <Option value="tester">Tester</Option>
+                  <Option value="others">Others</Option>
+                </Select>
+              )}
+            />
+            {errors?.domain?.message && (
+              <span className="error-text">{errors?.domain?.message}</span>
+            )}
+          </div>
+          {domain === "others" && (
+            <div>
+              <Controller
+                name="otherdomainname"
+                control={control}
+                rules={{
+                  required: "Domain Name is Required",
+                }}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    size="lg"
+                    label="Type Here"
+                    error={Boolean(errors?.otherdomainname?.message)}
+                  />
+                )}
+              />
+              {errors?.otherdomainname?.message && (
+                <span className="error-text">
+                  {errors?.otherdomainname?.message}
+                </span>
+              )}
             </div>
+          )}
+          <div>
+            <Controller
+              name="password"
+              control={control}
+              rules={{
+                required: "Password is Required",
+                pattern: {
+                  value:
+                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/,
+                  message: "Password not strong enough",
+                },
+              }}
+              render={({ field }) => (
+                <Input
+                  type="password"
+                  {...field}
+                  size="lg"
+                  label="Password"
+                  error={Boolean(errors?.password?.message)}
+                />
+              )}
+            />
+            {errors?.password?.message && (
+              <span className="error-text">{errors?.password?.message}</span>
+            )}
+          </div>
+          <div>
+            <Controller
+              name="confirmpassword"
+              control={control}
+              rules={{
+                required: "Confirm Password is Required",
+                validate: (value) =>
+                  getValues("password") === value || "Passwords do not match",
+              }}
+              render={({ field }) => (
+                <Input
+                  type="password"
+                  {...field}
+                  size="lg"
+                  label="Confirm Password"
+                  error={Boolean(errors?.confirmpassword?.message)}
+                />
+              )}
+            />
+            {errors?.confirmpassword?.message && (
+              <span className="error-text">
+                {errors?.confirmpassword?.message}
+              </span>
+            )}
+          </div>
+          <div className="col-span-2 grid grid-cols-2 gap-3">
+            <Button type="reset" variant="outlined" onClick={() => reset()}>
+              Reset
+            </Button>
+            <Button type="submit">Create Account</Button>
+          </div>
+        </form>
+      </Card>
+    </div>
+  );
+};
 
-
-        </div>
-    );
-}
-
-export default  UserRegister;
+export default UserRegister;
