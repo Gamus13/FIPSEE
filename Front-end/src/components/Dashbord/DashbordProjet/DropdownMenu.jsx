@@ -45,24 +45,24 @@ function App() {
       }));
     };
 
-      useEffect(() => {
-        const fetchImageData = async () => {
-          try {
-            const response = await axios.get('http://localhost:8000/api/infosUser');
-            const { data } = response;
-            console.log(data); // Vérifiez la structure des données dans la console
-            if (Array.isArray(data) && data.length > 0) {
-              const imageData = data[0];
-              console.log(imageData); // Vérifiez l'objet de données dans la console
-              setImageData(imageData);
-            }
-          } catch (error) {
-            console.error(error);
+    useEffect(() => {
+      const fetchImageData = async () => {
+        try {
+          const response = await axios.get('http://localhost:8000/api/infosUser');
+          const { data } = response;
+          console.log(data); // Vérifiez la structure des données dans la console
+          if (Array.isArray(data) && data.length > 0) {
+            const imageData = data[0];
+            console.log(imageData); // Vérifiez l'objet de données dans la console
+            setImageData(imageData);
           }
-        };
-      
-        fetchImageData();
-      }, []);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+    
+      fetchImageData();
+    }, []);
   
     const handleLogout = async () => {
           try {
@@ -103,7 +103,7 @@ function App() {
       <div className='menu-container' ref={menuRef}>
         <div className='menu-trigger' onClick={() => setOpen(!open)}>
           {imageData && (
-            <img src={`http://localhost:8000/storage/${imageData}`} alt="Image" />
+            <img src={`http://localhost:8000/storage/InfosUser/image/${imageData.image}`} alt="Image" />
           )}
         </div>
         {user.isOnline && <div className='profile'></div>}

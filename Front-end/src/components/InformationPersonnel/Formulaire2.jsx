@@ -22,7 +22,7 @@ import axios from '../../axios';
 // ceci est la seconde phase de l'authentification de l'utilisateur 
 
 const   FormComponent4 = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   // const onSubmit = (data) => console.log(data);
 
@@ -31,13 +31,16 @@ const   FormComponent4 = () => {
       try {
         const response = await axios.get('http://localhost:8000/api/user'); // Remplacez '1' par l'ID de l'utilisateur souhaité
         setUser(response.data);
+        
       } catch (error) {
         console.error(error);
       }
     };
 
     fetchUser();
- }, []);  
+  }, []);
+
+  console.log('hello', user);
 
   const onSubmit = async (data) => {
     try {
