@@ -16,7 +16,7 @@ class InfosUserController extends Controller
      */
     public function index()
     {
-        return InfosUser::select('id','sexe','nationalité','date_de_naissance', 'lieu_de_residence', 'entreprise', 'site_internet', 'image')->get();
+        return InfosUser::select('id','user_id','sexe','nationalité','date_de_naissance', 'lieu_de_residence', 'entreprise', 'site_internet', 'image')->get();
     }
 
     /**
@@ -36,6 +36,7 @@ class InfosUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'user_id' => 'required',
             'sexe' => 'required',
             'nationalité' => 'required',
             'date_de_naissance' => 'required',
@@ -99,6 +100,7 @@ class InfosUserController extends Controller
     {
         try {
             $request->validate([
+                'user_id' => 'required',
                 'sexe' => 'required',
                 'nationalité' => 'required',
                 'date_de_naissance' => 'required',

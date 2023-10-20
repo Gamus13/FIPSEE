@@ -3,12 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\Product;
+// use App\Models\Product;
 use Cache;
 use App\Models\Entrepreneurs;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+// use Illuminate\Database\Eloquent\Relations\HasMany;
 
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -29,6 +29,16 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+
+    public function infosUser()
+    {
+        return $this->hasMany(InfosUser::class,'id_infosUser');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'id_product');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -51,13 +61,7 @@ class User extends Authenticatable
 
 
 
-    public function products(): HasMany
-    {
-        return $this->hasMany(Product::class, 'id_product');
-    }
 
-    public function entrepreneurs(): HasMany
-    {
-        return $this->hasMany(Entrepreneurs::class);
-    }
+
+
 }

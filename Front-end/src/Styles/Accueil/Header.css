@@ -1,12 +1,12 @@
 
- 
+/*  
 body{
     
     background-color: var(--body-color);
     
      
     
-} 
+}  */
 
 
 .container{
@@ -87,7 +87,7 @@ body{
 }
 .item:nth-child(2) .content{
     display: block;
-    z-index: 11111;
+    z-index: 6;
 }
 .item .name{
     

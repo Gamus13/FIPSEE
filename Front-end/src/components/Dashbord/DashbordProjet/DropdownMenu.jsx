@@ -7,9 +7,62 @@ import axios from '../../../axios';
 function App() {
 
     const [open, setOpen] = useState(false);
-    const user = {
-          isOnline: true, // si l'utilisateur est bel et bien connecter on n'affiche user is online sinon rien
+    const [imageData, setImageData] = useState(null);
+    // const [imageUrl, setImageUrl] = useState('');
+    const [user, setUser] = useState('');
+    // const user = {
+    //       isOnline: true, // si l'utilisateur est bel et bien connecter on n'affiche user is online sinon rien
+    //   };
+
+    const [formData, setFormData] = useState({
+      nom: '',
+      prenom: '',
+      email: '',
+      motDePasse: ''
+  
+    });
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get('/user');
+          const user = response.data.data;
+          setFormData(user);
+          // console.log('Données utilisateur :', user);
+        } catch (error) {
+          console.error('Erreur lors de la récupération des informations de l\'utilisateur :', error);
+        }
       };
+  
+      fetchData();
+    }, []);
+  
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value
+      }));
+    };
+
+      useEffect(() => {
+        const fetchImageData = async () => {
+          try {
+            const response = await axios.get('http://localhost:8000/api/infosUser');
+            const { data } = response;
+            console.log(data); // Vérifiez la structure des données dans la console
+            if (Array.isArray(data) && data.length > 0) {
+              const imageData = data[0];
+              console.log(imageData); // Vérifiez l'objet de données dans la console
+              setImageData(imageData);
+            }
+          } catch (error) {
+            console.error(error);
+          }
+        };
+      
+        fetchImageData();
+      }, []);
   
     const handleLogout = async () => {
           try {
@@ -48,13 +101,14 @@ function App() {
   return (
     <div className="App">
       <div className='menu-container' ref={menuRef}>
-        <div className='menu-trigger' onClick={()=>{setOpen(!open)}}>
-          <img src={Logo}></img>
-          {user.isOnline && <div className='profile'></div>}
+        <div className='menu-trigger' onClick={() => setOpen(!open)}>
+          {imageData && (
+            <img src={`http://localhost:8000/storage/${imageData}`} alt="Image" />
+          )}
         </div>
-
+        {user.isOnline && <div className='profile'></div>}
         <div className={`dropdown-menu ${open? 'active' : 'inactive'}`} >
-          <h3>Name<br/><span>Your status </span></h3>
+          <h3>{formData.lastName} <br/><span>{formData.name}</span></h3>
           <ul>
             <div className='bloc'>
               <a href='/test'><DropdownItem img = {google} text = {"profil"}/></a>

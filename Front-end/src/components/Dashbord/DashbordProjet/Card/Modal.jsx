@@ -6,9 +6,9 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
 import OutlinedBtn from "./DetailBtnCard";
 const Modal = ({ data, close }) => {
-  console.log("Do i've been opened ?")
-  console.log("data :", data);
-  console.log("close :", close);
+  // console.log("Do i've been opened ?")
+  // console.log("data :", data);
+  // console.log("close :", close);
 
   const {
     titre,

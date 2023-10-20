@@ -21,7 +21,7 @@ import FixedContainer from './components/Dashbord/DashbordProjet/SectionProjet';
 import List  from './components/Product/ListProjet';
 // import { properties } from "./constants/data";
 // import ProfilButtons from './components/Dashbord/DashbordProjet/ProfilPage';
-
+import WebsiteComponent from './components/Dashbord/WebsiteFipsee/Website';
 import ProfilInformation from './components/Dashbord/DashbordProjet/PersonnelInformation';
  import Card from "./components/Dashbord/DashbordProjet/Card/Card";
  import PrimarySearchAppBar from './components/Dashbord/DashbordProjet/SectionRight';
@@ -47,7 +47,7 @@ import "./Styles/DashbordClient/List.css";
 import "./Styles/DashbordClient/SearchBar.css";
 import "./Styles/DashbordClient/TabsComponent.css";
 // import "./Styles/DashbordClient/DetailProjet.css";
-import "./Styles/DashbordClient/SectionProjet.scss";
+
 import "./Styles/Accueil/Contact.css";
 
 
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
 			// au chargement du site ce composant est charger et contient le header, navbar et section1 du site web
 			<>
 				<SimpleComponent/>
-				
+				{/* <WebsiteComponent/> */}
 			</>
 		),
 	},
@@ -141,8 +141,8 @@ const router = createBrowserRouter([
 		path: '/test2',
 		element: (
 			<>
-			 <ProtectedLayout />
-			 <FormComponent2 />
+			 {/* <ProtectedLayout />
+			 <FormComponent2 /> */}
 			 
 			 
 			</>

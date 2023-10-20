@@ -82,7 +82,7 @@ const TabsComponent = () => {
             {/* Rest of the content */}
           </li>
           <li id="settings">
-            <h1>Settings</h1>
+            <h1>paramètres</h1>
             <p>
               Lorem ipsum dolor, sit amet consectetur adipisicing, elit. Velit quaerat magnam sit, nobis sed cum eius
               voluptatem quis facilis sunt, quia? Non atque, facere obcaecati veniam! Impedit atque, facilis similique

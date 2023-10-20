@@ -1,6 +1,7 @@
 
 
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import Grid from '@material-ui/core/Grid';
 // import './App.css';
@@ -18,14 +19,32 @@ import {
 import { useForm } from "react-hook-form";
 import axios from '../../axios';
 
+// ceci est la seconde phase de l'authentification de l'utilisateur 
+
 const   FormComponent4 = () => {
+  const [user, setUser] = useState(null);
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   // const onSubmit = (data) => console.log(data);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/api/user'); // Remplacez '1' par l'ID de l'utilisateur souhaité
+        setUser(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUser();
+ }, []);  
+
   const onSubmit = async (data) => {
     try {
       const formData = new FormData();
   
       // Ajoutez les champs du formulaire à l'objet FormData
+      formData.set('user_id', user.data.id);
       formData.append('entreprise', data.entreprise);
       formData.append('site_internet', data.site_internet);
       formData.append('date_de_naissance', data.date_de_naissance);
@@ -76,6 +95,7 @@ const   FormComponent4 = () => {
                 helperText={errors.entreprise?.message} 
               />
             </Grid>
+            <input type="hidden" {...register('user_id')} />
             <Grid item xs={6}>
               <TextField
                 id="outlined-basic"

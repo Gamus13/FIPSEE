@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('infos_users', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('sexe');
             $table->text('nationalité');
             $table->string('date_de_naissance');

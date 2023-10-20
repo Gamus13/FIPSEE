@@ -5,11 +5,11 @@ import Navbar from "./Navbar";
 import ProjetSection from "./SectionImages";
 const SimpleComponent = () => {
   return (
-    <div className="scrollable-content" style={{ maxHeight: '400px', overflow: 'scroll', }}>
+    <div className="scrollable-content" >
         <Navbar/>
         <Home/>
         <Defilant/>
-        <ProjetSection/>
+        {/* <ProjetSection/> */}
     </div>
       
   );

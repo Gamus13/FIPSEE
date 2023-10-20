@@ -36,7 +36,7 @@ function DashbordProjet(){
 					<h4>Advanced</h4>
 					<li>
 						<span className="material-symbols-outlined">person</span>
-						<a href="/a propos">Investissements</a>
+						<a href="/a propos">Investisseurs</a>
 					</li>
 					<li>
 						<span className="material-symbols-outlined">group</span>
@@ -44,7 +44,7 @@ function DashbordProjet(){
 					</li>
 					<li>
 						<span className="material-symbols-outlined">ambient_screen</span>
-						<a href="#">Magic Build</a>
+						<a href="#">Sponsoring</a>
 					</li>
 					<li>
 						<span className="material-symbols-outlined">group</span>

@@ -3,9 +3,11 @@
     max-width: 700px;
     width: 100%;
     padding: 25px 30px;
-    background-color: black;
+    /* background-color: black; */
+    position: relative;
+    top: 50px;
     height: 420px;
-    margin-left: 232px;
+    margin-left: 100px;
     border-radius: 5px;
 }
 .containertt .title{
@@ -40,7 +42,7 @@ form span{
 }
 .form-group input:focus,
 .form-group input:valid{
-    border-color: linear-gradient(130deg, blue, aqua);
+    border-color: linear-gradient(130deg, blue);
 }
 form .button{
     height: 40px;
@@ -52,16 +54,14 @@ form .button input{
     height: 100%;
     outline: none;
     cursor: pointer;
-    background: linear-gradient(130deg, blue, aqua);
+    background: blue;
     color: #fff;
     font-size: 16px;
     font-weight: 500;
     border: none;
     border-radius: 5px;
 }
-form .button input:hover{
-    background: linear-gradient(130deg, rgb(66, 66, 168), aqua);
-}
+/* responsive du formulaire*/
 @media(max-width: 584px){
     .containertt{
         max-width: 100%;

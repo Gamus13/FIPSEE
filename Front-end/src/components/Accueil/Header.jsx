@@ -38,7 +38,7 @@ function Home(){
 
     return(
         
-        <div class="container" >
+        <div class="container"  >
         
             <div id="slide"> { /*ici c'est l'evenement au clic qui declanche la fermeture de mon input*/}
                     

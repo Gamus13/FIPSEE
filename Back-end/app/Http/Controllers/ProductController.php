@@ -133,6 +133,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'user_id' => 'required',
             'titre' => 'required',
             'Secteur' => 'required',
             'Status' => 'required',
@@ -153,6 +154,7 @@ class ProductController extends Controller
             }
 
             $product = new Product();
+            $product->user_id = $request->input('user_id');
             $product->titre = $request->input('titre');
             $product->Secteur = $request->input('Secteur');
             $product->Status = $request->input('Status');

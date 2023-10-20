@@ -5,13 +5,11 @@ import  google from '../../images/google.png'
 import  Example  from './Navbar'; //ici j'importe la fonction ouverture 
 import { useEffect } from "react";
 
-
-
-
 import { BsFillEyeSlashFill } from 'react-icons/bs';
 import { SiFacebook } from 'react-icons/si';
 import { PiEyeSlashLight } from 'react-icons/pi';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import { BiLogInCircle } from 'react-icons/bi';
@@ -185,6 +183,8 @@ function Navbar(){
                 <div class="modal-content">
 
                   <Login />
+                  <ToastContainer />
+
                 </div>
             </div>
            

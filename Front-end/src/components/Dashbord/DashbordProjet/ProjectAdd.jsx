@@ -1,10 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ToastContainer} from 'react-toastify';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import 'react-toastify/dist/ReactToastify.css';
 import axios from '../../../axios';
 function ProjetForm() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/api/user'); // Remplacez '1' par l'ID de l'utilisateur souhaité
+        setUser(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUser();
+ }, []);  
+
+
 
   const Notify = () => {
     toast.success("projet creer avec success, vous pouvez quitter le formulaire" , {
@@ -90,7 +106,7 @@ function ProjetForm() {
   const sendDataToApi = async () => {
     try {
       const formData = new FormData();
-    
+      formData.set('user_id', user.data.id);
       // Ajouter les valeurs du formulaire dans l'objet FormData
       formData.append('titre', state.titre);
       formData.append('Secteur', state.Secteur);

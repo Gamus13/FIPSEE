@@ -20,7 +20,7 @@ const FormComponent = () => {
         const response = await axios.get('/user');
         const user = response.data.data;
         setFormData(user);
-        console.log('Données utilisateur :', user);
+        // console.log('Données utilisateur :', user);
       } catch (error) {
         console.error('Erreur lors de la récupération des informations de l\'utilisateur :', error);
       }
@@ -43,92 +43,7 @@ const FormComponent = () => {
   };
 
   return (
-    // <form onSubmit={handleSubmit} className='Sentdata'>
-    //   <div className="allGroup">
-    //     <div className='group-1'>
-    //       <div>
-    //         <label htmlFor="nom">Nom :</label>
-    //         <input
-    //           type="text"
-    //           id="nom"
-    //           name="nom"
-    //           className='retord1'
-    //           value={formData.name}
-    //           onChange={handleChange}
-    //           readOnly // pour empecher a l'utilisateur de modifier le champs 
-    //         />
-    //       </div>
-    //       <div>
-    //         <label htmlFor="prenom">Prénom :</label>
-    //         <input
-    //           type="text"
-    //           id="prenom"
-    //           name="prenom"
-    //           className='retord2'
-    //           value={formData.lastName}
-    //           onChange={handleChange}
-    //           readOnly
-    //           />
-    //       </div>
-    //     </div>
-    //     <div className="group-2">
-    //       <div>
-    //         <label htmlFor="email">Email :</label>
-    //         <input
-    //           type="email"
-    //           id="email"
-    //           name="email"
-    //           className='retord3'
-    //           value={formData.email}
-    //           onChange={handleChange}
-    //           readOnly
-    //         />
-    //       </div>
-    //       <div>
-    //         <label htmlFor="motDePasse">Mot de passe :</label>
-    //         <input
-    //           type="password"
-    //           id="motDePasse"
-    //           className='retord4'
-    //           name="motDePasse"
-    //           value={formData.motDePasse}
-    //           onChange={handleChange}
-    //           readOnly
-    //         />
-            
-    //       </div>
-    //     </div>
-    //     <div className="group-3">
-    //       <div>
-    //         <label htmlFor="motDePasse">Ancien Mot de passe :</label>
-    //         <input
-    //           type="password"
-    //           id="motDePasse"
-    //           className='retord5'
-    //           name="oldmotDePasse"
-    //           onChange={handleChange}
-    //           readOnly
-    //         />
-            
-    //       </div>
-    //       <div>
-    //         <label htmlFor="motDePasse">Nouveau Mot de passe :</label>
-    //         <input
-    //           type="password"
-    //           id="motDePasse"
-    //           className='retord6'
-    //           name="motDePasse"
-    //           onChange={handleChange}
-    //           readOnly
-    //         />
-            
-    //       </div>
-    //     </div>
-    //   </div>
-      
-     
-    //   <button type="submit" className='sentbtn'>Envoyer</button>
-    // </form>
+
     <div className="containertt">
       <div className="title">Vos informations</div>
       <form onSubmit={handleSubmit} action="#">

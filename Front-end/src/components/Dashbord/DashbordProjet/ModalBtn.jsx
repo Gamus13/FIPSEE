@@ -147,7 +147,7 @@ const ModalPOPUP = ({ setData }) => {
             Futur Projets
           </div>
             {/* <div className="allprojet" style={{cursor: 'pointer', fontWeight: '400', fontSize: '1rem', marginLeft: '15px', fontFamily: 'sans-serif'}} onClick={() => filterByStatus('A venir')}>Futur Projets</div> */}
-            <div className="allprojet" style={{cursor: 'pointer', fontWeight: '400', fontSize: '1rem', marginLeft: '15px'}} onClick={() => filterByStatus('En cours')}>Projets bloucles</div>
+            <div className="allprojet" style={{cursor: 'pointer', fontWeight: '400', fontSize: '1rem', marginLeft: '15px'}} onClick={() => filterByStatus('En cours')}>Projets clôturés</div>
             
           </div>
         </div>

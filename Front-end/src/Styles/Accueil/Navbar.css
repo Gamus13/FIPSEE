@@ -20,9 +20,15 @@
 }
 
 body{
-    background-color: var(--body-color);
-    overflow: hidden;
+    background-color: var(--nav-color);
+    /* overflow: hidden; */
+    overflow-x: hidden;
+    
 }
+
+body::-webkit-scrollbar {
+    width: 11px;
+  }
 
 body.dark{
     --body-color: #18191A;
@@ -39,7 +45,7 @@ nav{
     height: 70px;
     width: 100%;
     background-color: transparent;
-    z-index: 100;
+    z-index: 4;
 }
 
 body.dark nav{

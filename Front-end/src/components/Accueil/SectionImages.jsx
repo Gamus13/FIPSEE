@@ -80,7 +80,7 @@ function ProjetSection() {
           <div className="hero-images">
             <div ref={el => images = el}  className="hero-images-inner">
               <div className="hero-image girl">
-                <img src="https://cdn.pixabay.com/photo/2017/03/05/14/45/comic-style-2118785_640.jpg" alt="girl" />
+                {/* <img src="https://cdn.pixabay.com/photo/2017/03/05/14/45/comic-style-2118785_640.jpg" alt="girl" /> */}
               </div>
               <div className="hero-image boy">
                 <img src="https://cdn.pixabay.com/photo/2017/03/05/14/45/comic-style-2118785_640.jpg" alt="boy" />

@@ -50,7 +50,7 @@ Route::post('infosUser/{infosUser}', [InfosUserController::class, 'update']);
 Route::delete('infosUser/{infosUser}', [InfosUserController::class, 'destroy']);
 
 
-Route::post('infosUser/{infosUser}', [UserFollowController::class, 'follow']);
+// Route::post('infosUser/{infosUser}', [UserFollowController::class, 'follow']);
 Route::get('/api/users/{userId}', [UserFollowController::class, 'following']);
 Route::post('/api/users/{userId}', [UserFollowController::class, 'unfollow']);
 

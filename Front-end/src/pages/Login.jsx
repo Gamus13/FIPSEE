@@ -2,7 +2,6 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import axios from '../axios';
 import { useAuth } from '../contexts/AuthContext';
-import { toast } from "react-toastify";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -14,68 +13,39 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useState } from "react";
-
+import { useForm, Controller } from "react-hook-form";
 
 export default function Login() {
+	const { register, handleSubmit, watch, formState: { errors }} = useForm();
+	const onSubmit = (data) => console.log(data);
+	const Notify = () => {
+		toast.green("Vos informations ont bien été soumis - veuillez patienter " , {
+		  position: toast.POSITION.TOP_LEFT
+		})
+	}
 
-	const [id, idchange] = useState("");
-    const [email, emailchange] = useState("");
-    const [password, passwordchange] = useState("");
-    
-   
-
-	const IsValidate = () => {
-        let isproceed = true;
-        let errormessage = 'Please enter the value in ';
-       
-        if (password === null || password === '') {
-            isproceed = false;
-            errormessage += ' Password';
-        }
-        if (email === null || email === '') {
-            isproceed = false;
-            errormessage += ' Email';
-        }
-
-        if(!isproceed){
-            toast.warning(errormessage)
-        }else{
-            if(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email)){
-
-            }else{
-                isproceed = false;
-                toast.warning('Please enter the valid email')
-            }
-        }
-        return isproceed;
-    }
- 
 	const { setUser, csrfToken } = useAuth();
 	const [error, setError] = React.useState(null);
 
 	// utilisateur de connexion
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		const { email, password } = e.target.elements;
+	const handleLoginSubmit = async (data) => {
 		const body = {
-			email: email.value,
-			password: password.value,
+			email: data.email,
+			password: data.password,
 		};
 		await csrfToken();
 		try {
-			const resp = await axios.post('/login', body);
-			if (resp.status === 200) {
-				setUser(resp.data.user);
-				return <Navigate to="/profile" />;
-			}
+			const response = await axios.post('/login', body);
+			const { data: user } = response;
+			setUser(user);
+			Notify();
 		} catch (error) {
-			if (error.response.status === 401) {
-				setError(error.response.data.message);
-			}
+			setError(error.response.data.message);
 		}
 	};
-
 	
 
 	return (
@@ -130,18 +100,28 @@ export default function Login() {
 						<Box
 							component="form"
 							noValidate
-							onSubmit={handleSubmit}
+							onSubmit={handleSubmit(handleLoginSubmit)}
+							
 							sx={{ mt: 1 }}
 						>
 							<TextField
 							margin="normal"
 							required
 							fullWidth
-							id="email"
-							label="Email"
+							id="outlined-basic"
+							label="email"
 							name="email"
 							autoComplete="email"
-							autoFocus
+							variant='outlined'
+							{...register("email", { 
+								required: "Email est requis.", 
+								pattern: {
+									value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+									message: 'Veuillez entrer un email valide ',
+								},
+							})}
+							error={Boolean(errors.email)}
+							helperText={errors.email?.message}
 							/>
                                
 							<TextField
@@ -151,16 +131,27 @@ export default function Login() {
 							name="password"
 							label="Mot de passe"
 							type="password"
-							id="password"
+							id="outlined-basic"
 							autoComplete="current-password"
+							variant='outlined'
+							{...register("password", {
+								required: "votre Mot de passe est requis.",
+								// pattern: {
+								// 	value: /^{5,}$/,
+								// 	message: 'Veuillez entrer un mot de passe correct 	',
+								// },
+							})}
+							error={Boolean(errors.password)}
+							helperText={errors.password?.message}
 							/>
 							<FormControlLabel
 							control={<Checkbox value="remember" color="primary" />}
-							label="Remember me"
+							label="se souvenir de moi"
 							/>
 							<Button
 							type="submit"
 							fullWidth
+							onClick={ e => Notify()}
 							variant="contained"
 							sx={{ mt: 3, mb: 2 }}
 							>
@@ -169,13 +160,13 @@ export default function Login() {
 							<Grid container>
 							<Grid item xs>
 								<Link href="#" variant="body2">
-								Forgot password
+								Mot de passe oublier?
 								</Link>
 							</Grid>
 							
 							<Grid item>
-								<Link href="#" variant="body2">
-								{" Sign Up"}
+								<Link href="/" variant="body2">
+								{"S'inscrire"}
 								</Link>
 							</Grid>
 							</Grid>

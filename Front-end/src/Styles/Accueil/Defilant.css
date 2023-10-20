@@ -7,7 +7,7 @@
     left: 64%;
     color: white;
     border: 10px solid transparent;
-    overflow: hidden;                     /* masque tout ce qui dépasse */
+    overflow: hidden;                    /* masque tout ce qui dépasse*/
 }
 .marquee-rtl > :first-child {
     display: inline-block;                /* modèle de boîte en ligne */
@@ -33,7 +33,7 @@
   color: white;
   padding-left: 4%;  
   font-size: x-large;
-  
+  left: 50%;
 }
 
 
