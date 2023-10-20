@@ -105,7 +105,7 @@ const ModalPOPUP = () => {
           <div style={{display: 'flex', justifyContent: 'flex-end', marginTop: '9px'}}>
             <div className="allprojet" style={{cursor: 'pointer', fontWeight: '900', fontSize: '1rem'}} onClick={() => filterByStatus('Actif')}>Tous les projets</div>
             <div className="allprojet" style={{cursor: 'pointer', fontWeight: '400', fontSize: '1rem', marginLeft: '15px'}} onClick={() => filterByStatus('En cours')}>Projets en cours</div>
-            <div className="allprojet" style={{cursor: 'pointer', fontWeight: '400', fontSize: '1rem', marginLeft: '15px', fontFamily: 'sans-serif'}} onClick={() => filterByStatus('A venir')}>Projets achevés</div>
+            <div className="allprojet" style={{cursor: 'pointer', fontWeight: '400', fontSize: '1rem', marginLeft: '15px', fontFamily: 'sans-serif'}} onClick={() => filterByStatus('A venir')}>Mes Projets</div>
           </div>
         </div>
         {/* <div style={{position: "absolute", top: '13%', justifyContent: 'flex-end', zIndex: 1, display: 'flex', right: '3%'}}>

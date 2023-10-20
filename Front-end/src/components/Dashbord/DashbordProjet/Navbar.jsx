@@ -19,7 +19,7 @@ function DashbordProjet(){
 					
 				</div>
 				<ul className="links">
-					<h4>Main Menu</h4>
+					<h4>Menu principal</h4>
 					<li>
 						<span className="material-symbols-outlined">dashboard</span>
 						<a href="/dashbord">Dashboard</a>
@@ -33,14 +33,14 @@ function DashbordProjet(){
 						<a href="/projet">projet</a>
 					</li>
 					<hr />
-					<h4>Advanced</h4>
+					<h4>Menu Avancée</h4>
 					<li>
 						<span className="material-symbols-outlined">person</span>
-						<a href="/a propos">Investisseurs</a>
+						<a href="/a propos">Investir</a>
 					</li>
 					<li>
-						<span className="material-symbols-outlined">group</span>
-						<a href="/"  /*onClick={handleLogout}*/>Forums </a>
+						<span className="material-symbols-outlined">help</span>
+						<a href="/"  /*onClick={handleLogout}*/>Assistance </a>
 					</li>
 					<li>
 						<span className="material-symbols-outlined">ambient_screen</span>
@@ -55,10 +55,10 @@ function DashbordProjet(){
 						<a href="#">Statistiques</a>
 					</li>
 					<hr/>
-					<h4>Account</h4>
+					<h4>Votre Espace</h4>
 					<li>
 						<span className="material-symbols-outlined">bar_chart</span>
-						<a href="#">Overview</a>
+						<a href="#">Performance</a>
 					</li>
 					<li>
 						<span className="material-symbols-outlined">mail</span>

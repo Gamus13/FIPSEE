@@ -29,6 +29,8 @@ const FormComponent = () => {
     fetchData();
   }, []);
 
+  console.log("Form 1 user data", formData);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({

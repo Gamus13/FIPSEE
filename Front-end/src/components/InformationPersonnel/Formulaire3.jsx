@@ -20,7 +20,7 @@ import { useForm } from "react-hook-form";
 
 const   FormComponent2 = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = (data) => console.log(data);
+  // const onSubmit = (data) => console.log(data);
   // ici je cree un state qui va contenir les data de l'utilisateur actuellement connecter
   const [infosUser, setInfosUser] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -43,7 +43,10 @@ const   FormComponent2 = () => {
     // ajout de la prise en charge de l'image initial
     try {
       const image = `http://localhost:8000/storage/InfosUser/image/${infosUser[0]?.image}`;
-      setSelectedImage(image);
+      setSelectedImage({
+        binary: undefined,
+        source: image
+      });
     } catch (error) {
       console.error(error);
     }
@@ -87,18 +90,18 @@ const   FormComponent2 = () => {
       formData.append('site_internet', data.site_internet);
       formData.append('date_de_naissance', data.date_de_naissance);
       formData.append('lieu_de_residence', data.lieu_de_residence);
-      formData.append('image', selectedImage); // [0] pour obtenir le premier fichier sélectionné
+      selectedImage.binary ? formData.append('image', selectedImage.binary) : null;  // [0] pour obtenir le premier fichier sélectionné
       formData.append('nationalité', data.nationalité);
       formData.append('sexe', data.sexe);
 
       // Envoyer la requête POST vers votre API
-      const response = await axios.post(`http://localhost:8000/api/infosUser/${infosUser.data.id}`, formData);
+      const response = await axios.post(`http://localhost:8000/api/infosUser/${infosUser[0]?.id}`, formData);
 
       // Traitez la réponse si nécessaire
       console.log(response.data);
     } catch (error) {
       // Gérez les erreurs de requête
-      console.error(error);
+      console.log("submitance error :", error);
     }
   };
 
@@ -111,7 +114,10 @@ const   FormComponent2 = () => {
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    setSelectedImage(URL.createObjectURL(file));
+    setSelectedImage({
+      binary: file,
+      source: URL.createObjectURL(file)
+    });
   };
 
   const handleImageRemove = () => {
@@ -125,7 +131,7 @@ const   FormComponent2 = () => {
     <div className="App__form">
       <h1> Vos Informations - Liers au donnees personnel </h1>
       
-        <form onSubmit={handleSubmit(handleLoginSubmit(formData))}>
+        <form onSubmit={() => handleSubmit(handleLoginSubmit(formData))}>
          
             <Grid container spacing={2}>
                 
@@ -262,7 +268,7 @@ const   FormComponent2 = () => {
                       <Grid item xs={6}>
                       {selectedImage && (
                         <div>
-                          <img src={selectedImage} alt="Preview" style={{ maxWidth: '100%', maxHeight: '200px',marginTop: '5px',  }} />
+                          <img src={selectedImage.source} alt="Preview" style={{ maxWidth: '100%', maxHeight: '200px',marginTop: '5px',  }} />
                           <Button variant="contained" style={{ backgroundColor: 'red', color: 'white' }} onClick={handleImageRemove}>
                             Supprimer
                           </Button>

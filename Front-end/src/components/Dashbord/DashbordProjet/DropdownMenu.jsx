@@ -15,6 +15,7 @@ function App() {
     //   };
 
     const [formData, setFormData] = useState({
+      id: '',
       nom: '',
       prenom: '',
       email: '',
@@ -36,6 +37,8 @@ function App() {
   
       fetchData();
     }, []);
+
+    
   
     const handleChange = (e) => {
       const { name, value } = e.target;
@@ -50,10 +53,10 @@ function App() {
         try {
           const response = await axios.get('http://localhost:8000/api/infosUser');
           const { data } = response;
-          console.log(data); // Vérifiez la structure des données dans la console
+          console.log("User data", data); // Vérifiez la structure des données dans la console
           if (Array.isArray(data) && data.length > 0) {
             const imageData = data[0];
-            console.log(imageData); // Vérifiez l'objet de données dans la console
+            console.log("User image", imageData); // Vérifiez l'objet de données dans la console
             setImageData(imageData);
           }
         } catch (error) {
@@ -101,7 +104,7 @@ function App() {
   return (
     <div className="App">
       <div className='menu-container' ref={menuRef}>
-        <div className='menu-trigger' onClick={() => setOpen(!open)}>
+        <div className='menu-trigger' onClick={() => setOpen(!open)}> 
           {imageData && (
             <img src={`http://localhost:8000/storage/InfosUser/image/${imageData.image}`} alt="Image" />
           )}

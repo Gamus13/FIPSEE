@@ -1,7 +1,8 @@
 import React from "react";
+import { useState, useEffect } from 'react';
 import "./Modal.css";
 import Feature from "./Feature";
-
+import '../../../../axios';
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
 import OutlinedBtn from "./DetailBtnCard";
@@ -19,6 +20,29 @@ const Modal = ({ data, close }) => {
     description,
     images,
   } = data;
+
+  const [formData, setFormData] = useState({
+    nom: '',
+    prenom: '',
+    email: '',
+    motDePasse: ''
+
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('/user');
+        const user = response.data.data;
+        setFormData(user);
+        // console.log('Données utilisateur :', user);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des informations de l\'utilisateur :', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const imagesTable = JSON.parse(images);
 
@@ -45,6 +69,8 @@ const Modal = ({ data, close }) => {
     closed: { opacity: 0, x: "10%" },
   };
 
+
+
   return (
     <motion.div
       className="modal"
@@ -62,6 +88,7 @@ const Modal = ({ data, close }) => {
         <motion.div className="modal__row" variants={modalRowVariants}>
           <span className="modal__price">{titre}</span>
         </motion.div>
+        
         <motion.div className="modal__row" variants={modalRowVariants}>
           <span className="modal__address">{Secteur}</span>
         </motion.div>
