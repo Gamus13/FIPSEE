@@ -36,16 +36,23 @@
 
 
 .modal__price {
-  font-size: 3rem;
+  font-size: 1.3rem;
 }
 
 .modal__address {
-  font-size: 1.5rem;
-  color: #737373;
+  margin-top:-5px;
+  font-size: 1rem;
+  color: black;
+}
+
+modal__address3{
+  
+  font-size: 1rem;
+  color: black;
 }
 
 .modal__description {
-  color: #737373;
+  color: black;
   margin: 0px;
   padding: 0px;
   font-size: 1.25rem;

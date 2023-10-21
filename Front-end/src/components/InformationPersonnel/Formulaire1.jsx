@@ -29,7 +29,7 @@ const FormComponent = () => {
     fetchData();
   }, []);
 
-  console.log("Form 1 user data", formData);
+  // console.log("Form 1 user data", formData);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +41,7 @@ const FormComponent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    // console.log(formData);
   };
 
   return (

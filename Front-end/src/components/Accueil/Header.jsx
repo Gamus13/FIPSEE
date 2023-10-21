@@ -1,11 +1,12 @@
-import React from 'react';
-
+import React, { useEffect, useState } from "react";
+import axios from '../../axios';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { FaPlay } from 'react-icons/fa';
 import { FiChevronLeft } from 'react-icons/fi';
 import { FiChevronRight } from 'react-icons/fi';
 import { PiEyeSlashLight } from 'react-icons/pi';
 
+import { useNavigate, useParams } from 'react-router-dom'
 
 // ici cette fonction va derouler au clic sur l'icone profil un menu
 export function ouverture(){
@@ -31,7 +32,23 @@ function Home(){
         let lists = document.querySelectorAll('.item');
         document.getElementById('slide').prepend(lists[lists.length - 1]);
     }
-
+    const [data, setData] = useState({})
+    const [validationError, setValidationError] = useState({})
+    
+    useEffect(() => {
+      fetchProduct()
+    }, [])
+    
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/api/products`)
+        const productData = response.data
+        setData(productData)
+        console.log("Données du produit :", productData)
+      } catch (error) {
+        setValidationError(error.response.data)
+      }
+    }
   
 
     
@@ -47,7 +64,7 @@ function Home(){
                         <div class="content">
                             <hr class="desi"></hr>
                             <div class="localisation"> <i>< FaMapMarkerAlt  /></i> Douala-Cameroun</div>
-                            <div class="name">BGFI BANK</div>
+                            <div class="name">{data.Secteur}</div>
                             <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
                             <div class="bloc-infos">
                                 <div class="details"><span class="fa fa-bookmark"></span></div>
@@ -59,7 +76,7 @@ function Home(){
                         <div class="content">
                             <hr class="desi"></hr>
                             <div class="localisation"><i>< FaMapMarkerAlt  /></i> Douala-Cameroun</div>
-                            <div class="name">SOCIETE GENERAL</div>
+                            <div class="name">{data.Secteur}</div>
                             <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
                             <div class="bloc-infos">
                                 <div class="details"><span><FaPlay /></span></div>

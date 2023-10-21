@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Illuminate\Http\Response;
 
+
 class InfosUserController extends Controller
 {
     /**
@@ -73,12 +74,30 @@ class InfosUserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(InfosUser $infosUser): Response
-    {
-        return response()->json([
-            'InfosUser'=>$infosUser
-        ]);
+    // public function show(InfosUser $infosUser): Response
+    // {
+    //     return response()->json([
+    //         'InfosUser'=>$infosUser
+    //     ]);
 
+    // }
+    public function showUsers()
+    {
+        $users = InfosUser::all();
+        return response()->json(['users' => $users]);
+    }
+
+
+
+    public function show($id)
+    {
+        $infosUser = InfosUser::find($id);
+
+        if (!$infosUser) {
+            return response()->json(['error' => 'Utilisateur non trouvé.'], 404);
+        }
+
+        return new Response(['InfosUser' => $infosUser]);
     }
 
     /**

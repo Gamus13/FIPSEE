@@ -8,31 +8,34 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 export default function EditUser() {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const { id } = useParams()
+    const { id } = useParams()
 
-  const [title, setTitle] = useState("")
-  const [description, setDescription] = useState("")
-  const [image, setImage] = useState(null)
-  const [validationError,setValidationError] = useState({})
+    const [title, setTitle] = useState("")
+    const [description, setDescription] = useState("")
+    const [image, setImage] = useState(null)
+    const [validationError,setValidationError] = useState({})
 
-  useEffect(()=>{
-    fetchProduct()
-  })
-
-  const fetchProduct = async () => {
-    await axios.get(`http://localhost:8000/api/products/${id}`).then(({data})=>{
-      const { title, description } = data.product
-      setTitle(title)
-      setDescription(description)
-    }).catch(({response:{data}})=>{
-      Swal.fire({
-        text:data.message,
-        icon:"error"
-      })
+    useEffect(()=>{
+      fetchProduct()
     })
-  }
+
+    const fetchProduct = async () => {
+      await axios.get(`http://localhost:8000/api/products/${id}`).then(({data})=>{
+        const { title, description } = data.product
+        setTitle(title)
+        setDescription(description)
+
+        console.log("Titre :", title)
+        console.log("Description :", description)
+      }).catch(({response:{data}})=>{
+        Swal.fire({
+          text:data.message,
+          icon:"error"
+        })
+      })
+    }
 
   const changeHandler = (event) => {
 		setImage(event.target.files[0]);

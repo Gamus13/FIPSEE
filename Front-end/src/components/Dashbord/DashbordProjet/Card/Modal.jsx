@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import "./Modal.css";
 import Feature from "./Feature";
-import '../../../../axios';
+import axios from '../../../../axios';
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
 import OutlinedBtn from "./DetailBtnCard";
@@ -20,12 +20,13 @@ const Modal = ({ data, close }) => {
     description,
     images,
   } = data;
-
+  // ici je recupere les information du user: nom,prenoms,email
   const [formData, setFormData] = useState({
     nom: '',
     prenom: '',
     email: '',
-    motDePasse: ''
+    motDePasse: '',
+    created_at: '',
 
   });
 
@@ -35,7 +36,7 @@ const Modal = ({ data, close }) => {
         const response = await axios.get('/user');
         const user = response.data.data;
         setFormData(user);
-        // console.log('Données utilisateur :', user);
+        // console.log('Données1 user :', user);
       } catch (error) {
         console.error('Erreur lors de la récupération des informations de l\'utilisateur :', error);
       }
@@ -43,6 +44,30 @@ const Modal = ({ data, close }) => {
 
     fetchData();
   }, []);
+  // ici je recupere les information du infosuser: nationnalites,entreprise,email
+  // const [InfosUser, setInfosUser] = useState({
+  //   entreprise: '',
+  //   nationalité: '',
+  //   site_internet: '',
+  //   sexe: '',
+    
+
+  // });
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get('http://localhost:8000/api/infosUser');
+  //       const infosUser = response.data.data;
+  //       setFormData(infosUser);
+  //       console.log('Données2 user :', infosUser);
+  //     } catch (error) {
+  //       console.error('Erreur lors de la récupération des informations de l\'utilisateur :', error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
 
   const imagesTable = JSON.parse(images);
 
@@ -86,12 +111,28 @@ const Modal = ({ data, close }) => {
       
       <motion.div className="modal__info" variants={modalInfoVariants}>
         <motion.div className="modal__row" variants={modalRowVariants}>
-          <span className="modal__price">{titre}</span>
+          <span className="modal__address">Porteur de projet : {formData.name} {formData.lastName}</span>
+        </motion.div>
+        <motion.div className="modal__row3" variants={modalRowVariants}>
+        <span className="modal__address3">Email: {formData.email}</span>
+        </motion.div>
+        <motion.div className="modal__row4" variants={modalRowVariants}>
+        <span className="modal__address4">Nationalité: </span>
+        </motion.div>
+        <motion.div className="modal__row5" variants={modalRowVariants}>
+        <span className="modal__address5">Entreprise: </span>
+        </motion.div>
+        <motion.div className="modal__row6" variants={modalRowVariants}>
+        <span className="modal__address6">Site web: </span>
+        </motion.div>
+        <motion.div className="modal__row" variants={modalRowVariants}>
+          <span className="modal__price">Projet: {titre}</span>
         </motion.div>
         
         <motion.div className="modal__row" variants={modalRowVariants}>
-          <span className="modal__address">{Secteur}</span>
+          <span className="modal__address">Secteur: {Secteur}</span>
         </motion.div>
+          
         <motion.div className="modal__row" variants={modalRowVariants}>
           {/* <Feature iconName={"FaBed"} iconLabel={Monnaie} />
           <Feature iconName={"FaShower"} iconLabel={Duree_de_la_levée} />
@@ -105,7 +146,8 @@ const Modal = ({ data, close }) => {
           className="modal__description-wrapper"
           variants={modalRowVariants}
         >
-          <p className="modal__description">{description}</p>
+          <p className="modal__description">Description : 
+          <br/>{description}</p>
         </motion.div>
         
         <motion.button

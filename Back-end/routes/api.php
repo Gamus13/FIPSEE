@@ -33,6 +33,7 @@ Route::middleware('auth:sanctum')->group(function () {
 // route pour deconnecter l'utilisateur
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'user']);
+
 });
 
 // Route::get('/api/user', [UserController::class, 'getUser']);
@@ -42,6 +43,8 @@ Route::get('/api/user', [AuthController::class, 'getCurrentUser'])->middleware('
 //     return csrf_token();
 // });
 
+
+Route::get('/infos-users/{id}', [InfosUserController::class, 'show']);
 // route pour les methodes post et get
 Route::resource('infosUser',InfosUserController::class);
 // route pour la methode update

@@ -19,7 +19,7 @@ import axios from '../../axios';
 import { useForm } from "react-hook-form";
 
 const   FormComponent2 = () => {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register,  watch, formState: { errors } } = useForm();
   // const onSubmit = (data) => console.log(data);
   // ici je cree un state qui va contenir les data de l'utilisateur actuellement connecter
   const [infosUser, setInfosUser] = useState([]);
@@ -131,7 +131,7 @@ const   FormComponent2 = () => {
     <div className="App__form">
       <h1> Vos Informations - Liers au donnees personnel </h1>
       
-        <form onSubmit={() => handleSubmit(handleLoginSubmit(formData))}>
+        <form onSubmit={() => handleLoginSubmit(formData)}>
          
             <Grid container spacing={2}>
                 
@@ -198,23 +198,9 @@ const   FormComponent2 = () => {
                     onChange={hamdleChamge}
                   />
                 </Grid>
-              </Grid>
+              </Grid> 
               <Grid container spacing={2}>
-                {/* <Grid item xs={6}>
-                  <TextField
-                    id="outlined-basic"
-                    value={formData?.lieu_de_residence}
-                    
-                    variant="outlined"
-                    type="file"
-                    fullWidth
-                    name="image"
-                    {...register("image", { required: "carte national d'identite est requis." })}
-                    error={Boolean(errors.image)}
-                    helperText={errors.image?.message}
-                    onChange={hamdleChamge}
-                  />
-                </Grid> */}
+                
                 <Grid item xs={6}>
                   <TextField
                     id="outlined-basic"

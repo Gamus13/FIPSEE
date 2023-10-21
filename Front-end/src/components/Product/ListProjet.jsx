@@ -5,7 +5,7 @@ import Card from '../Dashbord/DashbordProjet/Card/Card';
 export default function List({ data }) {
   const dataList = data?.sortedProducts || [];
 
-  console.log("LisProject data", dataList);
+  // console.log("LisProject data", dataList);
 
   return (
     <div style={{ height: '80vh', overflow: 'auto' }}>

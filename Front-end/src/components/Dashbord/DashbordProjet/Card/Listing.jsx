@@ -31,6 +31,7 @@ const Listing = ({ data, open }) => {
                   className="listing__image"
                   alt="real estate mansion"
                   src={`http://localhost:8000/storage/${image}`}
+                  // src={`http://localhost:8000/storage/InfosUser/image/${image}`}
                 />
               </div>
             ))}

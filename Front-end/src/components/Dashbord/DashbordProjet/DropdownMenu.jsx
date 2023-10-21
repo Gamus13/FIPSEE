@@ -8,20 +8,27 @@ function App() {
 
     const [open, setOpen] = useState(false);
     const [imageData, setImageData] = useState(null);
-    // const [imageUrl, setImageUrl] = useState('');
     const [user, setUser] = useState('');
     // const user = {
     //       isOnline: true, // si l'utilisateur est bel et bien connecter on n'affiche user is online sinon rien
     //   };
-
+    const [matchingImages, setMatchingImages] = useState([]);
     const [formData, setFormData] = useState({
-      id: '',
       nom: '',
       prenom: '',
       email: '',
       motDePasse: ''
   
     });
+
+    const [infosUser, setInfosUser] = useState({
+      image: '',
+      lieu_de_residence: '',
+      nationalité: '',
+      profil: ''
+    });
+
+    // ici je recupere le nom et prenoms de l'utilisateur connecter
 
     useEffect(() => {
       const fetchData = async () => {
@@ -48,24 +55,69 @@ function App() {
       }));
     };
 
+    // ici j'effectue des comparaison lors de l'execution des scripts
+
     useEffect(() => {
-      const fetchImageData = async () => {
+      const fetchData = async () => {
         try {
-          const response = await axios.get('http://localhost:8000/api/infosUser');
-          const { data } = response;
-          console.log("User data", data); // Vérifiez la structure des données dans la console
-          if (Array.isArray(data) && data.length > 0) {
-            const imageData = data[0];
-            console.log("User image", imageData); // Vérifiez l'objet de données dans la console
-            setImageData(imageData);
+          // je recupere d'abord id des data retourner par cette requete 
+
+          const response = await axios.get('/user');
+          const user = response.data.data;
+          setFormData(user);
+          // console.log('Données utilisateur :', user);
+
+          // je recupere les information de l' infosuser dans cette requtte 
+          const imageDataResponse = await axios.get('http://localhost:8000/api/infosUser');
+          const imageData = imageDataResponse.data;
+          // console.log('Données d\'image :', imageData);
+    
+          const images = [];
+
+          // ici je compare id recuperer de la premiere requette et par rapport a celle de id_user de la seconde 
+
+          for (let i = 0; i < imageData.length; i++) {
+            if (imageData[i].user_id === user.id) {
+              images.push(imageData[i]);
+            }
+          }
+    
+          setMatchingImages(images);
+          
+          // si les id et id_user ont la meme valaur je recupere l'id qui est retourner dans la requette 2
+
+          if (images.length > 0) {
+            // console.log('L\'ID de l\'utilisateur correspond à au moins un ID dans les données d\'image.');
+            // console.log('Images correspondantes :', images);
+          } else {
+            // console.log('L\'ID de l\'utilisateur ne correspond à aucun ID dans les données d\'image.');
           }
         } catch (error) {
-          console.error(error);
+          console.error('Erreur lors de la récupération des informations de l\'utilisateur :', error);
         }
       };
     
-      fetchImageData();
+      fetchData();
     }, []);
+
+    //ici je recupere id de la requette 2 et je l'utilise comme parametre pour attaquer la route pour retourner les data en fonction de l'utilisateur actuel
+    const fetchUserInfo = async (id) => {
+      try {
+        const response = await axios.get(`/infos-users/${id}`);
+        const userInfo = response.data;
+        // console.log('Informations utilisateur :', userInfo);
+        setInfosUser(userInfo.InfosUser); // Mettre à jour l'état avec les données de userInfo
+      } catch (error) {
+        console.error('Erreur lors de la récupération des informations utilisateur :', error);
+      }
+    };
+    // Utilisation de la fonction avec la première correspondance d'image
+    if (matchingImages.length > 0) {
+      const firstMatchingImage = matchingImages[0];
+      fetchUserInfo(firstMatchingImage.id);
+    } else {
+      console.log('L\'ID de l\'utilisateur ne correspond à aucun ID dans les données d\'image.');
+    }
   
     const handleLogout = async () => {
           try {
@@ -104,9 +156,13 @@ function App() {
   return (
     <div className="App">
       <div className='menu-container' ref={menuRef}>
-        <div className='menu-trigger' onClick={() => setOpen(!open)}> 
-          {imageData && (
-            <img src={`http://localhost:8000/storage/InfosUser/image/${imageData.image}`} alt="Image" />
+        {/* {console.log('userInfo3 attendue:', infosUser)} */}
+
+        <div className="menu-trigger" onClick={() => setOpen(!open)}>
+          {/*ici je recupere l'image provenant du back par son chemin d'acces*/}
+
+          {infosUser && (
+            <img src={`http://localhost:8000/storage/InfosUser/image/${infosUser.image}`} alt="Image" />
           )}
         </div>
         {user.isOnline && <div className='profile'></div>}
@@ -114,15 +170,15 @@ function App() {
           <h3>{formData.lastName} <br/><span>{formData.name}</span></h3>
           <ul>
             <div className='bloc'>
-              <a href='/test'><DropdownItem img = {google} text = {"profil"}/></a>
-              <a href='/mon_compte'><DropdownItem img = {google} text = {"Compte"}/></a>
-              <a  onClick={handleLogout}><DropdownItem img = {google} text = {"Déconnexion"}/></a>
+              <a href='/test'><DropdownItem img = {`https://cdn.pixabay.com/photo/2016/03/31/17/33/avatar-1293744_640.png`} text = {"profil"}/></a>
+              <a href='/mon_compte'><DropdownItem img = {`https://cdn.pixabay.com/photo/2015/11/10/20/29/business-1037736_640.png`} text = {"Compte"}/></a>
+              <a  onClick={handleLogout}><DropdownItem img = {`https://cdn.pixabay.com/photo/2013/03/29/13/40/exit-97636_1280.png`} text = {"Déconnexion"}/></a>
               {/* <DropdownItem img = {google} onClick={handleLogout} text = {"Logout"}/> */}
               
             </div>
             
           </ul>
-        </div>
+        </div>  
       </div>
     </div>
   );
