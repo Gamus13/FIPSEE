@@ -28,6 +28,7 @@ class User extends Authenticatable
         'lastName',
         'email',
         'password',
+        'role',
     ];
 
     public function infosUser()
@@ -38,6 +39,11 @@ class User extends Authenticatable
     public function products()
     {
         return $this->hasMany(Product::class, 'id_product');
+    }
+
+    public function payment()
+    {
+        return $this->hasMany(Payment::class, 'id_payment');
     }
 
     /**

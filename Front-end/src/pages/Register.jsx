@@ -2,7 +2,7 @@ import React from 'react';
 import axios from '../axios';
 import { useAuth } from '../contexts/AuthContext';
 import  Logo from '../images/Logo-fipsee.png'
-
+import {useState, useEffect, useRef} from 'react';
 
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -25,54 +25,45 @@ export default function Register() {
 
 	
 
-	const { setUser } = useAuth();
-	const [nameError, setNameError] = React.useState('');
-	const [lastNameError, setlastNameError] = React.useState('');
-	const [emailError, setEmailError] = React.useState('');
-	const [passwordError, setPasswordError] = React.useState('');
-	// enregistrer l'utilisateur
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		const { name, lastName, email, password, cpassword } = e.target.elements;
-		const body = {
-			name: name.value,
-			lastName: lastName.value,
-			email: email.value,
-			password: password.value,
-			password_confirmation: cpassword.value,
-		};
-		try {
-			const resp = await axios.post('/register', body);
-			if (resp.status === 200) {
+		const { setUser } = useAuth();
+		const [emailError, setEmailError] = useState('');
+		// enregistrer l'utilisateur
+		const handleSubmit = async (e) => {
+			e.preventDefault();
+			const { name, lastName, email, password, cpassword } = e.target.elements;
+			const body = {
+			  name: name.value,
+			  lastName: lastName.value,
+			  email: email.value,
+			  password: password.value,
+			  password_confirmation: cpassword.value,
+			};
+		  
+			try {
+			  const resp = await axios.post('/register', body); // Appel à l'API /register
+			  if (resp.status === 200) {
 				setUser(resp.data.user);
 				return <Navigate to="/profile" />;
-			}
-		} catch (error) {
-			if (error.response.status === 422) {
-				console.log(error.response.data.errors);
-				if (error.response.data.errors.name) {
-					setNameError(error.response.data.errors.name[0]);
+			  }
+			} catch (error) {
+				if (error.response && error.response.status === 409) {
+				  console.log(error.response.data.message);
+				  const emailErrorMessage = error.response.data.errors.email[0]; // Récupérer la première valeur du tableau d'erreurs
+				  console.log(emailErrorMessage); // Afficher le message d'erreur dans la console
+				  setEmailError(emailErrorMessage);
+				  // Réinitialiser les autres messages d'erreur si nécessaire
+				  setNameError('');
+				  setlastNameError('');
+				  setPasswordError('');
+				} else if (error.response && error.response.status === 422) {
+				  console.log(error.response.data.errors);
+				  // Gérer d'autres erreurs de validation du formulaire
+				  // ...
 				} else {
-					setNameError('');
+				  console.log("Une erreur s'est produite lors de l'inscription.");
 				}
-				if (error.response.data.errors.lastName) {
-					setlastNameError(error.response.data.errors.lastName[0]);
-				} else {
-					setlastNameError('');
-				}
-				if (error.response.data.errors.email) {
-					setEmailError(error.response.data.errors.email[0]);
-				} else {
-					setEmailError('');
-				}
-				if (error.response.data.errors.password) {
-					setPasswordError(error.response.data.errors.password[0]);
-				} else {
-					setPasswordError('');
-				}
-			}
-		}
-	};
+			  }
+		  };
 
 	return (
 
@@ -166,6 +157,8 @@ export default function Register() {
 							name="email"
 							autoComplete="email"
 							autoFocus
+							error={!!emailError}
+							helperText={emailError} // Utiliser emailError pour afficher la valeur d'erreur
 							/>
 							<TextField
 							margin="normal"

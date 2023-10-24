@@ -24,43 +24,103 @@ use App\Http\Controllers\Fundraising;
 |
 */
 
+/*
+--------------------------------------------------------------------------------
+    API ROUTES AUTHENTIFICATION PROFIL: porteur de projet
+--------------------------------------------------------------------------------
+*/
+
 // route pour l'inscription d'un utilisateur
 Route::post('/register', [AuthController::class, 'register']);
+
 // route pour la connexion d'un utilisateur
+
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
-// route pour deconnecter l'utilisateur
+    // route pour deconnecter l'utilisateur
+
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    //route pour recuperer les information de l'utilisateur connceter
+
     Route::get('/user', [AuthController::class, 'user']);
 
+    // Route::get('/products/{productId}', [ProductController::class, 'showProductForLoggedInUser']);
+
 });
+
 
 // Route::get('/api/user', [UserController::class, 'getUser']);
 Route::get('/api/user', [AuthController::class, 'getCurrentUser'])->middleware('auth:sanctum');
 // cette route c'est pour recuerer le token de laravel qui cause le csrf mismatch
+
 // Route::get('/csrf-token', function () {
 //     return csrf_token();
 // });
 
 
+/*
+-----------------------------------------------------------------------------------------
+    API ROUTES POUR LE PROFIL : INVESTISSEURS
+------------------------------------------------------------------------------------------
+*/
+// route pour l'authentification d'un profil investisseur
+
+Route::post('/register/investor', [AuthController::class, 'registerInvestor']);
+
+Route::post('/login/investor', [AuthController::class, 'logins']);
+
+
+/*
+---------------------------------------------------------------------------------------------
+    API ROUTES POUR LE SECOND FORMULAIRE : PORTEURS DE PROJETS
+---------------------------------------------------------------------------------------------
+*/
+
 Route::get('/infos-users/{id}', [InfosUserController::class, 'show']);
+
 // route pour les methodes post et get
 Route::resource('infosUser',InfosUserController::class);
+
 // route pour la methode update
 Route::post('infosUser/{infosUser}', [InfosUserController::class, 'update']);
+
 // route pour la methode delete
 Route::delete('infosUser/{infosUser}', [InfosUserController::class, 'destroy']);
 
-
+/*
+------------------------------------------------------------------------------------------------
+    API ROUTES POUR LES SUIVIE DES PROFILS : PORTEURS DE PROJETS OU INVESTISSEURS
+------------------------------------------------------------------------------------------------
+*/
 // Route::post('infosUser/{infosUser}', [UserFollowController::class, 'follow']);
 Route::get('/api/users/{userId}', [UserFollowController::class, 'following']);
+
 Route::post('/api/users/{userId}', [UserFollowController::class, 'unfollow']);
+/*
+------------------------------------------------------------------------------------------------
+    API ROUTES POUR LA LOGIQUE D'INVESTISSEMENT DANS UN PROJET
+------------------------------------------------------------------------------------------------
+*/
 
-// Route pour effectuer des payements
-
+// Route pour tous afficher tous les payements
 Route::get('payment', [PaymentController::class, 'index']);
+
+// Route pour afficher les investisseurs en fonction de id_projet
+Route::get('/payments/{id_product}', [PaymentController::class, 'indexByProductId']);
+
+// Route pour afficher la sum des levee de fonds et des investisseur en fonction de leur id
+Route::get('/payments/sum-and-count/{id_product}', [PaymentController::class, 'calculateSumAndCountByProductId']);
+
+// Route pour effectuer des investissements
 Route::post('charge', [PaymentController::class, 'charge']);
+
+/*
+------------------------------------------------------------------------------------------------
+    API ROUTES POUR LA LOGIQUE DE BARRE DE PROGRESSION
+------------------------------------------------------------------------------------------------
+*/
 
 // Route pour afficher le montant collecter par projet
 
@@ -73,9 +133,11 @@ Route::post('/change-password', [App\Http\Controllers\AuthController::class, 'up
 
 // Route::post('change-password', 'ChangePasswordController@store')->name('change-password.store');
 
-// route pour ajouter un projet a la BD
 
+
+// route pour ajouter un projet a la BD
 Route::post('/products', [ProductController::class, 'store']);
+
 Route::put('/api/products/{productId}', [ProductController::class, 'put']);
 // route pour recuperer tous les projet de la BD
 Route::get('/products', [ProductController::class, 'index']);

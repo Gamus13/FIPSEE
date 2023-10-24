@@ -130,6 +130,8 @@ class ProductController extends Controller
     //     }
     // }
 
+    // ici c'est ma logique de stockage des projets creer
+
     public function store(Request $request)
     {
         $request->validate([
@@ -138,9 +140,12 @@ class ProductController extends Controller
             'Secteur' => 'required',
             'Status' => 'required',
             'Montant_de_levée' => 'required',
+            'Prix_des_actions' => 'required',
             'Monnaie' => 'required',
+            'courte_description' => 'required',
             'Duree_de_la_levée' => 'required',
             'description' => 'required',
+            'Localisation' => 'required',
             'images' => 'required|array',
             'images.*' => 'image'
         ]);
@@ -159,9 +164,12 @@ class ProductController extends Controller
             $product->Secteur = $request->input('Secteur');
             $product->Status = $request->input('Status');
             $product->Montant_de_levée = $request->input('Montant_de_levée');
+            $product->Prix_des_actions = $request->input('Prix_des_actions');
             $product->Monnaie = $request->input('Monnaie');
+            $product->courte_description = $request->input('courte_description');
             $product->Duree_de_la_levée = $request->input('Duree_de_la_levée');
             $product->description = $request->input('description');
+            $product->Localisation = $request->input('Localisation');
             $product->images = json_encode($imagePaths);
             $product->save();
 
@@ -177,6 +185,8 @@ class ProductController extends Controller
             ], 500);
         }
     }
+
+    // ici c'est la logique de filtrage des projets en fonction des status de chaque projet
 
     public function filterByStatus(Request $request)
     {
@@ -201,6 +211,23 @@ class ProductController extends Controller
             'product' => $product ,
         ]);
     }
+
+    // public function showProductForLoggedInUser($productId)
+    // {
+    //     $user = Auth::user();
+
+    //     if (!$user) {
+    //         return response()->json(['error' => 'User not authenticated'], 401);
+    //     }
+
+    //     $product = $user->products()->find($productId);
+
+    //     if (!$product) {
+    //         return response()->json(['error' => 'Product not found'], 404);
+    //     }
+
+    //     return response()->json(['product' => $product]);
+    // }
 
     /**
      * Update the specified resource in storage.

@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 export default function AlignItemsList() {
   return (
     <>
-        <h1 style={{ textAlign: 'right', marginRight: '-2.6%', fontSize: '1.1rem', color: '#a1e2f9', }}>Projets avec le plus investisseur</h1>
+        <h1 style={{ textAlign: 'right', marginRight: '-10%', fontSize: '1.1rem', color: 'white',fontWeight: '500px', }}>Voici tous vos projets sur la plateforme </h1>
         
         <List sx={{ width: '100%', maxWidth: 460, height: 500, bgcolor: 'rgba(255, 255, 255, 0.2)', backdropfilter: 'blur(17px)',  borderleft: '1px solid rgba(255, 255, 255, 0.7)', overflow: 'auto', cursor: 'pointer', marginLeft: '790px', }}  > 
       {/* <Divider sx={{ flexGrow: 1 }} /> */}

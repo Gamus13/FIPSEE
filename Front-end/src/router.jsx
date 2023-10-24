@@ -27,6 +27,7 @@ import ProfilInformation from './components/Dashbord/DashbordProjet/PersonnelInf
  import PrimarySearchAppBar from './components/Dashbord/DashbordProjet/SectionRight';
  import SearchBar from './components/SearchBar';
 import AlignItemsList from './components/Dashbord/DashbordProjet/UserList';
+import AuthInvestisseur from './components/InformationPersonnel/FormInvestisseur';
 import MyComponent from './components/Dashbord/DashbordProjet/ContainerDiv';
 import UserRegister from './components/InformationPersonnel/UserRegistration';
 import FormComponent2 from './components/InformationPersonnel/Formulaire3'
@@ -150,12 +151,12 @@ const router = createBrowserRouter([
 	},
 
 	{
-		path: '/detail_du_projet',
+		path: '/mon_compte',
 		element: (
 			<>
 			 <Layout />
 			 {/* <ProductCard/> */}
-			 
+			 <AuthInvestisseur/>
 			</>
 		),
 	},
@@ -176,6 +177,14 @@ const router = createBrowserRouter([
 		),
 	},
 
+	{
+		path: '/Dashbord_Investisseur',
+		element: (
+			<>
+			 <ProtectedLayout />
+			</>
+		),
+	},
 	
 	
 	//Route pour la page Notfound

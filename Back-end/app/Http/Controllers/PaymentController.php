@@ -25,8 +25,29 @@ class PaymentController extends Controller
 
     public function index()
     {
-        return view('payment');
+        $payments = Payment::all(); // Récupère toutes les lignes de la table "payments"
+        return response()->json(['payments' => $payments]);
     }
+
+    public function indexByProductId(Request $request, $id_product)
+    {
+        $payments = Payment::where('id_product', $id_product)->get();
+        return response()->json(['payments' => $payments]);
+    }
+
+    public function calculateSumAndCountByProductId($id_product)
+    {
+        $payments = Payment::where('id_product', $id_product)->get();
+
+        $totalAmount = $payments->sum('amount');
+        $count = $payments->count();
+
+        return response()->json([
+            'total_amount' => $totalAmount,
+            'count' => $count
+        ]);
+    }
+
 
     public function charge(Request $request)
     {
@@ -73,6 +94,8 @@ class PaymentController extends Controller
                     $payment->amount = $request->input('amount');
                     $payment->currency = 'USD';
                     $payment->payment_status = 'Captured';
+                    $payment->user_id = $request->input('user_id');
+                    $payment->id_product = $request->input('id_product');
                     $payment->save();
                 }
 

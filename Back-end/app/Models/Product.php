@@ -17,9 +17,12 @@ class Product extends Model
         'Secteur',
         'Status',
         'Montant_de_levée',
+        'Prix_des_actions',
         'Monnaie',
+        'courte_description',
         'Duree_de_la_levée',
         'description',
+        'Localisation',
         'images'
     ];
 
@@ -32,4 +35,11 @@ class Product extends Model
     {
         return $this -> belongsTo(User::class,'id');
     }
+
+    public function payment()
+    {
+        return $this->hasMany(Payment::class, 'id_payment');
+    }
+
+
 }

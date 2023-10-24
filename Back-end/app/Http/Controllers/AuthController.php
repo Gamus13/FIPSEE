@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\LoginInvestorRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\RegisterInvestor;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,10 +21,20 @@ class AuthController extends Controller {
         ],200); // ensuite on cree le composent search.jsx dans notre composant
 
     }
-    // enregistre une nouvelle méthode utilisateur
-    public function register(RegisterRequest $request) {
 
+    // inscrire un nouveaux porteur de projets
+
+    public function register(RegisterRequest $request)
+    {
         $data = $request->validated();
+
+        $existingUser = User::where('email', $data['email'])->first();
+
+        if ($existingUser) {
+            return response()->json([
+                'message' => 'This email is already taken by another user.'
+            ], 409);
+        }
 
         $user = User::create([
             'name' => $data['name'],
@@ -39,8 +51,30 @@ class AuthController extends Controller {
             'user' => new UserResource($user),
         ])->withCookie($cookie);
     }
+    // inscription d'un utilisateur sous le profil investisseur
 
-    // se connecte à une méthode utilisateur
+    public function registerInvestor(RegisterInvestor $request)
+    {
+        $data = $request->validated();
+
+        $user = User::create([
+            'name' => $data['name'],
+            'lastName' => $data['lastName'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'role' => 'investisseur', // Ajoute le rôle "investisseur" au nouvel utilisateur
+        ]);
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        $cookie = cookie('token', $token, 60 * 1); // 1 day
+
+        return response()->json([
+            'user' => new UserResource($user),
+        ])->withCookie($cookie);
+    }
+    // se connecter à un profil porteur de projet
+
     public function login(LoginRequest $request) {
         $data = $request->validated();
 
@@ -60,6 +94,30 @@ class AuthController extends Controller {
             'user' => new UserResource($user),
         ])->withCookie($cookie);
     }
+
+    // se connecter a un profil investisseur
+    public function logins(LoginInvestorRequest $request) {
+
+        $data = $request->validated();
+
+        $user = User::where('email', $data['email'])->where('role', 'investisseur')->first();
+
+        if (!$user || !Hash::check($data['password'], $user->password)) {
+            return response()->json([
+                'message' => 'Email or password is incorrect!'
+            ], 401);
+        }
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        $cookie = cookie('token', $token, 60 * 1); // 1 day
+
+        return response()->json([
+            'user' => new UserResource($user),
+        ])->withCookie($cookie);
+    }
+
+    // retoune les data de l'utilisateur connecter
 
     public function getCurrentUser()
     {
@@ -85,7 +143,7 @@ class AuthController extends Controller {
     public function user(Request $request) {
         return new UserResource($request->user());
     }
-
+    // la logique pour le mot de passe oublier
     public function changePassword()
     {
         $data = [

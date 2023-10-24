@@ -15,6 +15,8 @@ return new class extends Migration
             // $table->id();
             // $table->timestamps();
             $table->bigIncrements('id');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('id_product');
             $table->string('transaction_id');
             $table->string('payer_email');
             $table->float('amount', 10, 2);

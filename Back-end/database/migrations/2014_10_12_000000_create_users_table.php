@@ -18,10 +18,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('user_type', ['user', 'admin']);
-            // $active_status 0:pending, 1:active, 2:block;
+            $table->enum('role', ['entrepreneur', 'investisseur'])->default('entrepreneur');
+            $table->tinyInteger('is_admin')->default(0);
             $table->tinyInteger('active_status')->nullable();
-
             $table->rememberToken();
             $table->timestamps();
         });

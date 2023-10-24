@@ -10,7 +10,7 @@ const FormComponent = () => {
     nom: '',
     prenom: '',
     email: '',
-    motDePasse: ''
+    password: ''
 
   });
 
@@ -20,7 +20,7 @@ const FormComponent = () => {
         const response = await axios.get('/user');
         const user = response.data.data;
         setFormData(user);
-        // console.log('Données utilisateur :', user);
+        console.log('Données utilisateur1 :', user);
       } catch (error) {
         console.error('Erreur lors de la récupération des informations de l\'utilisateur :', error);
       }
@@ -29,7 +29,7 @@ const FormComponent = () => {
     fetchData();
   }, []);
 
-  // console.log("Form 1 user data", formData);
+  console.log("Form 1 user data", formData);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -89,23 +89,21 @@ const FormComponent = () => {
           />
         </div>
         <div className="form-group">
-          <span>Nouveau mot de passe</span>
+          <span>Mot de passe actuel</span>
           <input type="password" placeholder="Entrer un nouveau mot de passe" required />
         </div>
         <div className="form-group">
        
-          <span  htmlFor="motDePasse">Mot de passe actuel</span>
+          <span  htmlFor="password">Nouveau mot de passe</span>
           <input type="password" 
-          id="motDePasse" 
-          name="oldmotDePasse" 
-          onChange={handleChange}  
-          readOnly 
-          placeholder="votre mot de passe" 
+          id="password" 
+          name="password" 
+          placeholder="Entrer votre nouveau mot de passe" 
           required />
         </div>
         <div className="form-group">
-          <span>Confirmation</span>
-          <input type="password" placeholder="confirmer votre nouveau mot de passe" required />
+          <span>Ancien Mot de passe</span>
+          <input type="password" placeholder="Entrer votre ancien mot de passe" required />
         </div>
         <div className="button">
           <input type="submit" value="envoyer" />

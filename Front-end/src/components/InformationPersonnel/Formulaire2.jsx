@@ -3,6 +3,7 @@
 // import React, { useState } from 'react';
 import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
+import { InputLabel } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 // import './App.css';
 import {
@@ -115,6 +116,9 @@ const   FormComponent4 = () => {
           </Grid>
           <Grid container spacing={2}>
             <Grid item xs={6}>
+            <InputLabel htmlFor="outlined-basic" title="Choisissez une image de profil">
+              Entrer votre date de naissance
+            </InputLabel>
               <TextField
                 id="outlined-basic"
                 type="date"
@@ -127,6 +131,7 @@ const   FormComponent4 = () => {
               />
             </Grid>
             <Grid item xs={6}>
+            
               <TextField
                 id="outlined-basic"
                 label="lieu de residence"
@@ -142,6 +147,9 @@ const   FormComponent4 = () => {
           </Grid>
           <Grid container spacing={2}>
             <Grid item xs={6}>
+            <InputLabel htmlFor="outlined-basic" title="Choisissez une image de profil">
+              Entrer votre Image de Profil
+            </InputLabel>
               <TextField
                 id="outlined-basic"
                 
@@ -149,7 +157,7 @@ const   FormComponent4 = () => {
                 type="file"
                 fullWidth
                 name="image"
-                {...register("image", { required: "carte national d'identite est requis." })}
+                {...register("image", { required: "votre image de profil est requise." })}
                 error={Boolean(errors.image)}
                 helperText={errors.image?.message}
               />
@@ -189,13 +197,16 @@ const   FormComponent4 = () => {
           </FormControl>
         </Grid>
         <Grid item xs={6}>
+          <InputLabel htmlFor="outlined-basic" title="Choisissez une image de profil">
+            Entrer votre l'Image de votre cni
+          </InputLabel>
           <TextField
             id="outlined-basic"
             variant="outlined"
             type="file"
             fullWidth
             name="profil"
-            {...register('profil', { required: "votre image de profil est requise." })}
+            {...register('profil', { required: "carte national d'identite est requis." })}
             error={Boolean(errors.profil)}
             helperText={errors.profil?.message}
             onChange={handleImageChange}

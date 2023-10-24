@@ -21,46 +21,24 @@ const Modal = ({ data, close }) => {
     images,
   } = data;
   // ici je recupere les information du user: nom,prenoms,email
-  const [formData, setFormData] = useState({
-    nom: '',
-    prenom: '',
-    email: '',
-    motDePasse: '',
-    created_at: '',
-
-  });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('/user');
-        const user = response.data.data;
-        setFormData(user);
-        // console.log('Données1 user :', user);
-      } catch (error) {
-        console.error('Erreur lors de la récupération des informations de l\'utilisateur :', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-  // ici je recupere les information du infosuser: nationnalites,entreprise,email
-  // const [InfosUser, setInfosUser] = useState({
-  //   entreprise: '',
-  //   nationalité: '',
-  //   site_internet: '',
-  //   sexe: '',
-    
+  // const [formData, setFormData] = useState({
+  //   nom: '',
+  //   prenom: '',
+  //   email: '',
+  //   motDePasse: '',
+  //   created_at: '',
 
   // });
+
+  
 
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
-  //       const response = await axios.get('http://localhost:8000/api/infosUser');
-  //       const infosUser = response.data.data;
-  //       setFormData(infosUser);
-  //       console.log('Données2 user :', infosUser);
+  //       const response = await axios.get('/user');
+  //       const user = response.data.data;
+  //       setFormData(user);
+  //       // console.log('Données1 user :', user);
   //     } catch (error) {
   //       console.error('Erreur lors de la récupération des informations de l\'utilisateur :', error);
   //     }
@@ -111,10 +89,11 @@ const Modal = ({ data, close }) => {
       
       <motion.div className="modal__info" variants={modalInfoVariants}>
         <motion.div className="modal__row" variants={modalRowVariants}>
-          <span className="modal__address">Porteur de projet : {formData.name} {formData.lastName}</span>
+          {/* <span className="modal__address">Porteur de projet : {formData.name} {formData.lastName}</span> */}
         </motion.div>
         <motion.div className="modal__row3" variants={modalRowVariants}>
-        <span className="modal__address3">Email: {formData.email}</span>
+          
+        {/* <span className="modal__address3">Email: {formData.email}</span> */}
         </motion.div>
         <motion.div className="modal__row4" variants={modalRowVariants}>
         <span className="modal__address4">Nationalité: </span>
@@ -123,7 +102,7 @@ const Modal = ({ data, close }) => {
         <span className="modal__address5">Entreprise: </span>
         </motion.div>
         <motion.div className="modal__row6" variants={modalRowVariants}>
-        <span className="modal__address6">Site web: </span>
+        <span className="modal__address6">Site web:   </span>
         </motion.div>
         <motion.div className="modal__row" variants={modalRowVariants}>
           <span className="modal__price">Projet: {titre}</span>

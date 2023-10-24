@@ -75,9 +75,12 @@ function ProjetForm() {
     Secteur: '',
     Status: '',
     Montant_de_levée: '',
+    Prix_des_actions: '',
     Monnaie: '',
+    courte_description: '',
     Duree_de_la_levée: '',
     description: '',
+    Localisation: '',
     selectedImages: [],
     imagePreviews: [],
   })
@@ -112,9 +115,12 @@ function ProjetForm() {
       formData.append('Secteur', state.Secteur);
       formData.append('Status', state.Status);
       formData.append('Montant_de_levée', state.Montant_de_levée);
+      formData.append('Prix_des_actions', state.Prix_des_actions);
       formData.append('Monnaie', state.Monnaie);
+      formData.append('courte_description', state.courte_description);
       formData.append('Duree_de_la_levée', state.Duree_de_la_levée);
       formData.append('description', state.description);
+      formData.append('Localisation', state.Localisation);
     
     // ici je parcour les éléments de state.selectedImages et ajoute chaque élément au formulaire formData.
     for (let i=0; i<state.selectedImages.length; i++){
@@ -163,7 +169,7 @@ function ProjetForm() {
               <input 
                 value={state.Secteur}
                 onChange={inputHandle}
-                className='p-2 border border-slate-400 mt-1 outline-0 focus:border-blue-500 rounded-md' type="text" name='Secteur' placeholder='dept name' id='Secteur' />
+                className='p-2 border border-slate-400 mt-1 outline-0 focus:border-blue-500 rounded-md' type="text" name='Secteur' placeholder='Dans quel secteur votre projet se positionne?' id='Secteur' />
             </div>
             <div className='flex flex-col mb-2'>
               <label className='text-slate-700' htmlFor="Status">Status du projet</label>
@@ -184,7 +190,12 @@ function ProjetForm() {
             <div className='flex flex-col mb-2'>
               <label htmlFor="Montant_de_levée">Montant de la levée de fonds</label>
               <input value={state.Montant_de_levée}
-                onChange={inputHandle} className='p-2 border border-slate-400 mt-1 outline-0 focus:border-blue-500 rounded-md' type="number" name='Montant_de_levée' placeholder='batch' />
+                onChange={inputHandle} className='p-2 border border-slate-400 mt-1 outline-0 focus:border-blue-500 rounded-md' type="number" name='Montant_de_levée' placeholder='De combien avez-vous besoin pour votre projet?' />
+            </div>
+            <div className='flex flex-col mb-2'>
+              <label htmlFor="Prix_des_actions">Prix des actions</label>
+              <input value={state.Prix_des_actions}
+                onChange={inputHandle} className='p-2 border border-slate-400 mt-1 outline-0 focus:border-blue-500 rounded-md' type="number" name='Prix_des_actions' placeholder="A partir de Combien peut t'on investir dans votre projet?" />
             </div>
             <div className='mt-4 flex justify-center items-center'>
               <button onClick={next} className='px-3 py-2 text-lg rounded-md w-full text-white bg-blue-500'>Suivant</button>
@@ -204,6 +215,7 @@ function ProjetForm() {
                 name='Monnaie'
                 id='Monnaie'
               >
+                <option >Selectionner</option>
                 <option value="€">euro</option>
                 <option value="fcfa">FCFA</option>
                 <option value="£">livre de Gibraltar</option>
@@ -217,11 +229,15 @@ function ProjetForm() {
               </select>
             </div>
             <div className='flex flex-col mb-2'>
+              <label className='text-slate-500' htmlFor="courte_description">Courte Description du projet </label>
+              <textarea value={state.courte_description} onChange={inputHandle} row='10' className='p-2 border border-slate-400 mt-1 outline-0 text-slate-500 focus:border-blue-500 rounded-md' type="number" name='courte_description' placeholder="Donner juste au investisseur un apercue sur le projet et le plus que vous apporter sur votre secteur" ></textarea>
+            </div>
+            <div className='flex flex-col mb-2'>
               <label className='text-slate-500' htmlFor="Duree_de_la_levée">Fin de la levée de fonds</label>
               <input value={state.Duree_de_la_levée} onChange={inputHandle} className='p-2 border border-slate-400 mt-1 outline-0 text-slate-500 focus:border-blue-500 rounded-md' type="date" name='Duree_de_la_levée' placeholder='session' id='Duree_de_la_levée' />
             </div>
             <div className='flex flex-col mb-2'>
-              <label className='text-slate-500' htmlFor="description">Description du projet</label>
+              <label className='text-slate-500' htmlFor="description">Description global projet</label>
               <textarea value={state.description} onChange={inputHandle} row='10' className='p-2 border border-slate-400 mt-1 outline-0 text-slate-500 focus:border-blue-500 rounded-md' type="number" name='description' placeholder='plus de details sur le projet' ></textarea>
             </div>
             <div className='mt-4 gap-3 flex justify-center items-center'>
@@ -234,6 +250,14 @@ function ProjetForm() {
         
         { formNo === 3 && (
             <div>
+              <div className='flex flex-col mb-2'>
+                <label htmlFor="Localisation">Localisation</label>
+                <input 
+                  value={state.Localisation}
+                  onChange={inputHandle}
+                className='p-2 border border-slate-400 mt-1 outline-0 focus:border-blue-500 rounded-md' type="text" name='Localisation' placeholder='Dans quel pays est vous situer?' id='Localisation'
+                />
+              </div>
               <div className='flex flex-col mb-2'>
                 
                 <label htmlFor='district'>Ajouter des images a votre projet</label>
