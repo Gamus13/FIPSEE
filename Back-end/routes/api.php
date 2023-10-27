@@ -52,7 +52,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 // Route::get('/api/user', [UserController::class, 'getUser']);
-Route::get('/api/user', [AuthController::class, 'getCurrentUser'])->middleware('auth:sanctum');
+
 // cette route c'est pour recuerer le token de laravel qui cause le csrf mismatch
 
 // Route::get('/csrf-token', function () {
@@ -140,12 +140,17 @@ Route::post('/products', [ProductController::class, 'store']);
 
 Route::put('/api/products/{productId}', [ProductController::class, 'put']);
 // route pour recuperer tous les projet de la BD
-Route::get('/products', [ProductController::class, 'index']);
-// route pour recuperer les informations de chaques id de la BD
+    Route::get('/products', [ProductController::class, 'index']);
+
+// route pour filtrer  les projets de la BD en fonction de leur status
 Route::get('/products/filter', [ProductController::class, 'filterByStatus']);
+
+// route pour recuperer les informations de chaques id de la BD
 Route::get('/products/{product}', [ProductController::class, 'show']);
+
 // Route::put('/products/{product}', [ProductController::class, 'update']);
 // Route::put('/products/{product}', 'ProductController@update');
+Route::get('/products/count/{user}', [ProductController::class, 'countproductsByUserId']);
 
 Route::delete('/products/{product}', [ProductController::class, 'destroy']);
 

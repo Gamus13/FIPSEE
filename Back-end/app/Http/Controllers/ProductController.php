@@ -212,6 +212,16 @@ class ProductController extends Controller
         ]);
     }
 
+    public function countproductsByUserId($userId)
+    {
+        $productsCount = products::where('id_user', $userId)->count();
+
+        return response()->json([
+            'user_id' => $userId,
+            'products_count' => $productsCount
+        ]);
+    }
+
     // public function showProductForLoggedInUser($productId)
     // {
     //     $user = Auth::user();

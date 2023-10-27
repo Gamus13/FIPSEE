@@ -35,18 +35,18 @@ class PaymentController extends Controller
         return response()->json(['payments' => $payments]);
     }
 
-    public function calculateSumAndCountByProductId($id_product)
-    {
-        $payments = Payment::where('id_product', $id_product)->get();
+        public function calculateSumAndCountByProductId($id_product)
+        {
+            $payments = Payment::where('id_product', $id_product)->get();
 
-        $totalAmount = $payments->sum('amount');
-        $count = $payments->count();
+            $totalAmount = $payments->sum('amount');
+            $count = $payments->count();
 
-        return response()->json([
-            'total_amount' => $totalAmount,
-            'count' => $count
-        ]);
-    }
+            return response()->json([
+                'total_amount' => $totalAmount,
+                'count' => $count
+            ]);
+        }
 
 
     public function charge(Request $request)

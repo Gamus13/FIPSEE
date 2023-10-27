@@ -117,16 +117,7 @@ class AuthController extends Controller {
         ])->withCookie($cookie);
     }
 
-    // retoune les data de l'utilisateur connecter
 
-    public function getCurrentUser()
-    {
-        $user = auth()->user();
-
-        return response()->json([
-            'user' => $user,
-        ]);
-    }
 
     // déconnecte une méthode utilisateur
     public function logout(Request $request) {
@@ -143,6 +134,8 @@ class AuthController extends Controller {
     public function user(Request $request) {
         return new UserResource($request->user());
     }
+
+
     // la logique pour le mot de passe oublier
     public function changePassword()
     {

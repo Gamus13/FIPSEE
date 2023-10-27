@@ -6,10 +6,44 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import BasicButtons from './FollowBtn';
 import LoadingButtonsTransition from './ShowProjet';
+import  { useEffect, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+import axios from '../../../axios';
 
 export default function AlignItemsList() {
+
+    const [customId, setCustomId] = useState(null);
+    const [FormData, setFormData] = useState(null);
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await axios.get('/user');
+            const user = response.data.data;
+            setFormData(user);
+            console.log('Données utilisateur1 :', user);
+      
+            const customIdData = user.id;
+            console.log('ID personnalisé de l\'utilisateur : ', customIdData);
+            setCustomId(customIdData);
+      
+            const productsResponse = await axios.get('/products');
+            const productsData = productsResponse.data;
+            console.log('Produits : ', productsData);
+      
+            const userProducts = productsData.filter((product) => product.user_id === customIdData);
+            console.log('Produits de l\'utilisateur : ', userProducts);
+            setProducts(userProducts);
+          } catch (error) {
+            console.error('Erreur lors de la récupération des informations de l\'utilisateur :', error);
+          }
+        };
+      
+        fetchData();
+      }, []);
+  
   return (
     <>
         <h1 style={{ textAlign: 'right', marginRight: '-10%', fontSize: '1.1rem', color: 'white',fontWeight: '500px', }}>Voici tous vos projets sur la plateforme </h1>
