@@ -19,14 +19,6 @@ export default function LoadingButtonsTransition() {
 
       <Box sx={{ '& > button': { m: 1 } }}>
         
-        {/* <LoadingButton
-          onClick={handleClick}
-          loading={loading}
-          loadingIndicator="Loading…"
-          variant="outlined"
-        >
-          <span>Fetch data</span>
-        </LoadingButton> */}
         <LoadingButton
           onClick={handleClick}
           loading={loading}
@@ -37,20 +29,20 @@ export default function LoadingButtonsTransition() {
         </LoadingButton>
        
       </Box>
-      {/* <FormControlLabel
-        sx={{
-          display: 'block',
-        }}
-        control={
-          <Switch
-            checked={loading}
-            onChange={() => setLoading(!loading)}
-            name="loading"
-            color="primary"
-          />
-        }
-        label="Loading"
-      /> */}
+        {/* <FormControlLabel
+          sx={{
+            display: 'block',
+          }}
+          control={
+            <Switch
+              checked={loading}
+              onChange={() => setLoading(!loading)}
+              name="loading"
+              color="primary"
+            />
+          }
+          label="Loading"
+        /> */}
     </div>
   );
 }

@@ -9,51 +9,6 @@ const Componentstat = () => {
   const [totalAmount, setTotalAmount] = useState("000");
   const [count, setCount] = useState("000");
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       // Récupérer l'ID de l'utilisateur
-  //       const userResponse = await axios.get('/user');
-  //       const userId = userResponse.data.id;
-  //       console.log('ID de l\'utilisateur:', userId);
-
-  //       // Récupérer les informations des produits associés à l'utilisateur
-  //       const productsResponse = await axios.get('/products');
-  //       const products = productsResponse.data;
-  //       console.log('Informations des produits:', products);
-
-  //       // Filtrer les produits pour ne conserver que ceux associés à l'utilisateur
-  //       const userProducts = products.filter(product => product.id_user === userId);
-
-  //       if (userProducts.length > 0) {
-  //         // Prendre le premier produit de la liste (ou ajuster la logique selon les besoins)
-  //         const userProduct = userProducts[0];
-  //         const productId = userProduct.id;
-  //         console.log('ID du produit correspondant:', productId);
-
-  //         // Récupérer les données en fonction de l'ID du produit
-  //         const paymentResponse = await axios.get(`/payments/sum-and-count/${productId}`);
-  //         const { investorsCount, projectsCount, fundsRaisedCount } = paymentResponse.data;
-  //         setInvestorsCount(investorsCount);
-  //         setProjectsCount(projectsCount);
-  //         setFundsRaisedCount(fundsRaisedCount);
-  //         console.log('Données de paiement:', paymentResponse.data);
-
-  //         const { total_amount, count } = paymentResponse.data;
-  //         setTotalAmount(total_amount.toString());
-  //         setCount(count.toString());
-  //         console.log('Données de paiement:', paymentResponse.data);
-  //         // Utiliser les valeurs extraites
-  //         // console.log("Total amount:", total_amount);
-  //         // console.log("Count:", count);
-  //       }
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
 
   useEffect(() => {
     const fetchData = async () => {
