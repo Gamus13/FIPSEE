@@ -170,7 +170,7 @@ function App() {
           <h3>{formData.lastName} <br/><span>{formData.name}</span></h3>
           <ul>
             <div className='bloc'>
-              <a href='/test'><DropdownItem img = {`https://cdn.pixabay.com/photo/2016/03/31/17/33/avatar-1293744_640.png`} text = {"profil"}/></a>
+              <a href='/profileuser'><DropdownItem img = {`https://cdn.pixabay.com/photo/2016/03/31/17/33/avatar-1293744_640.png`} text = {"profil"}/></a>
               <a href='/mon_compte'><DropdownItem img = {`https://cdn.pixabay.com/photo/2015/11/10/20/29/business-1037736_640.png`} text = {"Compte"}/></a>
               <a  onClick={handleLogout}><DropdownItem img = {`https://cdn.pixabay.com/photo/2013/03/29/13/40/exit-97636_1280.png`} text = {"Déconnexion"}/></a>
               {/* <DropdownItem img = {google} onClick={handleLogout} text = {"Logout"}/> */}

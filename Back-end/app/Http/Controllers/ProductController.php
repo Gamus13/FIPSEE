@@ -214,8 +214,8 @@ class ProductController extends Controller
 
     public function countproductsByUserId($userId)
     {
-        $productsCount = products::where('id_user', $userId)->count();
-
+        // $productsCount = products::where('id_user', $userId)->count();
+        $productsCount = Product::where('user_id', $userId)->count();
         return response()->json([
             'user_id' => $userId,
             'products_count' => $productsCount

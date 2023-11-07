@@ -70,6 +70,8 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::post('/register/investor', [AuthController::class, 'registerInvestor']);
 
 Route::post('/login/investor', [AuthController::class, 'logins']);
+Route::get('/userinvestisseur', [AuthController::class, 'userinvest'])->middleware('auth:sanctum');
+
 
 
 /*
@@ -80,8 +82,11 @@ Route::post('/login/investor', [AuthController::class, 'logins']);
 
 Route::get('/infos-users/{id}', [InfosUserController::class, 'show']);
 
+// route pour  retourner les informations de infos_user a partir de user_id
+Route::get('/users/{user_id}', [InfosUserController::class, 'sortUsersByUserId']);
 // route pour les methodes post et get
 Route::resource('infosUser',InfosUserController::class);
+
 
 // route pour la methode update
 Route::post('infosUser/{infosUser}', [InfosUserController::class, 'update']);
@@ -90,7 +95,7 @@ Route::post('infosUser/{infosUser}', [InfosUserController::class, 'update']);
 Route::delete('infosUser/{infosUser}', [InfosUserController::class, 'destroy']);
 
 /*
-------------------------------------------------------------------------------------------------
+----------------------------    --------------------------------------------------------------------
     API ROUTES POUR LES SUIVIE DES PROFILS : PORTEURS DE PROJETS OU INVESTISSEURS
 ------------------------------------------------------------------------------------------------
 */
@@ -150,6 +155,8 @@ Route::get('/products/{product}', [ProductController::class, 'show']);
 
 // Route::put('/products/{product}', [ProductController::class, 'update']);
 // Route::put('/products/{product}', 'ProductController@update');
+
+// Route pour compter le nombre de projet qui appartient a un utilisateur
 Route::get('/products/count/{user}', [ProductController::class, 'countproductsByUserId']);
 
 Route::delete('/products/{product}', [ProductController::class, 'destroy']);

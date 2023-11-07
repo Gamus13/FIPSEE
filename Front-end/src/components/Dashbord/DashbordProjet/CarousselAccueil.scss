@@ -11,6 +11,30 @@
 // //   }
 // // }
 
+.blockwrapperkj{
+  margin-left: -100%;  
+  @media screen and (max-width: 1504px) {
+    margin-left: -91%;
+  }
+
+  @media screen and (max-width: 1124px) {
+    margin-left: -61%;
+  }
+
+  @media screen and (max-width: 1024px) {
+    margin-left: -61%;
+  }
+
+  @media screen and (max-width: 768px) {
+    margin-left: -61%;
+  }
+
+  @media screen and (max-width: 480px) {
+    margin-top: -21px;
+    margin-left: -60%;
+  }
+}
+
 .wrapper {
   width: 30%;
   height: 4rem;
@@ -20,6 +44,11 @@
     display: block;
     // margin-left: -4rem;
   }
+  @media screen and (max-width: 480px) {
+    height: 30px;
+    width: 310px;
+  }
+  
 }
 .slider-wrapper {
   flex: 1;

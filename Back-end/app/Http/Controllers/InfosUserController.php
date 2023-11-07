@@ -6,6 +6,7 @@ use App\Models\InfosUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\JsonResponse;
 use Carbon\Carbon;
 use Illuminate\Http\Response;
 
@@ -34,6 +35,43 @@ class InfosUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'user_id' => 'required',
+    //         'sexe' => 'required',
+    //         'nationalité' => 'required',
+    //         'date_de_naissance' => 'required',
+    //         'lieu_de_residence' => 'required',
+    //         'entreprise' => 'required',
+    //         'site_internet' => 'required',
+    //         'image' => 'required|image',
+    //         'profil' => 'required|image' // Ajoutez la validation pour le champ "profil"
+    //     ]);
+
+    //     try {
+    //         $imageName = Str::random().'.'.$request->image->getClientOriginalExtension();
+    //         Storage::disk('public')->putFileAs('InfosUser/image', $request->image, $imageName);
+
+    //         $profilImageName = Str::random().'.'.$request->profil->getClientOriginalExtension();
+    //         Storage::disk('public')->putFileAs('InfosUser/profil', $request->profil, $profilImageName);
+
+    //         InfosUser::create($request->post() + [
+    //             'image' => $imageName,
+    //             'profil' => $profilImageName // Stockez le nom de l'image de profil dans le champ "profil"
+    //         ]);
+
+    //         return response()->json([
+    //             'message' => 'InfosUser saved successfully!'
+    //         ]);
+    //     } catch (\Exception $e) {
+    //         \Log::error($e->getMessage());
+    //         return response()->json([
+    //             'message' => 'Something went wrong while creating an InfosUser!'
+    //         ], 500);
+    //     }
+    // }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -44,21 +82,26 @@ class InfosUserController extends Controller
             'lieu_de_residence' => 'required',
             'entreprise' => 'required',
             'site_internet' => 'required',
-            'image' => 'required|image',
-            'profil' => 'required|image' // Ajoutez la validation pour le champ "profil"
+            'image' => 'image',
+            'profil' => 'image' // Supprimez la validation "required" pour le champ "profil"
         ]);
 
         try {
-            $imageName = Str::random().'.'.$request->image->getClientOriginalExtension();
-            Storage::disk('public')->putFileAs('InfosUser/image', $request->image, $imageName);
+            $data = $request->post();
 
-            $profilImageName = Str::random().'.'.$request->profil->getClientOriginalExtension();
-            Storage::disk('public')->putFileAs('InfosUser/profil', $request->profil, $profilImageName);
+            if ($request->hasFile('image')) {
+                $imageName = Str::random().'.'.$request->image->getClientOriginalExtension();
+                Storage::disk('public')->putFileAs('InfosUser/image', $request->image, $imageName);
+                $data['image'] = $imageName;
+            }
 
-            InfosUser::create($request->post() + [
-                'image' => $imageName,
-                'profil' => $profilImageName // Stockez le nom de l'image de profil dans le champ "profil"
-            ]);
+            if ($request->hasFile('profil')) {
+                $profilImageName = Str::random().'.'.$request->profil->getClientOriginalExtension();
+                Storage::disk('public')->putFileAs('InfosUser/profil', $request->profil, $profilImageName);
+                $data['profil'] = $profilImageName;
+            }
+
+            InfosUser::create($data);
 
             return response()->json([
                 'message' => 'InfosUser saved successfully!'
@@ -87,7 +130,16 @@ class InfosUserController extends Controller
         return response()->json(['users' => $users]);
     }
 
+    public function sortUsersByUserId($user_id)
+    {
+        $infosUser = InfosUser::where('user_id', $user_id)->first();
 
+        if (!$infosUser) {
+            return response()->json(['error' => 'Utilisateur non trouvé.'], 404);
+        }
+
+        return response()->json(['InfosUser' => $infosUser]);
+    }
 
     public function show($id)
     {

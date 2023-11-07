@@ -9,6 +9,8 @@ import {
   FaYoutubeSquare,
 } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { MdNotifications } from 'react-icons/md';
+import { TbMessageCircle2Filled } from 'react-icons/tb';
 
 import { NavLink } from "react-router-dom";
 
@@ -46,15 +48,15 @@ const Nav = () => {
             <li>
               <a
                 href="https://www.youtube.com/channel/UCwfaAHy4zQUb2APNOGXUCCA"
-                target="_thapa">
-                <FaFacebookSquare className="facebook" />
+                target="_thapa" style={{ fontSize:'2rem', marginTop: '-15px', color:'aqua', marginLeft: '-22px' }}>
+                <MdNotifications />
               </a>
             </li>
             <li>
               <a
                 href="https://www.instagram.com/thapatechnical/"
-                target="_thapa">
-                <FaInstagramSquare className="instagram" />
+                target="_thapa" style={{ fontSize:'2rem', marginTop: '-15px',marginLeft: '22px',  color:'aqua' }}>
+                <TbMessageCircle2Filled />
               </a>
             </li>
             <li>

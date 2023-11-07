@@ -41,7 +41,7 @@ const   FormComponent4 = () => {
     fetchUser();
   }, []);
 
-  console.log('hello', user);
+  // console.log('hello', user);
 
   const onSubmit = async (data) => {
     try {
@@ -62,7 +62,7 @@ const   FormComponent4 = () => {
       const response = await axios.post('http://localhost:8000/api/infosUser', formData);
   
       // Traitez la réponse si nécessaire
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       // Gérez les erreurs de requête
       console.error(error);

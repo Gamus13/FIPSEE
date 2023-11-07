@@ -1,0 +1,12 @@
+@media screen and (max-width: 768px) {
+    .containergloball{
+        margin-left: 111px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .containergloball{
+        position: relative;
+        top: 22px;
+    }
+  }

@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('entreprise');
             $table->text('site_internet');
             $table->text('profil');
-            $table->text('image');
+            // $table->text('image');
+            $table->string('image')->nullable()->change();
             $table->timestamps();
         });
     }

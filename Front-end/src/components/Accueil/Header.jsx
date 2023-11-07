@@ -5,7 +5,7 @@ import { FaPlay } from 'react-icons/fa';
 import { FiChevronLeft } from 'react-icons/fi';
 import { FiChevronRight } from 'react-icons/fi';
 import { PiEyeSlashLight } from 'react-icons/pi';
-
+import "../../Styles/Accueil/Header.css";
 import { useNavigate, useParams } from 'react-router-dom'
 
 // ici cette fonction va derouler au clic sur l'icone profil un menu
@@ -21,139 +21,150 @@ export function ouverture(){
 }
 
 
-function Home(){
-    // ici c'est la fonction qui permet le slide avant de chaque background*/
-    function handleNextClick() {
-        let lists = document.querySelectorAll('.item');
-        document.getElementById('slide').appendChild(lists[0]);
-    }
+// function Home(){
+//     // Diviser le tableau complet en tranches de 5 éléments
+//     const productsPerPage = 5;
+//     const slicedProducts = products.slice(currentIndex * productsPerPage, (currentIndex + 1) * productsPerPage);
 
-    function handlePrevClick() {
-        let lists = document.querySelectorAll('.item');
-        document.getElementById('slide').prepend(lists[lists.length - 1]);
-    }
-    const [data, setData] = useState({})
-    const [validationError, setValidationError] = useState({})
-    
-    useEffect(() => {
-      fetchProduct()
-    }, [])
-    
-    const fetchProduct = async () => {
-      try {
-        const response = await axios.get(`http://localhost:8000/api/products`)
-        const productData = response.data
-        setData(productData)
-        console.log("Données du produit :", productData)
-      } catch (error) {
-        setValidationError(error.response.data)
-      }
-    }
-  
-
-    
-
-    return(
-        
-        <div class="container"  >
-        
-            <div id="slide"> { /*ici c'est l'evenement au clic qui declanche la fermeture de mon input*/}
-                    
-                    <div class="item" id='slide1'>
-                    
-                        <div class="content">
-                            <hr class="desi"></hr>
-                            <div class="localisation"> <i>< FaMapMarkerAlt  /></i> Douala-Cameroun</div>
-                            <div class="name">{data.Secteur}</div>
-                            <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
-                            <div class="bloc-infos">
-                                <div class="details"><span class="fa fa-bookmark"></span></div>
-                                <button id='btn-pjt'>decouvrir</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item" id='slide2'>
-                        <div class="content">
-                            <hr class="desi"></hr>
-                            <div class="localisation"><i>< FaMapMarkerAlt  /></i> Douala-Cameroun</div>
-                            <div class="name">{data.Secteur}</div>
-                            <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
-                            <div class="bloc-infos">
-                                <div class="details"><span><FaPlay /></span></div>
-                                <button id='btn-pjt'>decouvrir</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item" id='slide3'>
-                        <div class="content">
-                            <hr class="desi"></hr>
-                            <div class="localisation"><i>< FaMapMarkerAlt  /></i> Douala-Cameroun</div>
-                            <div class="name">FACEBOOK</div>
-                            <div class="des">Premier réseau social Africain de financement participatif</div>
-                            <div class="bloc-infos">
-                                <div class="details"><span class="fa fa-bookmark"></span></div>
-                                <button id='btn-pjt'>decouvrir</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item" id='slide4'>
-                        <div class="content">
-                            <hr class="desi"></hr>
-                            <div class="localisation"><i>< FaMapMarkerAlt  /></i> Douala-Cameroun</div>
-                            <div class="name">Onomo market</div>
-                            <div class="des">Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu Premier réseau social Africain de financement participatif</div>
-                            <div class="bloc-infos">
-                                <div class="details"><span class="fa fa-play"></span></div>
-                                <button id='btn-pjt'>decouvrir</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item" id='slide5'>
-                        <div class="content">
-                            <hr class="desi"></hr>
-                            <div class="localisation"><i>< FaMapMarkerAlt  /></i> Douala-Cameroun</div>
-                            <div class="name">SAMSUNG</div>
-                            <div class="des">Premier réseau social Africain de financement participatif</div>
-                            <div class="bloc-infos">
-                                <div class="details"><span class="fa fa-bookmark"></span></div>
-                                <button id='btn-pjt'>decouvrir</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item" id='slide6'>
-                        <div class="content">
-                            <hr class="desi"></hr>
-                            <div class="localisation"><i>< FaMapMarkerAlt  /></i> Douala-Cameroun</div>
-                            <div class="name">BANQUES ATLANTIQUES</div>
-                            <div class="des">secteur: agricole,Tinh ru anh di chay pho, chua kip chay pho thi anhchay mat tieu</div>
-                            <div class="bloc-infos">
-                                <div class="details"><span class="fa fa-play"></span></div>
-                                <button id='btn-pjt'>decouvrir</button>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    
-                    
-                
-                </div>
-                
-                <div class="buttons">
-                    <button id="prev" onClick={handlePrevClick}><i><FiChevronLeft class='direction'/></i></button> {/*ici j'ai mis l'evenements onClick pour charger l'evenement*/}
-                    <button id="next" onClick={handleNextClick}><i><FiChevronRight class='direction' /></i></button> 
-                    
-                </div>0
-
-            </div>
-
-        
-        
-
+//     // ici c'est la fonction qui permet le slide avant de chaque background*/
+//     const [currentIndex, setCurrentIndex] = useState(0);
+//     const handleNextClick = () => {
+//         setCurrentIndex((prevIndex) => (prevIndex + 1) % Math.ceil(products.length / productsPerPage));
+//     };
       
-       
-    
-    
-    )
-}
+//     const handlePrevClick = () => {
+//         setCurrentIndex((prevIndex) => (prevIndex - 1 + Math.ceil(products.length / productsPerPage)) % Math.ceil(products.length / productsPerPage));
+//     };
+//     const [products, setProducts] = useState([]);
+
+//     useEffect(() => {
+//       const fetchProducts = async () => {
+//         try {
+//           const response = await axios.get('/products');
+//           const responseData = response.data;
+//           setProducts(responseData);
+//           console.log('Data obtenue :', responseData);
+//         } catch (error) {
+//           console.error('Erreur lors de la récupération des produits :', error);
+//         }
+//       };
+  
+//       fetchProducts();
+//     }, []);
+//     return(
+//         <div class="container"  >
+//             <div>
+//                 {slicedProducts.map((product) => (
+//                     // Afficher les données du produit ici
+//                     <div className="item" id={`slide${product.id}`} key={product.id}>
+//                         <div className="content">
+//                             <hr className="desi"></hr>
+//                             <div className="localisation">
+//                             <i><FaMapMarkerAlt /></i> {product.Localisation}-Cameroun
+//                             </div>
+//                             <div className="name">{product.titre}</div>
+//                             <div className="des">{product.courte_description}</div>
+//                             <div className="bloc-infos">
+//                             <div className="details"><span className="fa fa-bookmark"></span></div>
+//                             <button id="btn-pjt">decouvrir</button>
+//                             </div>
+//                         </div>
+//                     </div>
+//                 ))}
+//                 {products.length === 0 && <div>No products available.</div>}
+//             </div>
+
+//             <div className="buttons">
+//                 <button id="prev" onClick={handlePrevClick}><i><FiChevronLeft className='direction'/></i></button>
+//                 <button id="next" onClick={handleNextClick}><i><FiChevronRight className='direction' /></i></button>
+//             </div>
+
+//         </div>
+//     )
+// }
+
+function Home() {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [products, setProducts] = useState([]);
+    const productsPerPage = 5;
+    const slicedProducts = products.slice(
+      currentIndex * productsPerPage,
+      (currentIndex + 1) * productsPerPage
+    );
+  
+    const handleNextClick = () => {
+      setCurrentIndex((prevIndex) =>
+        (prevIndex + 1) % Math.ceil(products.length / productsPerPage)
+      );
+    };
+  
+    const handlePrevClick = () => {
+      setCurrentIndex((prevIndex) =>
+        (prevIndex - 1 + Math.ceil(products.length / productsPerPage)) %
+          Math.ceil(products.length / productsPerPage)
+      );
+    };
+  
+    useEffect(() => {
+      const fetchProducts = async () => {
+        try {
+          const response = await axios.get('/products');
+          const responseData = response.data;
+          setProducts(responseData);
+          console.log('Data obtenue :', responseData);
+        } catch (error) {
+          console.error('Erreur lors de la récupération des produits :', error);
+        }
+      };
+  
+      fetchProducts();
+    }, []);
+  
+    return (
+      <div className="container">
+        <div>
+            {[1, 2, 3, 4].map((index) => (
+                <React.Fragment key={index}>
+                    {products.slice(currentIndex * 5, (currentIndex + 1) * 5).map((product) => (
+                        <div className="item" id={`slide${product.id}`} key={product.id}>
+                        <div className="content">
+                            <hr className="desi"></hr>
+                            <div className="localisation">
+                            <i>
+                                <FaMapMarkerAlt />
+                            </i>{' '}
+                            {product.Localisation}-Cameroun
+                            </div>
+                            <div className="name">{product.titre}</div>
+                            <div className="des">{product.courte_description}</div>
+                            <div className="bloc-infos">
+                            <div className="details">
+                                <span className="fa fa-bookmark"></span>
+                            </div>
+                            <button id="btn-pjt">decouvrir</button>
+                            </div>
+                        </div>
+                        </div>
+                    ))}
+                    {products.length === 0 && <div>Aucun produit disponible.</div>}
+                </React.Fragment>
+            ))}
+        </div>
+  
+        <div className="buttons">
+          <button id="prev" onClick={handlePrevClick}>
+            <i>
+              <FiChevronLeft className="direction" />
+            </i>
+          </button>
+          <button id="next" onClick={handleNextClick}>
+            <i>
+              <FiChevronRight className="direction" />
+            </i>
+          </button>
+        </div>
+      </div>
+    );
+  }
 
 export default Home

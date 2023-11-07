@@ -15,55 +15,26 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
-
-
-
-
-
+import { useForm, Controller } from "react-hook-form";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Register() {
+	const { setUser } = useAuth();
+	const { register, handleSubmit, formState: { errors } } = useForm();
+	const onSubmit = async (data) => {
+	try {
+		const resp = await axios.post('/register', data);
+		if (resp.status === 200) {
+		setUser(resp.data.user);
+		// Effectuer la navigation ici
+		}
+	} catch (error) {
+		// Gérer les erreurs ici
+	}
+	};
 
 	
-
-		const { setUser } = useAuth();
-		const [emailError, setEmailError] = useState('');
-		// enregistrer l'utilisateur
-		const handleSubmit = async (e) => {
-			e.preventDefault();
-			const { name, lastName, email, password, cpassword } = e.target.elements;
-			const body = {
-			  name: name.value,
-			  lastName: lastName.value,
-			  email: email.value,
-			  password: password.value,
-			  password_confirmation: cpassword.value,
-			};
-		  
-			try {
-			  const resp = await axios.post('/register', body); // Appel à l'API /register
-			  if (resp.status === 200) {
-				setUser(resp.data.user);
-				return <Navigate to="/profile" />;
-			  }
-			} catch (error) {
-				if (error.response && error.response.status === 409) {
-				  console.log(error.response.data.message);
-				  const emailErrorMessage = error.response.data.errors.email[0]; // Récupérer la première valeur du tableau d'erreurs
-				  console.log(emailErrorMessage); // Afficher le message d'erreur dans la console
-				  setEmailError(emailErrorMessage);
-				  // Réinitialiser les autres messages d'erreur si nécessaire
-				  setNameError('');
-				  setlastNameError('');
-				  setPasswordError('');
-				} else if (error.response && error.response.status === 422) {
-				  console.log(error.response.data.errors);
-				  // Gérer d'autres erreurs de validation du formulaire
-				  // ...
-				} else {
-				  console.log("Une erreur s'est produite lors de l'inscription.");
-				}
-			  }
-		  };
 
 	return (
 
@@ -120,7 +91,8 @@ export default function Register() {
 							action="#"
 							method="post"
 							noValidate
-							onSubmit={handleSubmit}
+							onSubmit={handleSubmit(onSubmit)}
+							// onSubmit={handleSubmit}
 							sx={{ mt: 1 }}
 						>	
 							<Grid container spacing={2}>
@@ -131,7 +103,15 @@ export default function Register() {
 									required
 									fullWidth
 									id="name"
-									
+									{...register("name", {
+										required: "votre nom est requis.",
+										// pattern: {
+										// 	value: /^{5,}$/,
+										// 	message: 'Veuillez entrer un mot de passe correct 	',
+										// },
+									})}
+									error={Boolean(errors.name)}
+									helperText={errors.name?.message}
 									
 									label="Noms"
 									autoFocus
@@ -145,6 +125,15 @@ export default function Register() {
 									label="Prenoms"
 									name="lastName"
 									autoComplete="family-name"
+									{...register("lastName", {
+										required: "votre Prenoms est requis.",
+										// pattern: {
+										// 	value: /^{5,}$/,
+										// 	message: 'Veuillez entrer un mot de passe correct 	',
+										// },
+									})}
+									error={Boolean(errors.lastName)}
+									helperText={errors.lastName?.message}
 								/>
 								</Grid>
 							</Grid>
@@ -157,8 +146,15 @@ export default function Register() {
 							name="email"
 							autoComplete="email"
 							autoFocus
-							error={!!emailError}
-							helperText={emailError} // Utiliser emailError pour afficher la valeur d'erreur
+							{...register("email", { 
+								required: "Email est requis.", 
+								pattern: {
+									value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+									message: 'Veuillez entrer un email valide ',
+								},
+							})}
+							error={Boolean(errors.email)}
+							helperText={errors.email?.message}
 							/>
 							<TextField
 							margin="normal"
@@ -169,16 +165,34 @@ export default function Register() {
 							type="password"
 							id="password"
 							autoComplete="current-password"
+							{...register("password", {
+								required: "votre Mot de passe est requis.",
+								// pattern: {
+								// 	value: /^{5,}$/,
+								// 	message: 'Veuillez entrer un mot de passe correct 	',
+								// },
+							})}
+							error={Boolean(errors.password)}
+							helperText={errors.password?.message}
 							/>
 							<TextField
 							margin="normal"
 							required
 							fullWidth
-							name="cpassword"
-							
+							name="password_confirmation"
 							label="confirmation"
 							type="password"
-							id="cpassword"
+							id="password_confirmation"
+							{...register("password_confirmation", {
+								required: "votre Mot de passe n'est pas confirmer.",
+								// pattern: {
+								// 	value: /^{5,}$/,
+								// 	message: 'Veuillez entrer un mot de passe correct 	',
+								// },
+							})}
+							error={Boolean(errors.password_confirmation)}
+							helperText={errors.password_confirmation?.message}
+							
 							autoComplete="current-password"
 							/>
 							
@@ -193,14 +207,10 @@ export default function Register() {
 							S' inscrire
 							</Button>
 							<Grid container>
-							<Grid item xs>
-								<Link href="#" variant="body2">
-								Forgot password?
-								</Link>
-							</Grid>
+							
 							<Grid item>
 								<Link href="#" variant="body2">
-								{"Don't have an account? Sign Up"}
+								{"Vous avez deja un compte? "}
 								</Link>
 							</Grid>
 							</Grid>

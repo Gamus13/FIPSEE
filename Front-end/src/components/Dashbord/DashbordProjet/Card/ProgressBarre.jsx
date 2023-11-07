@@ -139,7 +139,7 @@ const LinearDeterminate = () => {
           setFundsRaisedCount(fundsRaisedCount);
           setTotalAmount(total_amount.toString());
           setCount(count.toString());
-          console.log('Données de paiement:', paymentResponse.data);
+          // console.log('Données de paiement:', paymentResponse.data);
         } else {
           console.log('Aucun produit associé à l\'utilisateur.');
           // Arrêter le processus ou effectuer d'autres actions nécessaires
@@ -147,40 +147,40 @@ const LinearDeterminate = () => {
 
         const userData = userResponse.data.data;
         setFormData(userData);
-        console.log('Données utilisateur1 :', userData);
+        // console.log('Données utilisateur1 :', userData);
 
         const customIdData = userData.id;
-        console.log('ID personnalisé de l\'utilisateur : ', customIdData);
+        // console.log('ID personnalisé de l\'utilisateur : ', customIdData);
         setCustomId(customIdData);
 
         const productsResponse = await axios.get('/products');
         const productsData = productsResponse.data;
-        console.log('Produits : ', productsData);
+        // console.log('Produits : ', productsData);
         
         const userProducts = productsData.filter((product) => product.user_id === customIdData);
-        console.log('Produits de l\'utilisateur : ', userProducts);
+        // console.log('Produits de l\'utilisateur : ', userProducts);
         setProducts(userProducts);
         
         const productId = userProducts[0].id; // Supposons que vous souhaitez récupérer l'ID du premier produit filtré
         const consoleResponse = await axios.get(`/products/${productId}`);
         const consoleData = consoleResponse.data;
-        console.log('Données du produit :', consoleData);
+        // console.log('Données du produit :', consoleData);
 
         const { product } = consoleData;
         const { Montant_de_levée } = product;
-        console.log('Données du produit :', product);
-        console.log('Montant de levée :', Montant_de_levée);
+        // console.log('Données du produit :', product);
+        // console.log('Montant de levée :', Montant_de_levée);
         setMontantDeLevee(Montant_de_levée);
 
         const min = Math.min(totalAmount, Montant_de_levée, );
         const max = Math.max(totalAmount, Montant_de_levée, );
 
-        console.log('Valeurs pour le calcul de min et max :');
-        console.log('totalAmount:', totalAmount);
-        console.log('Montant_de_levée:', Montant_de_levée);
+        // console.log('Valeurs pour le calcul de min et max :');
+        // console.log('totalAmount:', totalAmount);
+        // console.log('Montant_de_levée:', Montant_de_levée);
 
-        console.log('Valeur min:', min);
-        console.log('Valeur max:', max);
+        // console.log('Valeur min:', min);
+        // console.log('Valeur max:', max);
 
         // Mise à jour de la progression et de la valeur maximale
         setProgress(min);

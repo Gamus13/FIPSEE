@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import '../../../Styles/DashbordClient/CounterStyle.css'; // Assurez-vous d'avoir un fichier CSS pour les styles
 import axios from '../../../axios';
 const Componentstat = () => {
-
+  // declaration des states pour stocker les data a afficher
   const [investorsCount, setInvestorsCount] = useState(0);
   const [projectsCount, setProjectsCount] = useState(0);
   const [fundsRaisedCount, setFundsRaisedCount] = useState(0);
   const [totalAmount, setTotalAmount] = useState("000");
   const [count, setCount] = useState("000");
-
+  const [productsCount, setProductsCount] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +34,7 @@ const Componentstat = () => {
           setFundsRaisedCount(fundsRaisedCount);
           setTotalAmount(total_amount.toString());
           setCount(count.toString());
-          console.log('Données de paiement:', paymentResponse.data);
+          // console.log('Données de paiement:', paymentResponse.data);
         } else {
           console.log('Aucun produit associé à l\'utilisateur.');
           // Arrêter le processus ou effectuer d'autres actions nécessaires
@@ -47,6 +47,25 @@ const Componentstat = () => {
     fetchData();
   }, []);
   
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userResponse = await axios.get('/user');
+        const userId = userResponse.data.data.id;
+        // console.log('ID de l\'utilisateur:', userId);
+
+        const productsCountResponse = await axios.get(`/products/count/${userId}`);
+        const count = productsCountResponse.data.products_count;
+        // console.log('Réponse de la route:', productsCountResponse.data);
+
+        setProductsCount(count);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   // console.log('investorsCount:', investorsCount);
   // console.log('projectsCount:', projectsCount);
@@ -87,7 +106,7 @@ const Componentstat = () => {
       </div>
       <div className="containerz">
         <i className="fas fa-list"></i>
-        <span className="num" data-val="400">000</span>
+        <span className="num" data-val="400">{productsCount}</span>
         <span className="text">Vos projet</span>
       </div>
       <div className="containerz">

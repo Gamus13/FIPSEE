@@ -9,6 +9,7 @@ import LoadingButtonsTransition from './ShowProjet';
 import  { useEffect, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+import '../../../Styles/DashbordClient/UserList.css';
 import axios from '../../../axios';
 
 export default function AlignItemsList() {
@@ -34,28 +35,29 @@ export default function AlignItemsList() {
     useEffect(() => {
         const fetchData = async () => {
           try {
+            // je recupere l'utilisateur connecter
             const response = await axios.get('/user');
             const { data } = response.data;
             setFormData(data);
             console.log('Données utilisateur1 :', data);
-      
+            // je stocke son id
             const customIdData = data.id;
             console.log('ID personnalisé de l\'utilisateur : ', customIdData);
             setCustomId(customIdData);
-      
+            // je recupere tous les projets
             const productsResponse = await axios.get('/products');
             const productsData = productsResponse.data;
             console.log('Produits : ', productsData);
-      
+            // je compare les id des 2 premier requette pour recuperer uniquement celle de l'utilisateur
             const userProducts = productsData.filter((product) => product.user_id === customIdData);
             console.log('Produits de l\'utilisateur : ', userProducts);
             setProducts(userProducts);
-      
+            // j'affiche les donnees qu'il contient
             const consoleResponse = await axios.get('/console');
             const consoleData = consoleResponse.data;
             console.log('Données de la console:', consoleData);
-      
-            const {
+            // ici j'effectue une destructuration des donnees retourner en console
+             const {
               Duree_de_la_levée,
               Localisation,
               Monnaie,
@@ -96,48 +98,48 @@ export default function AlignItemsList() {
             
             <List sx={{ width: '100%', maxWidth: 460, height: 500, bgcolor: 'rgba(255, 255, 255, 0.2)', backdropfilter: 'blur(17px)',  borderleft: '1px solid rgba(255, 255, 255, 0.7)', overflow: 'auto', cursor: 'pointer', marginLeft: '790px', }}  > 
         
-            <div id='scrollbar' style={{  height: 500,  }}>
-                
-            <List>
-                {products.map((product, index) => (
-                    <React.Fragment key={product.id}>
-                    <ListItem alignItems="flex-start">
-                        <ListItemAvatar>
-                        <Avatar alt="Cindy Baker" src={`http://localhost:8000/storage/${images}`} />
-                        </ListItemAvatar>
-                        <ListItemText
-                        primary={product.titre} // Affiche le titre du produit
-                        secondary={
-                            <React.Fragment>
-                            <Typography
-                                sx={{ display: 'inline' }}
-                                component="span"
-                                variant="body2"
-                                color="text.primary"
-                            >
-                                {product.Secteur}, {product.Montant_de_levée}{product.Monnaie}
-                            </Typography>
-                            <BasicButtons />
-                            {/* Ajoutez le code pour afficher les images */}
+                <div id='scrollbar' style={{  height: 500,  }}>
+                    
+                    <List>
+                        {products.map((product, index) => (
+                            <React.Fragment key={product.id}>
+                            <ListItem alignItems="flex-start">
+                                <ListItemAvatar>
+                                <Avatar alt="Cindy Baker" src={`http://localhost:8000/storage/${images}`} />
+                                </ListItemAvatar>
+                                <ListItemText
+                                primary={product.titre} // Affiche le titre du produit
+                                secondary={
+                                    <React.Fragment>
+                                    <Typography
+                                        sx={{ display: 'inline' }}
+                                        component="span"
+                                        variant="body2"
+                                        color="text.primary"
+                                    >
+                                        {product.Secteur}, {product.Montant_de_levée}{product.Monnaie}
+                                    </Typography>
+                                    <BasicButtons />
+                                    {/* Ajoutez le code pour afficher les images */}
+                                    </React.Fragment>
+                                }
+                                />
+                            </ListItem>
+                            {index !== products.length - 1 && (
+                                <Divider
+                                variant="inset"
+                                component="li"
+                                style={{ backgroundColor: 'black' }}
+                                />
+                            )}
                             </React.Fragment>
-                        }
-                        />
-                    </ListItem>
-                    {index !== products.length - 1 && (
-                        <Divider
-                        variant="inset"
-                        component="li"
-                        style={{ backgroundColor: 'black' }}
-                        />
-                    )}
-                    </React.Fragment>
-                ))}
-                </List>
-               
-                <Divider variant="inset" component="li"  style={{ backgroundColor: 'black', }}/>
-                <LoadingButtonsTransition/>
-            </div>
-        </List>
+                        ))}
+                        </List>
+                
+                    <Divider variant="inset" component="li"  style={{ backgroundColor: 'black', }}/>
+                    <LoadingButtonsTransition/>
+                </div>
+           </List>
         </>
     
     );

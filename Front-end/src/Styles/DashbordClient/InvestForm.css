@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
+*{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    outline: none; border: none;
+    text-decoration: none;
+    /* text-transform: uppercase; */
+}
+
+.Icontainer{
+    min-height: 100vh;
+    background: #eee;
+    display: flex;
+    position: relative;
+    top: 18px;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    padding-bottom: 60px;
+}
+
+.Icontainer form{
+    background: #fff;
+    /* position: relative;
+    top: 31%; */
+    border-radius: 5px;
+    box-shadow: 0 10px 15px rgba(0,0,0,.1);
+    padding: 20px;
+    width: 600px;
+    padding-top: 80px;
+}
+
+.Icontainer form .inputBoxx{
+    margin-top: 20px;
+}
+
+.Icontainer form .inputBoxx .txty{
+    display: block;
+    color:#999;
+    padding-bottom: 5px;
+}
+
+.Icontainer form .inputBoxx input,
+.Icontainer form .inputBoxx select{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border:1px solid rgba(0,0,0,.3);
+    color:#444;
+}
+
+.Icontainer form .flexbox{
+    display: flex;
+    gap:15px;
+}
+
+.Icontainer form .flexbox .inputBoxx{
+    flex:1 1 150px;
+}
+
+.Icontainer form .submit-btn{
+    width: 100%;
+    background:linear-gradient(45deg, rgb(10, 163, 163), rgb(59, 20, 255));
+    margin-top: 20px;
+    padding: 5px;
+    font-size: 20px;
+    color:#fff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .2s linear;
+}
+
+.expiration{
+    display: flex;
+    
+}
+.expiration .exp-year{
+    margin-left: 9px;
+}
+
+.Icontainer form .submit-btn:hover{
+    letter-spacing: 2px;
+    opacity: .9;
+}
+
+.Icontainer .carde-Icontainer{
+    margin-bottom: -150px;
+    position: relative; 
+    height: 250px;
+    width: 400px;
+}
+
+.Icontainer .carde-Icontainer .front{
+    position: absolute;
+    height: 90%;
+    width: 100%;
+    /* top: 29%; */
+    left: 20%;
+    /* background-color:linear-gradient(45deg, black, rgb(59, 20, 255)); */
+    background: url("https://cdn.pixabay.com/photo/2018/09/16/22/08/software-3682509_640.jpg");
+    background-size: cover;
+    border-radius: 5px;
+    backface-visibility: hidden;
+    box-shadow: 0 15px 25px rgba(0,0,0,.2);
+    padding:20px;
+    transform:perspective(1000px) rotateY(0deg);
+    transition:transform .4s ease-out;
+}
+
+.Icontainer .carde-Icontainer .front .image{
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.Icontainer .carde-Icontainer .front .image img{
+    height: 50px;
+}
+
+.Icontainer .carde-Icontainer .front .carde-number-boxx{
+    padding:30px 0;
+    font-size: 22px;
+    color:#fff;
+}
+
+.Icontainer .carde-Icontainer .front .flexbox{
+    display: flex;
+}
+
+.Icontainer .carde-Icontainer .front .flexbox .boxx:nth-child(1){
+    margin-right: auto;
+}
+
+.Icontainer .carde-Icontainer .front .flexbox .boxx{
+    font-size: 15px;
+    color:#fff;
+}
+
+.Icontainer .carde-Icontainer .back{
+    position: absolute;
+    top:0; left: 0;
+    height: 100%;
+    width: 100%;
+    background:linear-gradient(45deg, rgb(14, 14, 14), rgb(59, 20, 255));
+    border-radius: 5px;
+    padding: 20px 0;
+    text-align: right;
+    backface-visibility: hidden;
+    box-shadow: 0 15px 25px rgba(0,0,0,.2);
+    transform:perspective(1000px) rotateY(180deg);
+    transition:transform .4s ease-out;
+}
+
+.Icontainer .carde-Icontainer .back .stripe{
+    background: #000;
+    width: 100%;
+    margin: 10px 0;
+    height: 50px;
+}
+
+.Icontainer .carde-Icontainer .back .boxx{
+    padding: 0 20px;
+}
+
+.Icontainer .carde-Icontainer .back .boxx .txty{
+    color:#fff;
+    font-size: 15px;
+}
+
+.Icontainer .carde-Icontainer .back .boxx .cvv-boxx{
+    height: 50px;
+    padding: 10px;
+    margin-top: 5px;
+    color:#333;
+    background: #fff;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.Icontainer .carde-Icontainer .back .boxx img{
+    margin-top: 30px;
+    height: 30px;
+}

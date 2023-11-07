@@ -17,7 +17,6 @@
     animation: defilement-rtl 35s infinite linear;
 }
 
-
 @keyframes defilement-rtl {
     0% {
       transform: translate3d(0,0,0);      /* position initiale à droite */
@@ -36,6 +35,9 @@
   left: 50%;
 }
 
+.marquee-rok{
+  display: inline-block;
+}
 
 @media (max-width: 768px) {
   .marquee-rtl {

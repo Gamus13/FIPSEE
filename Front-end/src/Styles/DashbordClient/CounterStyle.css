@@ -42,7 +42,17 @@
     font-weight: 400;
     line-height: 0;
   }
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1504px) {
+    .wrapperx {
+      width: 40vw;
+    }
+    .containerz {
+      height: 16vmin;
+      width: 26vmin;
+      font-size: 12px;
+    }
+  }
+  @media screen and (max-width: 1124px) {
     .wrapperx {
       width: 85vw;
     }
@@ -52,11 +62,22 @@
       font-size: 12px;
     }
   }
+  @media screen and (max-width: 1024px) {
+    .wrapperx {
+      width: 65vw;
+    }
+    .containerz {
+      height: 16vmin;
+      width: 26vmin;
+      font-size: 12px;
+    }
+  }
   @media screen and (max-width: 768px) {
     .wrapperx {
       width: 90vw;
       flex-wrap: wrap;
       gap: 30px;
+      margin-left: 40px;
     }
     .containerz {
       width: calc(50% - 40px);
@@ -66,11 +87,15 @@
   }
   @media screen and (max-width: 480px) {
     .wrapperx {
+      position: relative;
+      top: 640px;
+      margin-left: -18%;
       gap: 15px;
     }
     .containerz {
+      
       width: 30%;
       height: 25vmin;
-      font-size: 11px;
+      font-size: 12px;
     }
   }

@@ -220,7 +220,7 @@ button i .direction{
 }
 
 .localisation i{
-    color: orange;
+    color: aqua;
     margin-right: 5px;
     margin-top: 4px;
     
@@ -238,7 +238,7 @@ button i .direction{
 
 .details{
     border-radius: 50%;
-    background-color: orange;
+    background-color: aqua;
     height: 40px;
     width: 40px;
     margin-right: 5%;
@@ -337,7 +337,7 @@ button i .direction{
     }
 
 
-    @media (min-width: 768px) and (max-width: 928px) {
+    @media (min-width: 769px) and (max-width: 928px) {
         /* Ajoutez ici les styles spécifiques pour la plage de largeur d'écran de 768px à 928px */
 
         .item{
@@ -360,7 +360,34 @@ button i .direction{
 
     }
     
+    @media (min-width: 930px) and (max-width: 1025px) {
+
+    }
     
+    @media (min-width: 1026px) and (max-width: 1500px) {
+        .item{
+            width:100%;
+            height:100%;
+            background-position: 50% 50%;
+            background-size: cover;
+            display: inline-block;
+            transition: 0.5s;
+            background-size: cover;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIClDFvZNOjwhv7gBII6RH09vomN2hbhTd_A&usqp=CAU');
+            position: absolute;
+            z-index: 1;
+            top: 8%;  /*position du caroussel sur la vertical*/
+            transform: translate(0, -50%);
+            border-radius: 20px;
+            box-shadow:  0 30px 50px #161616;
+            
+        }
+
+        #slide2{
+            width:100vw;
+            height:10vh;
+        }
+    }
     
     
 

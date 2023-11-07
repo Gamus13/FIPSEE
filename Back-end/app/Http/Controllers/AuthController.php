@@ -28,14 +28,6 @@ class AuthController extends Controller {
     {
         $data = $request->validated();
 
-        $existingUser = User::where('email', $data['email'])->first();
-
-        if ($existingUser) {
-            return response()->json([
-                'message' => 'This email is already taken by another user.'
-            ], 409);
-        }
-
         $user = User::create([
             'name' => $data['name'],
             'lastName' => $data['lastName'],
@@ -96,8 +88,30 @@ class AuthController extends Controller {
     }
 
     // se connecter a un profil investisseur
-    public function logins(LoginInvestorRequest $request) {
+    // public function logins(LoginInvestorRequest $request) {
 
+    //     $data = $request->validated();
+
+    //     $user = User::where('email', $data['email'])->where('role', 'investisseur')->first();
+
+    //     if (!$user || !Hash::check($data['password'], $user->password)) {
+    //         return response()->json([
+    //             'message' => 'Email or password is incorrect!'
+    //         ], 401);
+    //     }
+
+    //     $token = $user->createToken('auth_token')->plainTextToken;
+
+    //     $cookie = cookie('token', $token, 60 * 1); // 1 day
+
+    //     return response()->json([
+    //         'user' => new UserResource($user),
+    //     ])->withCookie($cookie);
+    // }
+
+
+    public function logins(LoginInvestorRequest $request)
+    {
         $data = $request->validated();
 
         $user = User::where('email', $data['email'])->where('role', 'investisseur')->first();
@@ -119,6 +133,9 @@ class AuthController extends Controller {
 
 
 
+
+
+
     // déconnecte une méthode utilisateur
     public function logout(Request $request) {
         $request->user()->currentAccessToken()->delete();
@@ -133,6 +150,19 @@ class AuthController extends Controller {
     // récupère la méthode de l'utilisateur authentifié
     public function user(Request $request) {
         return new UserResource($request->user());
+    }
+
+    public function userinvest(Request $request)
+    {
+        $user = $request->user();
+
+        if ($user->role !== 'investisseur') {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 401);
+        }
+
+        return new UserResource($user);
     }
 
 

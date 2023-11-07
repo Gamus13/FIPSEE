@@ -1,19 +1,22 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Login from './pages/Login';
-import About from './pages/About';
+// import About from './pages/About';
 import Profile from './pages/Profile';
 import LoginForm from './pages/Register';
 import ProtectedLayout from './components/ProtectedLayout';
+// import ProtectedLayoutInvestisseur from './components/ProtectedLayoutinvest';
 import Layout from './components/ProtectedLayout2';
 import NotFound from './components/NotFound';
 import CreateProduct from './components/Product/CreateProjet';
 import Header from './components/Accueil/Header';
-import Footer from './components/Accueil/Footer';
 import Contacts from './components/Accueil/Contact';
 import Navbar from './components/Accueil/Navbar';
 import MenuTab from './components/InformationPersonnel/UserInformation';
 import Defilant from './components/Accueil/Defilant';
 import SimpleComponent from './components/Accueil/SiteComponent';
+import Headerinvestor from './components/Dashbord/DashbordInvestisseur/HeaderInvest';
+import InvestisseurComponent from './components/Dashbord/DashbordInvestisseur/InvestisseurComposant';
+import ProjetComponent from './components/Accueil/NosProjet';
 import ImageGallery from './ImageGallary';
 import ModalPOPUP from './components/Dashbord/DashbordProjet/ModalBtn';
 import FixedContainer from './components/Dashbord/DashbordProjet/SectionProjet';
@@ -39,7 +42,6 @@ import './Styles/DashbordClient/SectionProjet2.css';
 import './Styles/DashbordClient/SectionRight.css';
 import './Styles/DashbordClient/UserStat.css';
 import './Styles/DashbordClient/UserInformation.css';
-import './Styles/Accueil/Footer.css';
 import './Styles/Accueil/Header.css';
 import './Styles/Accueil/Defilant.css';
 import './Styles/Accueil/Navbar.css';
@@ -66,6 +68,19 @@ const router = createBrowserRouter([
 			<>
 				<SimpleComponent/>
 				{/* <WebsiteComponent/> */}
+			</>
+		),
+	},
+
+	{
+		path: '/Nos Projets',
+		element: (
+			// au chargement du site ce composant est charger et contient le header, navbar et section1 du site web
+			<>
+				<ProjetComponent/>
+				{/* <Navbar/>
+				<Home/>
+				<Defilant/> */}
 			</>
 		),
 	},
@@ -125,7 +140,7 @@ const router = createBrowserRouter([
 		),
 	},
 	{
-		path: '/test',
+		path: '/profileuser',
 		element: (
 			<>
 			 <Layout />
@@ -151,12 +166,32 @@ const router = createBrowserRouter([
 	},
 
 	{
+		path: '/investor',
+		element: (
+			<>
+			 
+			 <AuthInvestisseur/>
+			</>
+		),
+	},
+
+	{
 		path: '/mon_compte',
 		element: (
 			<>
 			 <Layout />
 			 {/* <ProductCard/> */}
 			 <AuthInvestisseur/>
+			</>
+		),
+	},
+
+	{
+		path: '/investisseur',
+		element: (
+			<>
+			 <InvestisseurComponent />
+			 
 			</>
 		),
 	},

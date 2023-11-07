@@ -27,6 +27,8 @@ import {  CgMenuRightAlt } from 'react-icons/cg';
 import Register from '../../pages/Register';
 import GuestLayout from '../GuestLayout';
 import Login from '../../pages/Login';
+import "../../Styles/Accueil/Navbar.css";
+
 
 function Navbar(){
     useEffect(() => {
@@ -104,7 +106,7 @@ function Navbar(){
         <nav>
         <div className="nav-bar">
             <i className='bx bx-menu sidebarOpen' ></i>
-            <img src={Logo} alt="Logo" class='logo' />
+            <img src={Logo} alt="Logo" class='logo' /><a href='/'></a>
 
             <div className="menu">
                 <div className="logo-toggle">
@@ -114,29 +116,29 @@ function Navbar(){
 
                 <ul className="nav-links">
                     <li><a href="/">Accueil</a></li>
-                    <li><a href="#">Lancer un projet</a></li>
-                    <li><a href="/Explorer_projet">Explorer</a></li>
-                    <li><a href="/Services">Services</a></li>
-                    <li><a href="/Contact">Contact</a></li>
+                    <li><a href="/#servicesite">Investir dans un projet</a></li>
+                    <li><a href="/#feature">Explorer</a></li>
+                    <li><a href="/#Contact">Services</a></li>
+                    <li><a href="/#blog">Contact</a></li>
                 </ul>
             </div>
 
             <div className="darkLight-searchBox">
                 <div className="dark-light">
                     <i><FiSun class='sun' /></i>
-                    <i><BsMoon class='moon' /></i>
+                    {/* <i><BsMoon class='moon' /></i> */}
                     
                 </div>
 
                 <div className="searchBox">
                    <div className="searchToggle">
-                        <i><MdOutlineCancel class='cancel' /></i>
+                        {/* <i><MdOutlineCancel class='search' /></i> */}
 
                         <i><BsSearch class='search' /></i>
                    </div>
 
                     <div className="search-field">
-                        <input type="text" placeholder="Search..." id='search'></input>
+                        <input type="text" placeholder="Entrer votre recherche ..." id='search'></input>
                         <i><BsSearch class='search' /></i>
                       </div>
                 </div>

@@ -1,6 +1,24 @@
 /* responsive */
 
-@media (max-width: 575.98px) {
+@media screen and (max-width: 768px) {	
 	/* Vos styles CSS pour les écrans extra small ici */
-	
+	.hrpt{
+		
+	}
+}
+
+@media screen and (max-width: 480px) {
+    .hrpt{
+		margin-top: -68%;
+		margin-left: -40%;
+		font-size: 20px;
+	}
+
+	.accueiltxte{
+		text-align: left;
+		margin-left: -55%;
+		width: 300px;
+		position: relative;
+		top: 202px;
+	}
 }

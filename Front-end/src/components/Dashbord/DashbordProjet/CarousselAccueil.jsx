@@ -30,21 +30,23 @@ function SliderComponent() {
   }
 
   return (
-    <div className="wrapper">
-      <div className="slider-wrapper">
-        {Object.entries(imgList).map(([name, src], index) => (
-          <div className="slide-item" key={name}>
-            <img src={src} alt={name} />
-            <div className="name">{name}</div>
-          </div>
-        ))}
-      </div>
-      <div className="dot-box">
-        {Object.entries(imgList).map(([name, src], index) => (
-          <div className="dot" title={name} key={name} onClick={() => onSlideChange(index)}>
-            <img src={src} alt={name} />
-          </div>
-        ))}
+    <div className='blockwrapperkj'>
+      <div className="wrapper">
+        <div className="slider-wrapper">
+          {Object.entries(imgList).map(([name, src], index) => (
+            <div className="slide-item" key={name}>
+              <img src={src} alt={name} />
+              <div className="name">{name}</div>
+            </div>
+          ))}
+        </div>
+        <div className="dot-box">
+          {Object.entries(imgList).map(([name, src], index) => (
+            <div className="dot" title={name} key={name} onClick={() => onSlideChange(index)}>
+              <img src={src} alt={name} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -5,47 +5,42 @@ import Feature from "./Feature";
 import axios from '../../../../axios';
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
-import OutlinedBtn from "./DetailBtnCard";
 const Modal = ({ data, close }) => {
   // console.log("Do i've been opened ?")
   // console.log("data :", data);
   // console.log("close :", close);
-
   const {
+    user_id,
     titre,
     Secteur,
+    Status,
     Montant_de_levée,
     Duree_de_la_levée,
     Monnaie,
     description,
     images,
   } = data;
-  // ici je recupere les information du user: nom,prenoms,email
-  // const [formData, setFormData] = useState({
-  //   nom: '',
-  //   prenom: '',
-  //   email: '',
-  //   motDePasse: '',
-  //   created_at: '',
 
-  // });
+   const [userInfo, setUserInfo] = useState(null);
 
-  
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await axios.get(`/users/${user_id}`);
+        const userData = response.data.InfosUser;
+        setUserInfo(userData);
+        // console.log(userData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get('/user');
-  //       const user = response.data.data;
-  //       setFormData(user);
-  //       // console.log('Données1 user :', user);
-  //     } catch (error) {
-  //       console.error('Erreur lors de la récupération des informations de l\'utilisateur :', error);
-  //     }
-  //   };
+    fetchUserInfo();
+  }, [user_id]);
 
-  //   fetchData();
-  // }, []);
+  if (!userInfo) {
+    return <div style={{ color:'white', }}>Veuillez ne pas investir dans ce projet n'as pas terminer son identification nous ne pouvons pas afficher ses details...</div>;
+  }
 
   const imagesTable = JSON.parse(images);
 
@@ -89,20 +84,22 @@ const Modal = ({ data, close }) => {
       
       <motion.div className="modal__info" variants={modalInfoVariants}>
         <motion.div className="modal__row" variants={modalRowVariants}>
-          {/* <span className="modal__address">Porteur de projet : {formData.name} {formData.lastName}</span> */}
+        {/* {formData.name} {formData.lastName} */}
+          {/* <span className="modal__address11"></span> */}
+          <img src={`http://localhost:8000/storage/InfosUser/image/${userInfo.image}`} alt="entrepreneur profil" className="modal__address11" />
         </motion.div>
         <motion.div className="modal__row3" variants={modalRowVariants}>
           
         {/* <span className="modal__address3">Email: {formData.email}</span> */}
         </motion.div>
         <motion.div className="modal__row4" variants={modalRowVariants}>
-        <span className="modal__address4">Nationalité: </span>
+        <span className="modal__address4">Nationalité: {userInfo.nationalité}  </span>
         </motion.div>
         <motion.div className="modal__row5" variants={modalRowVariants}>
-        <span className="modal__address5">Entreprise: </span>
+        <span className="modal__address5">Entreprise: {userInfo.entreprise} </span>
         </motion.div>
         <motion.div className="modal__row6" variants={modalRowVariants}>
-        <span className="modal__address6">Site web:   </span>
+        <span className="modal__address6">Site web: {userInfo.site_internet} </span>
         </motion.div>
         <motion.div className="modal__row" variants={modalRowVariants}>
           <span className="modal__price">Projet: {titre}</span>
@@ -118,8 +115,7 @@ const Modal = ({ data, close }) => {
           <Feature iconName={"FaRuler"} iconLabel={Montant_de_levée} /> */}
           <Feature iconName={"FaMoneyBill"} iconLabel={Montant_de_levée + ' ' + Monnaie} />  
           <Feature iconName={"FaCalendarAlt"} iconLabel={Duree_de_la_levée} />
-          <Feature iconName={"FaInfoCircle"} iconLabel="active"
-           />
+          <Feature iconName={"FaInfoCircle"} iconLabel={Status}/>
         </motion.div> 
         <motion.div
           className="modal__description-wrapper"
@@ -136,7 +132,6 @@ const Modal = ({ data, close }) => {
         >
           <IoCloseCircleOutline className="modal__close-icon" />
         </motion.button>
-        <OutlinedBtn />
       </motion.div>
     </motion.div>
   );

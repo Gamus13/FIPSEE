@@ -66,8 +66,8 @@ export default function Layout() {
 			<main >
 				
 				<DashbordProjet />
-				{/* <Search placeholder="Entrer votre recherche"data={allUsers}/>
-				<Nav/> */}
+				<Search placeholder="Entrer votre recherche"data={allUsers}/>
+				<Nav/>
 			</main>
 			
 			

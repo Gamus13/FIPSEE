@@ -19,12 +19,12 @@ const Listing = ({ data, open }) => {
 		isOnline: true, // si l'utilisateur est bel et bien connecter on n'affiche user is online sinon rien
 	  };
 
-    // console.log("Valeur de user.isOnline :", user.isOnline);
+    // console.log("Valeur de user.isOnline :", user.isOnline);         
   return (
     <motion.div className="listing"  onClick={open} whileHover={{ scale: 1.1 }} >
       <div className="listing__content">
         {imagesTable.length > 1 ? (
-          <Slider  autoplay={true} autoplaySpeed={3000} >
+          <Slider  autoplay={true} autoplaySpeed={6000} >
             {imagesTable.map((image, index) => (
               <div key={index}>
                 <img

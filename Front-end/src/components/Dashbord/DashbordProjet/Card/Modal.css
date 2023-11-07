@@ -39,8 +39,12 @@
   font-size: 1.3rem;
 }
 
-.modal__address {
-  margin-top:-5px;
+.modal__address11 {
+  height: 53px;
+  width: 60px;
+  border-radius: 50%;
+  background-color: aqua;
+  margin-top:-2px;
   font-size: 1rem;
   color: black;
 }
